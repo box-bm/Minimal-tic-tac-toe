@@ -52,7 +52,7 @@ class _TikTakToeAppState extends State<TikTakToeApp> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              WinningTitle(),
+              const WinningTitle(),
               Expanded(
                 child: Board(
                     options: options,

@@ -26,8 +26,8 @@ class Board extends StatelessWidget {
                           color: element.available
                               ? null
                               : element.playerNumber == 1
-                                  ? Color.fromARGB(255, 17, 180, 47)
-                                  : Color.fromARGB(255, 17, 161, 180),
+                                  ? const Color.fromARGB(255, 180, 139, 17)
+                                  : const Color.fromARGB(255, 17, 161, 180),
                           tapped: !element.available,
                           icon: element.playerNumber == null
                               ? null
