@@ -14,13 +14,14 @@ class BoardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: tapped ? null : tapButton,
-      child: AspectRatio(
-        aspectRatio: 1,
-        child: Card(
-          elevation: tapped ? 0 : 1,
-          color: color?.withOpacity(0.5).withAlpha(60),
+    return AspectRatio(
+      aspectRatio: 1,
+      child: Card(
+        elevation: tapped ? 0 : 1,
+        color: color?.withOpacity(0.5).withAlpha(60),
+        child: InkWell(
+          onTap: tapped ? null : tapButton,
+          borderRadius: BorderRadius.circular(10),
           child: FittedBox(
             fit: BoxFit.fill,
             child: Icon(
