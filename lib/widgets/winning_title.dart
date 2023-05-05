@@ -23,14 +23,14 @@ class WinningTitle extends StatelessWidget {
                           RotateAnimatedText("Tie",
                               textAlign: TextAlign.center,
                               textStyle:
-                                  Theme.of(context).textTheme.headlineMedium),
+                                  Theme.of(context).textTheme.displayMedium),
                           RotateAnimatedText("Anyone's won",
                               textAlign: TextAlign.center,
                               textStyle:
-                                  Theme.of(context).textTheme.headlineMedium)
+                                  Theme.of(context).textTheme.displayMedium)
                         ],
                         repeatForever: true,
-                        pause: const Duration(seconds: 2),
+                        pause: const Duration(milliseconds: 300),
                       )
                     ]
                   : [
