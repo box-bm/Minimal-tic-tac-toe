@@ -6,6 +6,7 @@ class BoardButton extends StatelessWidget {
   final IconData? icon;
   final Color? color;
   final bool winned;
+  final bool tie;
   final void Function() tapButton;
 
   const BoardButton({
@@ -14,6 +15,7 @@ class BoardButton extends StatelessWidget {
     this.winned = false,
     this.tapped = false,
     this.disabled = false,
+    this.tie = false,
     this.icon,
     this.color,
   });
@@ -23,28 +25,35 @@ class BoardButton extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 1,
       child: Card(
-        elevation: winned
-            ? 5
-            : tapped
-                ? 0
-                : null,
-        color: winned
-            ? color
-            : tapped
-                ? color?.withOpacity(0.3)
-                : null,
+        elevation: getElevation(),
+        color: getColor(),
         child: InkWell(
           onTap: tapped || disabled ? null : tapButton,
           borderRadius: BorderRadius.circular(10),
           child: FittedBox(
-            fit: BoxFit.fill,
-            child: Icon(
-              icon,
-              color: winned ? Colors.white : color?.withAlpha(255),
-            ),
-          ),
+              fit: BoxFit.fill, child: Icon(icon, color: getIconColor())),
         ),
       ),
     );
+  }
+
+  double? getElevation() {
+    if (winned) return 10;
+    if (tie || tapped) return 0;
+    return null;
+  }
+
+  Color? getColor() {
+    if (tie) return color?.withAlpha(10);
+    if (winned) return color;
+    if (tapped) return color?.withOpacity(0.2);
+    return null;
+  }
+
+  Color? getIconColor() {
+    if (tie) return color?.withAlpha(40);
+    if (winned) return Colors.white;
+    if (tapped) return color;
+    return null;
   }
 }

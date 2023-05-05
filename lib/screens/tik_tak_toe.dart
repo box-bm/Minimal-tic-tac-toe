@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
+import 'package:tik_tak_toe/screens/settings.dart';
 import 'package:tik_tak_toe/widgets/board.dart';
 import 'package:tik_tak_toe/widgets/winning_title.dart';
 
 class TikTakToe extends StatefulWidget {
+  static String route = "/tikTakToe";
   const TikTakToe({super.key});
 
   @override
@@ -27,7 +29,7 @@ class _TikTakToeState extends State<TikTakToe> {
               icon: const Icon(Icons.replay_outlined)),
           IconButton(
               onPressed: () {
-                // navigate to settings
+                Navigator.pushNamed(context, Settings.route);
               },
               icon: const Icon(Icons.settings)),
         ]),
