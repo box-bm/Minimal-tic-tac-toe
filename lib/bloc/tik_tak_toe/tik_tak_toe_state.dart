@@ -5,12 +5,14 @@ abstract class TikTakToeState extends Equatable {
   final int playerTurnIndex;
   final int boardSize;
   final WinOption winOption;
+  final Player? playerWinner;
   final List<List<BoardItem>> board;
 
   const TikTakToeState({
     required this.players,
     required this.playerTurnIndex,
     required this.board,
+    this.playerWinner,
     this.winOption = WinOption.none,
     this.boardSize = 3,
   });
@@ -23,18 +25,18 @@ class TikTakToeInitial extends TikTakToeState {
   const TikTakToeInitial({
     required super.players,
     required super.playerTurnIndex,
+    super.playerWinner,
     super.board = const [],
     super.boardSize = 3,
   });
 }
 
 class GameWon extends TikTakToeState {
-  final String playerNameWinner;
   const GameWon({
-    required this.playerNameWinner,
     required super.players,
     required super.playerTurnIndex,
     required super.winOption,
+    required super.playerWinner,
     super.board = const [],
     super.boardSize,
   });

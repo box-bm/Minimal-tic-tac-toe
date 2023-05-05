@@ -20,8 +20,11 @@ class WinningTitle extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  state.players[state.playerTurnIndex].playerName,
-                  style: Theme.of(context).textTheme.displayMedium,
+                  state.playerWinner?.playerName ?? "",
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayMedium
+                      ?.copyWith(color: state.playerWinner?.color),
                   textAlign: TextAlign.center,
                 ),
               ],

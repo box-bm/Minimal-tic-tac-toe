@@ -56,8 +56,7 @@ class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
         ));
       } else {
         emit(GameWon(
-          playerNameWinner:
-              state.players.elementAt(state.playerTurnIndex).playerName,
+          playerWinner: state.players.elementAt(state.playerTurnIndex),
           players: state.players,
           playerTurnIndex: state.playerTurnIndex == 1 ? 0 : 1,
           winOption: winner,

@@ -32,18 +32,19 @@ class _TikTakToeState extends State<TikTakToe> {
               icon: const Icon(Icons.settings)),
         ]),
         body: SafeArea(
+            minimum: const EdgeInsets.symmetric(horizontal: 12),
             child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Expanded(
-              child: WinningTitle(),
-            ),
-            Expanded(
-              flex: 3,
-              child: Board(),
-            )
-          ],
-        )));
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Expanded(
+                  child: WinningTitle(),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Board(),
+                )
+              ],
+            )));
   }
 }
