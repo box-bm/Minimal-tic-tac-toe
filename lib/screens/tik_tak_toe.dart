@@ -4,7 +4,6 @@ import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
 import 'package:tik_tak_toe/screens/settings.dart';
 import 'package:tik_tak_toe/widgets/board.dart';
 import 'package:tik_tak_toe/widgets/board_title.dart';
-import 'package:tik_tak_toe/widgets/winning_title.dart';
 
 class TikTakToe extends StatefulWidget {
   static String route = "/tikTakToe";
