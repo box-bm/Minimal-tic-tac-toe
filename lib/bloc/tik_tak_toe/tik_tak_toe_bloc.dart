@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:tik_tak_toe/models/board_item.dart';
 import 'package:tik_tak_toe/models/player.dart';
+import 'package:tik_tak_toe/models/win_options.dart';
 
 part 'tik_tak_toe_event.dart';
 part 'tik_tak_toe_state.dart';
@@ -36,20 +37,30 @@ class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
       var newBoard = state.board;
       newBoard[event.x][event.y].select(state.players[state.playerTurnIndex]);
 
-      var winner = validateCurrentPlayerWins(
+      WinOption winner = validateCurrentPlayerWins(
           newBoard, state.players[state.playerTurnIndex]);
 
-      if (winner) {
-        emit(Finished(
+      if (winner == WinOption.none) {
+        emit(TikTakToeInitial(
+          players: state.players,
+          playerTurnIndex: state.playerTurnIndex == 1 ? 0 : 1,
+          board: newBoard,
+          boardSize: state.boardSize,
+        ));
+      } else if (winner == WinOption.tie) {
+        emit(NoWinner(
           players: state.players,
           playerTurnIndex: state.playerTurnIndex == 1 ? 0 : 1,
           board: newBoard,
           boardSize: state.boardSize,
         ));
       } else {
-        emit(TikTakToeInitial(
+        emit(GameWon(
+          playerNameWinner:
+              state.players.elementAt(state.playerTurnIndex).playerName,
           players: state.players,
           playerTurnIndex: state.playerTurnIndex == 1 ? 0 : 1,
+          winOption: winner,
           board: newBoard,
           boardSize: state.boardSize,
         ));
@@ -60,14 +71,21 @@ class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
     });
   }
 
-  bool validateCurrentPlayerWins(
+  WinOption validateCurrentPlayerWins(
       List<List<BoardItem?>> board, Player currentPlayer) {
     // Check rows
     for (int row = 0; row < 3; row++) {
       if (board[row][0]?.selectedByPlayer == currentPlayer &&
           board[row][0]?.selectedByPlayer == board[row][1]?.selectedByPlayer &&
           board[row][0]?.selectedByPlayer == board[row][2]?.selectedByPlayer) {
-        return true;
+        switch (row) {
+          case 0:
+            return WinOption.firstRow;
+          case 1:
+            return WinOption.secondRow;
+          case 2:
+            return WinOption.thirdRow;
+        }
       }
     }
 
@@ -76,7 +94,14 @@ class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
       if (board[0][col]?.selectedByPlayer == currentPlayer &&
           board[0][col]?.selectedByPlayer == board[1][col]?.selectedByPlayer &&
           board[0][col]?.selectedByPlayer == board[2][col]?.selectedByPlayer) {
-        return true;
+        switch (col) {
+          case 0:
+            return WinOption.firstColumn;
+          case 1:
+            return WinOption.secondColumn;
+          case 2:
+            return WinOption.thirdColumn;
+        }
       }
     }
 
@@ -84,15 +109,23 @@ class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
     if (board[0][0]?.selectedByPlayer == currentPlayer &&
         board[0][0]?.selectedByPlayer == board[1][1]?.selectedByPlayer &&
         board[0][0]?.selectedByPlayer == board[2][2]?.selectedByPlayer) {
-      return true;
+      return WinOption.firstDiagonal;
     }
     if (board[2][0]?.selectedByPlayer == currentPlayer &&
         board[2][0]?.selectedByPlayer == board[1][1]?.selectedByPlayer &&
         board[2][0]?.selectedByPlayer == board[0][2]?.selectedByPlayer) {
-      return true;
+      return WinOption.secondDiagonal;
     }
 
-    return false;
+    for (int row = 0; row < 3; row++) {
+      for (int col = 0; col < 3; col++) {
+        if (board[row][col]?.selectedByPlayer == null) {
+          return WinOption.none;
+        }
+      }
+    }
+
+    return WinOption.tie;
   }
 
   List<List<BoardItem>> createBoardByDimensions(int dimensions) {

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
+import 'package:tik_tak_toe/models/win_options.dart';
 import 'package:tik_tak_toe/widgets/board_button.dart';
 
 class Board extends StatelessWidget {
-  const Board({
-    super.key,
-  });
+  const Board({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +25,10 @@ class Board extends StatelessWidget {
                           color: element.selectedByPlayer?.color,
                           tapped: element.selectedByPlayer != null,
                           icon: element.selectedByPlayer?.iconData,
+                          disabled: state.winOption == WinOption.tie ||
+                              state.winOption != WinOption.none,
+                          winned: state.winOption
+                              .validate(element.xPosition, element.yPosition),
                           tapButton: () {
                             context.read<TikTakToeBloc>().add(SelectOption(
                                 element.xPosition, element.yPosition));

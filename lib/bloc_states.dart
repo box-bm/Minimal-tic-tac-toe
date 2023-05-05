@@ -14,7 +14,7 @@ class BlocAppStates extends StatelessWidget {
         create: (context) => TikTakToeBloc(players: const [
           Player(
               playerName: "Player 1",
-              color: Color.fromARGB(255, 180, 139, 17),
+              color: Color.fromARGB(255, 238, 183, 18),
               iconData: Icons.close),
           Player(
               playerName: "Player 2",

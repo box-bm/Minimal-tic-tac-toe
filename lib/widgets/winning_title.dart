@@ -10,7 +10,7 @@ class WinningTitle extends StatelessWidget {
     return BlocBuilder<TikTakToeBloc, TikTakToeState>(
       builder: (context, state) {
         return Visibility(
-            visible: state is Finished,
+            visible: state is GameWon,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [

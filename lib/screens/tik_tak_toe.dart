@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
 import 'package:tik_tak_toe/widgets/board.dart';
-import 'package:tik_tak_toe/widgets/board_line.dart';
 import 'package:tik_tak_toe/widgets/winning_title.dart';
 
 class TikTakToe extends StatefulWidget {
@@ -37,8 +36,11 @@ class _TikTakToeState extends State<TikTakToe> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: const [
-            WinningTitle(),
             Expanded(
+              child: WinningTitle(),
+            ),
+            Expanded(
+              flex: 3,
               child: Board(),
             )
           ],
