@@ -4,6 +4,7 @@ import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
 import 'package:tik_tak_toe/screens/settings.dart';
 import 'package:tik_tak_toe/widgets/board.dart';
 import 'package:tik_tak_toe/widgets/board_title.dart';
+import 'package:tik_tak_toe/widgets/board_turn.dart';
 
 class TikTakToe extends StatefulWidget {
   static String route = "/tikTakToe";
@@ -33,6 +34,7 @@ class _TikTakToeState extends State<TikTakToe> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
+                BoardTurn(),
                 Expanded(
                   child: BoardTitle(),
                 ),

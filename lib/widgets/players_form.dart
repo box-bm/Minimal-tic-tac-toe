@@ -15,10 +15,8 @@ class _PlayersFormState extends State<PlayersForm> {
 
   @override
   void initState() {
-    player1Input.text =
-        context.read<PlayersBloc>().state.player1.playerName ?? "";
-    player2Input.text =
-        context.read<PlayersBloc>().state.player2.playerName ?? "";
+    player1Input.text = context.read<PlayersBloc>().state.player1.playerName;
+    player2Input.text = context.read<PlayersBloc>().state.player2.playerName;
     super.initState();
   }
 
@@ -61,19 +59,10 @@ class _PlayersFormState extends State<PlayersForm> {
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               color: context
-                                      .read<PlayersBloc>()
-                                      .state
-                                      .player1
-                                      .color ??
-                                  const Color(0xFF000000))),
-                      // focusedBorder: OutlineInputBorder(
-                      //     borderSide: BorderSide(
-                      //         color: context
-                      //                 .read<PlayersBloc>()
-                      //                 .state
-                      //                 .player1
-                      //                 .color ??
-                      //             const Color(0xFF000000))),
+                                  .read<PlayersBloc>()
+                                  .state
+                                  .player1
+                                  .color)),
                       labelStyle: TextStyle(
                           color:
                               context.read<PlayersBloc>().state.player1.color),
@@ -97,19 +86,10 @@ class _PlayersFormState extends State<PlayersForm> {
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               color: context
-                                      .read<PlayersBloc>()
-                                      .state
-                                      .player2
-                                      .color ??
-                                  const Color(0xFF000000))),
-                      // focusedBorder: OutlineInputBorder(
-                      //     borderSide: BorderSide(
-                      //         color: context
-                      //                 .read<PlayersBloc>()
-                      //                 .state
-                      //                 .player2
-                      //                 .color ??
-                      //             const Color(0xFF000000))),
+                                  .read<PlayersBloc>()
+                                  .state
+                                  .player2
+                                  .color)),
                       labelStyle: TextStyle(
                           color:
                               context.read<PlayersBloc>().state.player2.color),

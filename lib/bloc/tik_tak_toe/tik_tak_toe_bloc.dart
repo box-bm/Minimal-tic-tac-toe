@@ -41,7 +41,7 @@ class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
       } else if (winner == WinOption.tie) {
         emit(NoWinner(
           players: state.players,
-          playerTurnIndex: state.playerTurnIndex == 1 ? 0 : 1,
+          playerTurnIndex: state.playerTurnIndex,
           board: newBoard,
           boardSize: state.boardSize,
         ));
@@ -49,7 +49,7 @@ class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
         emit(GameWon(
           playerWinner: state.players.elementAt(state.playerTurnIndex),
           players: state.players,
-          playerTurnIndex: state.playerTurnIndex == 1 ? 0 : 1,
+          playerTurnIndex: state.playerTurnIndex,
           winOption: winner,
           board: newBoard,
           boardSize: state.boardSize,
