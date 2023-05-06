@@ -11,7 +11,9 @@ class Player {
     return Player(
       playerName: data['playerName'] ?? "Player",
       color: data['color'] != null ? Color(data['color']) : null,
-      iconData: data['iconData'] != null ? IconData(data['iconData']) : null,
+      iconData: data['iconData'] != null
+          ? IconData(data['iconData'], fontFamily: 'MaterialIcons')
+          : null,
     );
   }
 
