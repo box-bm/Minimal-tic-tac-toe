@@ -10,7 +10,7 @@ part 'players_state.dart';
 class PlayersBloc extends HydratedBloc<PlayersEvent, PlayersState> {
   PlayersBloc() : super(const PlayersInitial()) {
     on<ChangePlayerName>((event, emit) {
-      var name = event.name.isNotEmpty ? event.name : null;
+      var name = event.name;
 
       if (event.playerNumber == 1) {
         emit(PlayersLoaded(
