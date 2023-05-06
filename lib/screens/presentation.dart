@@ -4,74 +4,49 @@ import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
 import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
 import 'package:tik_tak_toe/screens/settings.dart';
 import 'package:tik_tak_toe/screens/tik_tak_toe.dart';
+import 'package:tik_tak_toe/widgets/players_form.dart';
 
 class Presentation extends StatelessWidget {
   static String route = "presentation";
 
   const Presentation({super.key});
 
+  void play(BuildContext context) {
+    var playersState = context.read<PlayersBloc>().state;
+    context
+        .read<TikTakToeBloc>()
+        .add(InitBoard(players: [playersState.player1, playersState.player2]));
+    Navigator.pushNamed(context, TikTakToe.route);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+          minimum: const EdgeInsets.symmetric(horizontal: 12),
           child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TextField(
-            onChanged: (value) {
-              context.read<PlayersBloc>().add(ChangePlayerName(
-                  playerNumber: 1, name: value.isEmpty ? "Player 1" : value));
-            },
-            decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color:
-                            context.read<PlayersBloc>().state.player1.color ??
-                                const Color(0xFF000000))),
-                labelStyle: TextStyle(
-                    color: context.read<PlayersBloc>().state.player1.color),
-                labelText: "Player 1",
-                hintText: "Player 1"),
-          ),
-          TextField(
-            onChanged: (value) {
-              context.read<PlayersBloc>().add(ChangePlayerName(
-                  playerNumber: 2, name: value.isEmpty ? "Player 2" : value));
-            },
-            decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color:
-                            context.read<PlayersBloc>().state.player2.color ??
-                                const Color(0xFF000000))),
-                labelStyle: TextStyle(
-                    color: context.read<PlayersBloc>().state.player2.color),
-                labelText: "Player 2",
-                hintText: "Player 2"),
-          ),
-          ElevatedButton(
-              onPressed: () {
-                var playersState = context.read<PlayersBloc>().state;
-                context.read<TikTakToeBloc>().add(InitBoard(
-                    players: [playersState.player1, playersState.player2]));
-                Navigator.pushNamed(context, TikTakToe.route);
-              },
-              child: const Text("Play!")),
-          const Spacer(),
-          Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, Settings.route);
-                  },
-                  icon: const Icon(Icons.settings)),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
+              const Spacer(
+                flex: 2,
+              ),
+              const PlayersForm(),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                  onPressed: () => play(context), child: const Text("Play!")),
+              const Spacer(),
+              Row(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, Settings.route);
+                      },
+                      icon: const Icon(Icons.settings)),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
+                ],
+              )
             ],
-          )
-        ],
-      )),
+          )),
     );
   }
 }
