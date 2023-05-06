@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tik_tak_toe/bloc_states.dart';
 import 'package:tik_tak_toe/routes.dart';
 import 'package:tik_tak_toe/screens/presentation.dart';
+import 'package:tik_tak_toe/theme/theme_builder.dart';
 
 class TikTakToeApp extends StatefulWidget {
   const TikTakToeApp({super.key});
@@ -15,8 +16,8 @@ class _TikTakToeAppState extends State<TikTakToeApp> {
   Widget build(BuildContext context) {
     return BlocAppStates(
         child: MaterialApp(
-      theme: ThemeData.light(useMaterial3: true),
-      darkTheme: ThemeData.dark(useMaterial3: true),
+      theme: buildTheme(Brightness.light),
+      darkTheme: buildTheme(Brightness.dark),
       initialRoute: Presentation.route,
       routes: routes,
     ));
