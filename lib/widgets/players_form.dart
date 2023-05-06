@@ -49,6 +49,9 @@ class _PlayersFormState extends State<PlayersForm> {
                   controller: player1Input,
                   onChanged: (value) => changeValue(1, value),
                   decoration: InputDecoration(
+                      prefixIcon: Icon(state.player1.iconData),
+                      prefixIconColor:
+                          context.read<PlayersBloc>().state.player1.color,
                       suffixIcon: Visibility(
                           visible: player1Input.text.isNotEmpty,
                           child: IconButton(
@@ -63,14 +66,14 @@ class _PlayersFormState extends State<PlayersForm> {
                                       .player1
                                       .color ??
                                   const Color(0xFF000000))),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: context
-                                      .read<PlayersBloc>()
-                                      .state
-                                      .player1
-                                      .color ??
-                                  const Color(0xFF000000))),
+                      // focusedBorder: OutlineInputBorder(
+                      //     borderSide: BorderSide(
+                      //         color: context
+                      //                 .read<PlayersBloc>()
+                      //                 .state
+                      //                 .player1
+                      //                 .color ??
+                      //             const Color(0xFF000000))),
                       labelStyle: TextStyle(
                           color:
                               context.read<PlayersBloc>().state.player1.color),
@@ -82,6 +85,9 @@ class _PlayersFormState extends State<PlayersForm> {
                   controller: player2Input,
                   onChanged: (value) => changeValue(2, value),
                   decoration: InputDecoration(
+                      prefixIcon: Icon(state.player2.iconData),
+                      prefixIconColor:
+                          context.read<PlayersBloc>().state.player2.color,
                       suffixIcon: Visibility(
                           visible: player2Input.text.isNotEmpty,
                           child: IconButton(
@@ -96,14 +102,14 @@ class _PlayersFormState extends State<PlayersForm> {
                                       .player2
                                       .color ??
                                   const Color(0xFF000000))),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: context
-                                      .read<PlayersBloc>()
-                                      .state
-                                      .player2
-                                      .color ??
-                                  const Color(0xFF000000))),
+                      // focusedBorder: OutlineInputBorder(
+                      //     borderSide: BorderSide(
+                      //         color: context
+                      //                 .read<PlayersBloc>()
+                      //                 .state
+                      //                 .player2
+                      //                 .color ??
+                      //             const Color(0xFF000000))),
                       labelStyle: TextStyle(
                           color:
                               context.read<PlayersBloc>().state.player2.color),
