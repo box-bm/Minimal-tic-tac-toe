@@ -4,7 +4,7 @@ abstract class PlayersState extends Equatable {
   final Player player1;
   final Player player2;
   const PlayersState(
-      {this.player1 = const Player(), this.player2 = const Player()});
+      {this.player1 = defaultPlayer1, this.player2 = defaultPlayer2});
 
   Map<String, dynamic>? toJson() {
     return {};
@@ -16,14 +16,8 @@ abstract class PlayersState extends Equatable {
 
 class PlayersInitial extends PlayersState {
   const PlayersInitial({
-    super.player1 = const Player(
-        playerName: "Player 1",
-        color: Color.fromARGB(255, 238, 183, 18),
-        iconData: Icons.close),
-    super.player2 = const Player(
-        playerName: "Player 2",
-        color: Color.fromARGB(255, 17, 161, 180),
-        iconData: Icons.circle_outlined),
+    super.player1 = defaultPlayer1,
+    super.player2 = defaultPlayer2,
   });
 }
 

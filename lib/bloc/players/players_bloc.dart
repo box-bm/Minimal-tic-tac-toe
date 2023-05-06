@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:tik_tak_toe/models/player.dart';
+import 'package:tik_tak_toe/repository/default_players.dart';
 
 part 'players_event.dart';
 part 'players_state.dart';
@@ -9,14 +10,16 @@ part 'players_state.dart';
 class PlayersBloc extends HydratedBloc<PlayersEvent, PlayersState> {
   PlayersBloc() : super(const PlayersInitial()) {
     on<ChangePlayerName>((event, emit) {
+      var name = event.name.isNotEmpty ? event.name : null;
+
       if (event.playerNumber == 1) {
         emit(PlayersLoaded(
-            player1: state.player1.copyWith(playerName: event.name),
+            player1: state.player1.copyWith(playerName: name),
             player2: state.player2));
       } else {
         emit(PlayersLoaded(
             player1: state.player1,
-            player2: state.player2.copyWith(playerName: event.name)));
+            player2: state.player2.copyWith(playerName: name)));
       }
     });
     on<ChangePlayerColor>((event, emit) {
@@ -43,7 +46,8 @@ class PlayersBloc extends HydratedBloc<PlayersEvent, PlayersState> {
     });
 
     on<ResetChanges>((event, emit) {
-      emit(const PlayersLoaded(player1: Player(), player2: Player()));
+      emit(const PlayersLoaded(
+          player1: defaultPlayer1, player2: defaultPlayer2));
     });
   }
 
