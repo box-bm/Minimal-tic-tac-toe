@@ -8,30 +8,21 @@ part 'tik_tak_toe_event.dart';
 part 'tik_tak_toe_state.dart';
 
 class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
-  TikTakToeBloc({
-    required List<Player> players,
-    required int playerTurnIndex,
-  }) : super(
-          TikTakToeInitial(
-            playerTurnIndex: playerTurnIndex,
-            players: players,
-          ),
-        ) {
-    on<InitBoard>((event, emit) {
-      add(const CreateNewBoard());
-    });
-
+  TikTakToeBloc() : super(const TikTakToeInitial()) {
     on<CreateNewBoard>((event, emit) {
-      var board = createBoardByDimensions(event.size);
+      var board = createBoardByDimensions(event.size ?? state.boardSize);
 
       emit(TikTakToeInitial(
-          players: state.players,
+          players: event.players ?? state.players,
           playerTurnIndex: state.playerTurnIndex,
           board: board,
-          boardSize: state.boardSize));
+          boardSize: event.size ?? state.boardSize));
+    });
+    on<InitBoard>((event, emit) {
+      add(CreateNewBoard(players: event.players, size: event.size));
     });
     on<ResetBoard>((event, emit) {
-      add(CreateNewBoard(size: state.boardSize));
+      add(const CreateNewBoard());
     });
     on<SelectOption>((event, emit) {
       var newBoard = state.board;

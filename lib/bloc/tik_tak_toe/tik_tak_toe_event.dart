@@ -9,12 +9,14 @@ abstract class TikTakToeEvent extends Equatable {
 
 class InitBoard extends TikTakToeEvent {
   final int size;
-  const InitBoard({this.size = 3});
+  final List<Player> players;
+  const InitBoard({this.size = 3, required this.players});
 }
 
 class CreateNewBoard extends TikTakToeEvent {
-  final int size;
-  const CreateNewBoard({this.size = 3});
+  final int? size;
+  final List<Player>? players;
+  const CreateNewBoard({this.size, this.players});
 }
 
 class ResetBoard extends TikTakToeEvent {}

@@ -23,8 +23,8 @@ abstract class TikTakToeState extends Equatable {
 
 class TikTakToeInitial extends TikTakToeState {
   const TikTakToeInitial({
-    required super.players,
-    required super.playerTurnIndex,
+    super.playerTurnIndex = 0,
+    super.players = const [],
     super.playerWinner,
     super.board = const [],
     super.boardSize = 3,

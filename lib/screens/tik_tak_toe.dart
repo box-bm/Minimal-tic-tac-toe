@@ -15,12 +15,6 @@ class TikTakToe extends StatefulWidget {
 
 class _TikTakToeState extends State<TikTakToe> {
   @override
-  void initState() {
-    super.initState();
-    context.read<TikTakToeBloc>().add(const InitBoard());
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(actions: [
