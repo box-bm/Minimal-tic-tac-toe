@@ -1,25 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
-import 'package:tik_tak_toe/models/win_options.dart';
+import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
+import 'package:tik_tak_toe/models/match_result.dart';
 import 'package:tik_tak_toe/widgets/tie_title.dart';
 import 'package:tik_tak_toe/widgets/winning_title.dart';
 
 class BoardTitle extends StatelessWidget {
-  const BoardTitle({super.key});
+  final int? playerWinner;
+  final MatchResult result;
+  final bool visible;
+  const BoardTitle(
+      {super.key,
+      this.playerWinner,
+      required this.result,
+      required this.visible});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TikTakToeBloc, TikTakToeState>(
+    return BlocBuilder<PlayersBloc, PlayersState>(
       builder: (context, state) {
+        var players = [state.player1, state.player2];
+
         return Visibility(
-            visible: state is GameWon || state is NoWinner,
+            visible: visible,
             child: Center(
-                child: state.winOption == WinOption.tie
+                child: result == MatchResult.tie
                     ? const TieTitle()
                     : WinningTitle(
-                        color: state.playerWinner?.color,
-                        playerName: state.playerWinner?.playerName,
+                        color: playerWinner != null
+                            ? players.elementAt(playerWinner!).color
+                            : null,
+                        playerName: playerWinner != null
+                            ? players.elementAt(playerWinner!).playerName
+                            : null,
                       )));
       },
     );

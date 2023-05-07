@@ -1,18 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
 import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
-import 'package:tik_tak_toe/models/win_options.dart';
+import 'package:tik_tak_toe/models/board_item.dart';
+import 'package:tik_tak_toe/models/match_result.dart';
 import 'package:tik_tak_toe/widgets/board_button.dart';
 
 class Board extends StatelessWidget {
-  const Board({super.key});
+  final int currentPlayer;
+  final List<List<BoardItem>> board;
+  final MatchResult matchResult;
+
+  const Board({
+    super.key,
+    required this.currentPlayer,
+    required this.board,
+    required this.matchResult,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TikTakToeBloc, TikTakToeState>(builder: _build);
+    return BlocBuilder<PlayersBloc, PlayersState>(builder: _build);
   }
 
-  Widget _build(BuildContext context, TikTakToeState state) {
+  Widget _build(BuildContext context, PlayersState state) {
+    var players = [state.player1, state.player2];
+
     return AspectRatio(
         aspectRatio: 1,
         child: Stack(
@@ -21,30 +34,43 @@ class Board extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ...state.board.map((row) => Row(
+                  ...board.map((row) => Row(
                       children: row
                           .map(
                             (element) => Expanded(
                                 child: BoardButton(
-                                    color: element.selectedByPlayer?.color,
-                                    tapped: element.selectedByPlayer != null,
-                                    icon: element.selectedByPlayer?.iconData,
-                                    disabled:
-                                        state.winOption == WinOption.tie ||
-                                            state.winOption != WinOption.none,
-                                    tie: state.winOption == WinOption.tie,
-                                    winned: state.winOption.validate(
+                                    color: element.selectedByPlayerNumber !=
+                                            null
+                                        ? players
+                                            .elementAt(
+                                                element.selectedByPlayerNumber!)
+                                            .color
+                                        : null,
+                                    tapped:
+                                        element.selectedByPlayerNumber != null,
+                                    icon: element.selectedByPlayerNumber != null
+                                        ? players
+                                            .elementAt(
+                                                element.selectedByPlayerNumber!)
+                                            .iconData
+                                        : null,
+                                    disabled: matchResult == MatchResult.tie ||
+                                        matchResult != MatchResult.none,
+                                    tie: matchResult == MatchResult.tie,
+                                    winned: matchResult.validate(
                                         element.xPosition, element.yPosition),
                                     tapButton: () {
-                                      context.read<TikTakToeBloc>().add(
-                                          SelectOption(element.xPosition,
-                                              element.yPosition));
+                                      BlocProvider.of<TikTakToeBloc>(context)
+                                          .add(SelectOption(
+                                              element.xPosition,
+                                              element.yPosition,
+                                              currentPlayer));
                                     })),
                           )
                           .toList()))
                 ]),
             Visibility(
-              visible: state.winOption == WinOption.tie,
+              visible: matchResult == MatchResult.tie,
               child: Center(
                   child: Container(
                       decoration: BoxDecoration(

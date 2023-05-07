@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
 import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
 import 'package:tik_tak_toe/screens/settings.dart';
 import 'package:tik_tak_toe/screens/tik_tak_toe.dart';
@@ -12,10 +11,7 @@ class Presentation extends StatelessWidget {
   const Presentation({super.key});
 
   void play(BuildContext context) {
-    var playersState = context.read<PlayersBloc>().state;
-    context
-        .read<TikTakToeBloc>()
-        .add(InitBoard(players: [playersState.player1, playersState.player2]));
+    context.read<TikTakToeBloc>().add(CreateNewBoard());
     Navigator.pushNamed(context, TikTakToe.route);
   }
 

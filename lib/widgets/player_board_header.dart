@@ -4,7 +4,7 @@ import 'package:tik_tak_toe/models/player.dart';
 class PlayerBoardHeader extends StatelessWidget {
   final Player player;
   final bool inverted;
-  final bool? winner;
+  final Player? winner;
   final bool active;
   final bool tie;
 
@@ -20,8 +20,8 @@ class PlayerBoardHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        elevation: active || tie ? 5 : 0,
-        color: active || tie ? player.color : player.color.withAlpha(20),
+        elevation: getElevation(),
+        color: getColor(),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
           width: MediaQuery.of(context).size.width * 0.40,
@@ -31,17 +31,38 @@ class PlayerBoardHeader extends StatelessWidget {
               Icon(
                 player.iconData,
                 size: 50,
-                color: active || tie ? Colors.white : null,
+                color: getLabelColor(),
               ),
               const SizedBox(width: 10),
               Text(
                 player.playerName.isEmpty ? "Player" : player.playerName,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: active || tie ? Colors.white : null,
-                    ),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(color: getLabelColor()),
               )
             ],
           ),
         ));
+  }
+
+  double? getElevation() {
+    if (tie) return null;
+    if (player == winner) return 10;
+    if (active && winner == null) return 0;
+    return 0;
+  }
+
+  Color? getColor() {
+    if (tie) return player.color.withAlpha(10);
+    if (player == winner) return player.color;
+    if (active && winner == null) return player.color.withOpacity(0.8);
+    return player.color.withAlpha(10);
+  }
+
+  Color? getLabelColor() {
+    if (player == winner) return Colors.white;
+    if (active && winner == null || tie) return null;
+    return null;
   }
 }
