@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
 import 'package:tik_tak_toe/models/player.dart';
+import 'package:tik_tak_toe/repository/available_colors.dart';
 
 class PlayerColorPicker extends StatefulWidget {
   final Player player;
@@ -35,9 +36,8 @@ class _PlayerColorPickerState extends State<PlayerColorPicker> {
         builder: (context) => AlertDialog(
               title: Text(S.of(context).selectYourColor),
               content: SingleChildScrollView(
-                child: ColorPicker(
-                    hexInputBar: false,
-                    displayThumbColor: false,
+                child: BlockPicker(
+                  availableColors: availableColors,
                     pickerColor: playerColor,
                     onColorChanged: (value) => setState(() {
                           selectedPlayerColor = value;
