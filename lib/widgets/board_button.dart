@@ -5,14 +5,14 @@ class BoardButton extends StatelessWidget {
   final bool disabled;
   final IconData? icon;
   final Color? color;
-  final bool winned;
+  final bool winner;
   final bool tie;
   final void Function() tapButton;
 
   const BoardButton({
     super.key,
     required this.tapButton,
-    this.winned = false,
+    this.winner = false,
     this.tapped = false,
     this.disabled = false,
     this.tie = false,
@@ -38,21 +38,21 @@ class BoardButton extends StatelessWidget {
   }
 
   double? getElevation() {
-    if (winned) return 10;
+    if (winner) return 10;
     if (tie || tapped) return 0;
     return null;
   }
 
   Color? getColor() {
     if (tie) return color?.withAlpha(10);
-    if (winned) return color;
+    if (winner) return color;
     if (tapped) return color?.withOpacity(0.2);
     return null;
   }
 
   Color? getIconColor() {
     if (tie) return color?.withAlpha(40);
-    if (winned) return Colors.white;
+    if (winner) return Colors.white;
     if (tapped) return color;
     return null;
   }

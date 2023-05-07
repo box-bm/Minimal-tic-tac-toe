@@ -57,7 +57,7 @@ class Board extends StatelessWidget {
                                     disabled: matchResult == MatchResult.tie ||
                                         matchResult != MatchResult.none,
                                     tie: matchResult == MatchResult.tie,
-                                    winned: matchResult.validate(
+                                    winner: matchResult.validate(
                                         element.xPosition, element.yPosition),
                                     tapButton: () {
                                       BlocProvider.of<TikTakToeBloc>(context)
