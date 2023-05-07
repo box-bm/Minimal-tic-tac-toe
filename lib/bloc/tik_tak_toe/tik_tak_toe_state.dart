@@ -2,21 +2,18 @@ part of 'tik_tak_toe_bloc.dart';
 
 abstract class TikTakToeState extends Equatable {
   final int currentPlayer;
-  final int boardSize;
-  final MatchResult matchResult;
   final int? playerWinner;
-  final List<List<BoardItem>> board;
+  final List<BoardMatchHistoryItem> history;
+  final Board board;
 
-  const TikTakToeState({
-    required this.currentPlayer,
-    required this.board,
-    this.playerWinner,
-    this.matchResult = MatchResult.none,
-    this.boardSize = 3,
-  });
+  const TikTakToeState(
+      {required this.currentPlayer,
+      required this.board,
+      this.playerWinner,
+      required this.history});
 
   @override
-  List<Object> get props => [boardSize, matchResult, board, currentPlayer];
+  List<Object> get props => [board, currentPlayer];
 
   String boardToString() {
     return jsonEncode(board);
@@ -24,20 +21,18 @@ abstract class TikTakToeState extends Equatable {
 }
 
 class TikTakToeInitial extends TikTakToeState {
-  const TikTakToeInitial({
-    super.currentPlayer = 1,
-    super.playerWinner,
-    super.board = const [],
-    super.boardSize = 3,
-  });
+  const TikTakToeInitial(
+      {super.currentPlayer = 1,
+      super.board = const Board.defaultBoard(),
+      super.history = const [],
+      super.playerWinner});
 }
 
 class GameEnded extends TikTakToeState {
   const GameEnded({
     required super.currentPlayer,
-    required super.matchResult,
+    required super.board,
     required super.playerWinner,
-    super.board = const [],
-    super.boardSize,
+    required super.history,
   });
 }

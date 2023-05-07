@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:tik_tak_toe/models/board.dart';
 import 'package:tik_tak_toe/models/board_item.dart';
+import 'package:tik_tak_toe/models/board_match_history_item.dart';
 import 'package:tik_tak_toe/models/match_result.dart';
 
 part 'tik_tak_toe_event.dart';
@@ -11,12 +13,12 @@ part 'tik_tak_toe_state.dart';
 class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
   TikTakToeBloc() : super(const TikTakToeInitial()) {
     on<CreateNewBoard>((event, emit) {
-      var board = createBoardByDimensions(state.boardSize);
+      var board = createBoardByDimensions(state.board.boardSize);
 
       emit(TikTakToeInitial(
           currentPlayer: state.currentPlayer,
           board: board,
-          boardSize: state.boardSize));
+          history: state.history));
     });
     on<ResetBoard>((event, emit) {
       add(CreateNewBoard());
@@ -24,39 +26,44 @@ class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
 
     on<SelectOption>((event, emit) {
       var newBoard = state.board;
-      newBoard[event.x][event.y].select(event.playerNumber);
+      newBoard.board[event.x][event.y].select(event.playerNumber);
 
-      MatchResult winner =
-          validateCurrentPlayerWins(newBoard, event.playerNumber);
+      MatchResult matchResult =
+          validateCurrentPlayerWins(newBoard.board, event.playerNumber);
 
-      if (winner == MatchResult.none) {
+      if (matchResult == MatchResult.none) {
         emit(TikTakToeInitial(
-          currentPlayer: changePlayer(state.currentPlayer),
-          board: newBoard,
-          boardSize: state.boardSize,
-        ));
-      } else if (winner == MatchResult.tie) {
-        emit(GameEnded(
-          matchResult: MatchResult.tie,
-          playerWinner: null,
-          currentPlayer: state.currentPlayer,
-          board: newBoard,
-          boardSize: state.boardSize,
-        ));
+            currentPlayer: changePlayer(state.currentPlayer),
+            board: newBoard,
+            history: state.history,
+            playerWinner: null));
       } else {
+        var winner = matchResult == MatchResult.tie ? null : event.playerNumber;
+        var boardResult = newBoard.copyWith(
+            playerWinner: winner,
+            matchResult: matchResult,
+            board: newBoard.board,
+            boardSize: state.board.boardSize);
+
         emit(GameEnded(
-          playerWinner: event.playerNumber,
-          currentPlayer: changePlayer(state.currentPlayer),
-          matchResult: winner,
-          board: newBoard,
-          boardSize: state.boardSize,
-        ));
+            playerWinner: winner,
+            currentPlayer: matchResult == MatchResult.tie
+                ? state.currentPlayer
+                : changePlayer(state.currentPlayer),
+            board: boardResult,
+            history: [
+              ...state.history,
+              BoardMatchHistoryItem(
+                  dateTime: DateTime.now(),
+                  matchResult: matchResult,
+                  playerWinner: winner,
+                  board: boardResult)
+            ]));
       }
     });
     on<ChangeBoardSize>((event, emit) {
       emit(TikTakToeInitial(
           board: createBoardByDimensions(event.size),
-          boardSize: event.size,
           currentPlayer: state.currentPlayer,
           playerWinner: state.playerWinner));
     });
@@ -131,19 +138,22 @@ class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
     return MatchResult.tie;
   }
 
-  List<List<BoardItem>> createBoardByDimensions(int dimensions) {
+  Board createBoardByDimensions(int dimensions) {
     if (dimensions < 3) {
       throw "dimensions needs to be greather than 3";
     }
 
-    List<List<BoardItem>> result = [];
+    List<List<BoardItem>> matchResult = [];
     for (var x = 0; x < dimensions; x++) {
       List<BoardItem> xOptions = [];
       for (var y = 0; y < dimensions; y++) {
         xOptions.add(BoardItem(xPosition: x, yPosition: y));
       }
-      result.add(xOptions);
+      matchResult.add(xOptions);
     }
-    return result;
+    return Board(
+        boardSize: dimensions,
+        matchResult: MatchResult.none,
+        board: matchResult);
   }
 }

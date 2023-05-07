@@ -39,21 +39,11 @@ class Board extends StatelessWidget {
                           .map(
                             (element) => Expanded(
                                 child: BoardButton(
-                                    color: element.selectedByPlayerNumber !=
-                                            null
-                                        ? players
-                                            .elementAt(
+                                    player:
+                                        element.selectedByPlayerNumber != null
+                                            ? players.elementAt(
                                                 element.selectedByPlayerNumber!)
-                                            .color
-                                        : null,
-                                    tapped:
-                                        element.selectedByPlayerNumber != null,
-                                    icon: element.selectedByPlayerNumber != null
-                                        ? players
-                                            .elementAt(
-                                                element.selectedByPlayerNumber!)
-                                            .iconData
-                                        : null,
+                                            : null,
                                     disabled: matchResult == MatchResult.tie ||
                                         matchResult != MatchResult.none,
                                     tie: matchResult == MatchResult.tie,

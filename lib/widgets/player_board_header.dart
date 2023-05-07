@@ -1,10 +1,10 @@
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:tik_tak_toe/common.dart';
 import 'package:tik_tak_toe/models/player.dart';
 import 'package:tik_tak_toe/utils/use_color_by_backgroud_color.dart';
 
 class PlayerBoardHeader extends StatelessWidget {
   final Player player;
+  final int winnerTimes;
   final bool inverted;
   final Player? winner;
   final bool active;
@@ -13,6 +13,7 @@ class PlayerBoardHeader extends StatelessWidget {
   const PlayerBoardHeader({
     super.key,
     required this.player,
+    required this.winnerTimes,
     this.inverted = false,
     this.active = false,
     this.tie = false,
@@ -36,13 +37,27 @@ class PlayerBoardHeader extends StatelessWidget {
                 color: getLabelColor(),
               ),
               const SizedBox(width: 10),
-              Text(
-                player.playerName.isEmpty ? S.of(context).player(inverted ? 2 : 1) : player.playerName,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(color: getLabelColor()),
-              )
+              Expanded(
+                  child: Column(
+                      crossAxisAlignment: inverted
+                          ? CrossAxisAlignment.end
+                          : CrossAxisAlignment.start,
+                      children: [
+                    Text(
+                      winnerTimes.toString(),
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.bold, color: getLabelColor()),
+                    ),
+                    Text(
+                      player.playerName.isEmpty
+                          ? S.of(context).player(inverted ? 2 : 1)
+                          : player.playerName,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium
+                          ?.copyWith(color: getLabelColor()),
+                    )
+                  ]))
             ],
           ),
         ));
@@ -64,7 +79,9 @@ class PlayerBoardHeader extends StatelessWidget {
 
   Color? getLabelColor() {
     if (player == winner) return useColorByBackgroundColor(player.color);
-    if (active && winner == null || tie) return useColorByBackgroundColor(player.color.withOpacity(0.8));
+    if (active && winner == null || tie) {
+      return useColorByBackgroundColor(player.color.withOpacity(0.8));
+    }
     return null;
   }
 }
