@@ -1,52 +1,42 @@
 part of 'tik_tak_toe_bloc.dart';
 
 abstract class TikTakToeState extends Equatable {
-  final List<Player> players;
-  final int playerTurnIndex;
+  final int currentPlayer;
   final int boardSize;
-  final WinOption winOption;
-  final Player? playerWinner;
+  final MatchResult matchResult;
+  final int? playerWinner;
   final List<List<BoardItem>> board;
 
   const TikTakToeState({
-    required this.players,
-    required this.playerTurnIndex,
+    required this.currentPlayer,
     required this.board,
     this.playerWinner,
-    this.winOption = WinOption.none,
+    this.matchResult = MatchResult.none,
     this.boardSize = 3,
   });
 
   @override
-  List<Object> get props => [playerTurnIndex, players, board, boardSize];
+  List<Object> get props => [boardSize, matchResult, board, currentPlayer];
+
+  String boardToString() {
+    return jsonEncode(board);
+  }
 }
 
 class TikTakToeInitial extends TikTakToeState {
   const TikTakToeInitial({
-    super.playerTurnIndex = 0,
-    super.players = const [],
+    super.currentPlayer = 1,
     super.playerWinner,
     super.board = const [],
     super.boardSize = 3,
   });
 }
 
-class GameWon extends TikTakToeState {
-  const GameWon({
-    required super.players,
-    required super.playerTurnIndex,
-    required super.winOption,
+class GameEnded extends TikTakToeState {
+  const GameEnded({
+    required super.currentPlayer,
+    required super.matchResult,
     required super.playerWinner,
-    super.board = const [],
-    super.boardSize,
-  });
-}
-
-class NoWinner extends TikTakToeState {
-  const NoWinner({
-    required super.players,
-    required super.playerTurnIndex,
-    super.winOption = WinOption.tie,
     super.board = const [],
     super.boardSize,
   });

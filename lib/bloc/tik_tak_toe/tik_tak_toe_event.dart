@@ -7,25 +7,16 @@ abstract class TikTakToeEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class InitBoard extends TikTakToeEvent {
-  final int size;
-  final List<Player> players;
-  const InitBoard({this.size = 3, required this.players});
-}
-
-class CreateNewBoard extends TikTakToeEvent {
-  final int? size;
-  final List<Player>? players;
-  const CreateNewBoard({this.size, this.players});
-}
+class CreateNewBoard extends TikTakToeEvent {}
 
 class ResetBoard extends TikTakToeEvent {}
 
 class SelectOption extends TikTakToeEvent {
   final int x;
   final int y;
+  final int playerNumber;
 
-  const SelectOption(this.x, this.y);
+  const SelectOption(this.x, this.y, this.playerNumber);
 }
 
 class ChangeBoardSize extends TikTakToeEvent {

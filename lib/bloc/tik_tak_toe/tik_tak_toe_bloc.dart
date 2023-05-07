@@ -1,8 +1,9 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:tik_tak_toe/models/board_item.dart';
-import 'package:tik_tak_toe/models/player.dart';
-import 'package:tik_tak_toe/models/win_options.dart';
+import 'package:tik_tak_toe/models/match_result.dart';
 
 part 'tik_tak_toe_event.dart';
 part 'tik_tak_toe_state.dart';
@@ -10,112 +11,124 @@ part 'tik_tak_toe_state.dart';
 class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
   TikTakToeBloc() : super(const TikTakToeInitial()) {
     on<CreateNewBoard>((event, emit) {
-      var board = createBoardByDimensions(event.size ?? state.boardSize);
+      var board = createBoardByDimensions(state.boardSize);
 
       emit(TikTakToeInitial(
-          players: event.players ?? state.players,
-          playerTurnIndex: state.playerTurnIndex,
+          currentPlayer: state.currentPlayer,
           board: board,
-          boardSize: event.size ?? state.boardSize));
-    });
-    on<InitBoard>((event, emit) {
-      add(CreateNewBoard(players: event.players, size: event.size));
+          boardSize: state.boardSize));
     });
     on<ResetBoard>((event, emit) {
-      add(const CreateNewBoard());
+      add(CreateNewBoard());
     });
+
     on<SelectOption>((event, emit) {
       var newBoard = state.board;
-      newBoard[event.x][event.y].select(state.players[state.playerTurnIndex]);
+      newBoard[event.x][event.y].select(event.playerNumber);
 
-      WinOption winner = validateCurrentPlayerWins(
-          newBoard, state.players[state.playerTurnIndex]);
+      MatchResult winner =
+          validateCurrentPlayerWins(newBoard, event.playerNumber);
 
-      if (winner == WinOption.none) {
+      if (winner == MatchResult.none) {
         emit(TikTakToeInitial(
-          players: state.players,
-          playerTurnIndex: state.playerTurnIndex == 1 ? 0 : 1,
+          currentPlayer: changePlayer(state.currentPlayer),
           board: newBoard,
           boardSize: state.boardSize,
         ));
-      } else if (winner == WinOption.tie) {
-        emit(NoWinner(
-          players: state.players,
-          playerTurnIndex: state.playerTurnIndex,
+      } else if (winner == MatchResult.tie) {
+        emit(GameEnded(
+          matchResult: MatchResult.tie,
+          playerWinner: null,
+          currentPlayer: state.currentPlayer,
           board: newBoard,
           boardSize: state.boardSize,
         ));
       } else {
-        emit(GameWon(
-          playerWinner: state.players.elementAt(state.playerTurnIndex),
-          players: state.players,
-          playerTurnIndex: state.playerTurnIndex,
-          winOption: winner,
+        emit(GameEnded(
+          playerWinner: event.playerNumber,
+          currentPlayer: changePlayer(state.currentPlayer),
+          matchResult: winner,
           board: newBoard,
           boardSize: state.boardSize,
         ));
       }
     });
     on<ChangeBoardSize>((event, emit) {
-      add(CreateNewBoard(size: event.size));
+      emit(TikTakToeInitial(
+          board: createBoardByDimensions(event.size),
+          boardSize: event.size,
+          currentPlayer: state.currentPlayer,
+          playerWinner: state.playerWinner));
     });
   }
 
-  WinOption validateCurrentPlayerWins(
-      List<List<BoardItem?>> board, Player currentPlayer) {
+  int changePlayer(int currentPlayer) {
+    return currentPlayer == 0 ? 1 : 0;
+  }
+
+  MatchResult validateCurrentPlayerWins(
+      List<List<BoardItem?>> board, int currentPlayer) {
     // Check rows
     for (int row = 0; row < 3; row++) {
-      if (board[row][0]?.selectedByPlayer == currentPlayer &&
-          board[row][0]?.selectedByPlayer == board[row][1]?.selectedByPlayer &&
-          board[row][0]?.selectedByPlayer == board[row][2]?.selectedByPlayer) {
+      if (board[row][0]?.selectedByPlayerNumber == currentPlayer &&
+          board[row][0]?.selectedByPlayerNumber ==
+              board[row][1]?.selectedByPlayerNumber &&
+          board[row][0]?.selectedByPlayerNumber ==
+              board[row][2]?.selectedByPlayerNumber) {
         switch (row) {
           case 0:
-            return WinOption.firstRow;
+            return MatchResult.firstRow;
           case 1:
-            return WinOption.secondRow;
+            return MatchResult.secondRow;
           case 2:
-            return WinOption.thirdRow;
+            return MatchResult.thirdRow;
         }
       }
     }
 
     // Check columns
     for (int col = 0; col < 3; col++) {
-      if (board[0][col]?.selectedByPlayer == currentPlayer &&
-          board[0][col]?.selectedByPlayer == board[1][col]?.selectedByPlayer &&
-          board[0][col]?.selectedByPlayer == board[2][col]?.selectedByPlayer) {
+      if (board[0][col]?.selectedByPlayerNumber == currentPlayer &&
+          board[0][col]?.selectedByPlayerNumber ==
+              board[1][col]?.selectedByPlayerNumber &&
+          board[0][col]?.selectedByPlayerNumber ==
+              board[2][col]?.selectedByPlayerNumber) {
         switch (col) {
           case 0:
-            return WinOption.firstColumn;
+            return MatchResult.firstColumn;
           case 1:
-            return WinOption.secondColumn;
+            return MatchResult.secondColumn;
           case 2:
-            return WinOption.thirdColumn;
+            return MatchResult.thirdColumn;
         }
       }
     }
 
     // Check diagonals
-    if (board[0][0]?.selectedByPlayer == currentPlayer &&
-        board[0][0]?.selectedByPlayer == board[1][1]?.selectedByPlayer &&
-        board[0][0]?.selectedByPlayer == board[2][2]?.selectedByPlayer) {
-      return WinOption.firstDiagonal;
+    if (board[0][0]?.selectedByPlayerNumber == currentPlayer &&
+        board[0][0]?.selectedByPlayerNumber ==
+            board[1][1]?.selectedByPlayerNumber &&
+        board[0][0]?.selectedByPlayerNumber ==
+            board[2][2]?.selectedByPlayerNumber) {
+      return MatchResult.firstDiagonal;
     }
-    if (board[2][0]?.selectedByPlayer == currentPlayer &&
-        board[2][0]?.selectedByPlayer == board[1][1]?.selectedByPlayer &&
-        board[2][0]?.selectedByPlayer == board[0][2]?.selectedByPlayer) {
-      return WinOption.secondDiagonal;
+    if (board[2][0]?.selectedByPlayerNumber == currentPlayer &&
+        board[2][0]?.selectedByPlayerNumber ==
+            board[1][1]?.selectedByPlayerNumber &&
+        board[2][0]?.selectedByPlayerNumber ==
+            board[0][2]?.selectedByPlayerNumber) {
+      return MatchResult.secondDiagonal;
     }
 
     for (int row = 0; row < 3; row++) {
       for (int col = 0; col < 3; col++) {
-        if (board[row][col]?.selectedByPlayer == null) {
-          return WinOption.none;
+        if (board[row][col]?.selectedByPlayerNumber == null) {
+          return MatchResult.none;
         }
       }
     }
 
-    return WinOption.tie;
+    return MatchResult.tie;
   }
 
   List<List<BoardItem>> createBoardByDimensions(int dimensions) {
