@@ -1,9 +1,10 @@
+import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
 import 'package:tik_tak_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
 import 'package:tik_tak_toe/screens/settings.dart';
 import 'package:tik_tak_toe/screens/tik_tak_toe.dart';
-import 'package:tik_tak_toe/widgets/players_form.dart';
+import 'package:tik_tak_toe/widgets/player_input.dart';
 
 class Presentation extends StatelessWidget {
   static String route = "presentation";
@@ -26,10 +27,21 @@ class Presentation extends StatelessWidget {
               const Spacer(
                 flex: 2,
               ),
-              const PlayersForm(),
+              BlocBuilder<PlayersBloc, PlayersState>(
+                builder: (context, state) {
+                  return Column(
+                    children: [
+                      PlayerInput(player: state.player1, playerNumber: 1),
+                      const SizedBox(height: 10),
+                      PlayerInput(player: state.player2, playerNumber: 2),
+                    ],
+                  );
+                },
+              ),
               const SizedBox(height: 10),
               ElevatedButton(
-                  onPressed: () => play(context), child: Text(S.of(context).play)),
+                  onPressed: () => play(context),
+                  child: Text(S.of(context).play)),
               const Spacer(),
               Row(
                 children: [

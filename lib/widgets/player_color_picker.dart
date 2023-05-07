@@ -56,8 +56,10 @@ class _PlayerColorPickerState extends State<PlayerColorPicker> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        title: Text(
-             S.of(context).colorOf(widget.player.playerName.isEmpty ? S.of(context).player(widget.playerNumber) : widget.player.playerName)),
+        contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 4),
+        title: Text(S.of(context).colorOf(widget.player.playerName.isEmpty
+            ? S.of(context).player(widget.playerNumber)
+            : widget.player.playerName)),
         trailing: InkWell(
           borderRadius: BorderRadius.circular(100),
           onTap: () => showColorPicker(widget.player.color),

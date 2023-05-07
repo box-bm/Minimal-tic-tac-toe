@@ -1,8 +1,8 @@
 import 'package:tik_tak_toe/common.dart';
 
 List<IconData> icons = [
-  Icons.close_outlined,
   Icons.circle_outlined,
+  Icons.close_outlined,
   Icons.square_outlined,
   Icons.panorama_wide_angle_outlined,
   Icons.bluetooth,
