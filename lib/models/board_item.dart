@@ -1,25 +1,24 @@
-import 'package:tik_tak_toe/models/player.dart';
-
 class BoardItem {
   int xPosition;
   int yPosition;
-  Player? selectedByPlayer;
+  int? selectedByPlayerNumber;
 
   BoardItem({
     required this.xPosition,
     required this.yPosition,
-    this.selectedByPlayer,
+    this.selectedByPlayerNumber,
   });
 
-  select(Player selectedByPlayer) {
-    this.selectedByPlayer = selectedByPlayer;
+  select(int selectedByPlayerNumber) {
+    this.selectedByPlayerNumber = selectedByPlayerNumber;
   }
 
   BoardItem copyWith(
-      {int? xPosition, int? yPosition, Player? selectedByPlayer}) {
+      {int? xPosition, int? yPosition, int? selectedByPlayerNumber}) {
     return BoardItem(
         xPosition: xPosition ?? this.xPosition,
         yPosition: yPosition ?? this.yPosition,
-        selectedByPlayer: selectedByPlayer ?? this.selectedByPlayer);
+        selectedByPlayerNumber:
+            selectedByPlayerNumber ?? this.selectedByPlayerNumber);
   }
 }

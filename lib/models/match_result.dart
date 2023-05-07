@@ -1,4 +1,4 @@
-enum WinOption {
+enum MatchResult {
   none,
   tie,
   firstDiagonal,
@@ -11,28 +11,28 @@ enum WinOption {
   thirdColumn
 }
 
-extension WinOptionExtension on WinOption {
+extension MatchResultExtension on MatchResult {
   bool validate(int x, int y) {
     switch (this) {
-      case WinOption.firstRow:
+      case MatchResult.firstRow:
         return x == 0 && (y == 0 || y == 1 || y == 2);
-      case WinOption.secondRow:
+      case MatchResult.secondRow:
         return x == 1 && (y == 0 || y == 1 || y == 2);
-      case WinOption.thirdRow:
+      case MatchResult.thirdRow:
         return x == 2 && (y == 0 || y == 1 || y == 2);
-      case WinOption.firstColumn:
+      case MatchResult.firstColumn:
         return y == 0 && (x == 0 || x == 1 || x == 2);
-      case WinOption.secondColumn:
+      case MatchResult.secondColumn:
         return y == 1 && (x == 0 || x == 1 || x == 2);
-      case WinOption.thirdColumn:
+      case MatchResult.thirdColumn:
         return y == 2 && (x == 0 || x == 1 || x == 2);
-      case WinOption.firstDiagonal:
+      case MatchResult.firstDiagonal:
         return (x == 0 && y == 0) || (x == 1 && y == 1) || (x == 2 && y == 2);
-      case WinOption.secondDiagonal:
+      case MatchResult.secondDiagonal:
         return (x == 2 && y == 0) || (x == 1 && y == 1) || (x == 0 && y == 2);
-      case WinOption.none:
+      case MatchResult.none:
         return false;
-      case WinOption.tie:
+      case MatchResult.tie:
         return false;
     }
   }
