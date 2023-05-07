@@ -31,7 +31,7 @@ class BoardButton extends StatelessWidget {
           onTap: tapped || disabled ? null : tapButton,
           borderRadius: BorderRadius.circular(10),
           child: FittedBox(
-              fit: BoxFit.fill, child: Icon(icon, color: getIconColor())),
+              fit: BoxFit.fill, child: Padding(padding: const EdgeInsets.all(2), child: Icon(icon, color: getIconColor()),)),
         ),
       ),
     );
