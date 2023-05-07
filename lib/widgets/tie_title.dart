@@ -1,5 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/material.dart';
+import 'package:tik_tak_toe/common.dart';
 
 class TieTitle extends StatelessWidget {
   const TieTitle({super.key});
@@ -8,10 +8,10 @@ class TieTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedTextKit(
       animatedTexts: [
-        RotateAnimatedText("Tie",
+        RotateAnimatedText(S.of(context).tie,
             textAlign: TextAlign.center,
             textStyle: Theme.of(context).textTheme.displayMedium),
-        RotateAnimatedText("Anyone's won",
+        RotateAnimatedText(S.of(context).anyoneWins,
             textAlign: TextAlign.center,
             textStyle: Theme.of(context).textTheme.displayMedium)
       ],

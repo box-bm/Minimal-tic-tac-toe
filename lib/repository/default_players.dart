@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:tik_tak_toe/common.dart';
 import 'package:tik_tak_toe/models/player.dart';
 
 const Player defaultPlayer1 = Player(

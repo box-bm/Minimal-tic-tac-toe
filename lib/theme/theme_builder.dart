@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:tik_tak_toe/common.dart';
 
 ThemeData buildTheme(Brightness brightness) => ThemeData(
     useMaterial3: true,

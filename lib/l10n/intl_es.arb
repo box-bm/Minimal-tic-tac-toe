@@ -1,1 +1,16 @@
-{}
+{
+  "@@locale": "es",
+  "player": "Jugador {playerNumber}",
+  "settings": "Ajustes",
+  "play": "Jugar",
+  "share": "Compartir",
+  "winner": "Ganador",
+  "tie": "Empate",
+  "anyoneWins": "Nadie gana",
+  "colorOf": "Color de {playerName} ",
+  "iconOf": "Icono de {playerName}",
+  "resetSettings": "Restablecer ajustes",
+  "icons": "Iconos",
+  "chooseYourFavoriteIcon": "Elije tu icono favorito",
+  "ticTacToe": "Tic Tac Toe"
+}

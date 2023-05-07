@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+import 'package:tik_tak_toe/common.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:tik_tak_toe/models/player.dart';
 import 'package:tik_tak_toe/repository/default_players.dart';

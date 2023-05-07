@@ -1,0 +1,31 @@
+{
+  "@@locale": "en",
+  "player": "Player {playerNumber}",
+  "@player": {
+    "placeholders": {
+      "playerNumber": {}
+    }
+  },
+  "settings": "Settings",
+  "play": "Play",
+  "share": "Share",
+  "winner": "Winner",
+  "tie": "Tie",
+  "anyoneWins": "Anyone's won",
+  "colorOf": "{playerName} color",
+  "@colorOf": {
+    "placeholders": {
+      "playerName": {}
+    }
+  },
+  "iconOf": "{playerName} icon",
+  "@iconOf": {
+    "placeholders": {
+      "playerName": {}
+    }
+  },
+  "resetSettings": "Reset settings",
+  "icons": "Icons",
+  "chooseYourFavoriteIcon": "Choose your favorite icon",
+  "ticTacToe": "Tic Tac Toe"
+}

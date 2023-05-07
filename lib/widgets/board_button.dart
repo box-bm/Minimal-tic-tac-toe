@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:tik_tak_toe/common.dart';
 
 class BoardButton extends StatelessWidget {
   final bool tapped;

@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:tik_tak_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
+import 'package:tik_tak_toe/screens/icon_selection.dart';
 import 'package:tik_tak_toe/widgets/player_color_picker.dart';
 
 class PlayersForm extends StatefulWidget {
@@ -50,7 +51,12 @@ class _PlayersFormState extends State<PlayersForm> {
                   controller: player1Input,
                   onChanged: (value) => changeValue(1, value),
                   decoration: InputDecoration(
-                      prefixIcon: Icon(state.player1.iconData),
+                      prefixIcon: IconButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, IconSelection.route,
+                                arguments: 1);
+                          },
+                          icon: Icon(state.player1.iconData)),
                       prefixIconColor:
                           context.read<PlayersBloc>().state.player1.color,
                       suffixIcon: Visibility(
@@ -83,7 +89,12 @@ class _PlayersFormState extends State<PlayersForm> {
                   controller: player2Input,
                   onChanged: (value) => changeValue(2, value),
                   decoration: InputDecoration(
-                      prefixIcon: Icon(state.player2.iconData),
+                      prefixIcon: IconButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, IconSelection.route,
+                                arguments: 2);
+                          },
+                          icon: Icon(state.player2.iconData)),
                       prefixIconColor:
                           context.read<PlayersBloc>().state.player2.color,
                       suffixIcon: Visibility(
