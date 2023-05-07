@@ -41,6 +41,7 @@ dependencies:
   equatable: ^2.0.5
   animated_text_kit: ^4.2.2
   path_provider: ^2.0.14
+  flutter_colorpicker: ^1.0.3
 
 dev_dependencies:
   flutter_test:
