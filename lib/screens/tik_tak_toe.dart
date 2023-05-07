@@ -2,6 +2,7 @@ import 'package:tik_tak_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
 import 'package:tik_tak_toe/models/match_result.dart';
+import 'package:tik_tak_toe/screens/matches_history.dart';
 import 'package:tik_tak_toe/screens/settings.dart';
 import 'package:tik_tak_toe/widgets/board.dart';
 import 'package:tik_tak_toe/widgets/board_title.dart';
@@ -23,6 +24,11 @@ class _TikTakToeState extends State<TikTakToe> {
           IconButton(
               onPressed: () => context.read<TikTakToeBloc>().add(ResetBoard()),
               icon: const Icon(Icons.replay_outlined)),
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, MatchesHistory.route);
+              },
+              icon: const Icon(Icons.assignment_outlined)),
           IconButton(
               onPressed: () {
                 Navigator.pushNamed(context, Settings.route);

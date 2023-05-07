@@ -30,5 +30,12 @@
   "chooseYourFavoriteIcon": "Choose your favorite icon",
   "ticTacToe": "Tic Tac Toe",
   "cancel": "Cancel",
-  "save": "Save"
+  "save": "Save",
+  "playerWinner": "Winner {playerName} ",
+  "@playerWinner": {
+    "placeholders": {
+      "playerName": {}
+    }
+  },
+  "record": "Record"
 }

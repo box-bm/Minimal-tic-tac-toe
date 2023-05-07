@@ -209,6 +209,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Winner {playerName} `
+  String playerWinner(Object playerName) {
+    return Intl.message(
+      'Winner $playerName ',
+      name: 'playerWinner',
+      desc: '',
+      args: [playerName],
+    );
+  }
+
+  /// `Record`
+  String get record {
+    return Intl.message(
+      'Record',
+      name: 'record',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

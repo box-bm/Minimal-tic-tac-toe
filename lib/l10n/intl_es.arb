@@ -15,5 +15,7 @@
   "chooseYourFavoriteIcon": "Elije tu icono favorito",
   "ticTacToe": "Tic Tac Toe",
   "cancel": "Cancelar",
-  "save": "Guardar"
+  "save": "Guardar",
+  "playerWinner": "Ganador {playerName}",
+  "record": "Historial"
 }

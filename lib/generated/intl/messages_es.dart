@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(playerNumber) => "Jugador ${playerNumber}";
 
+  static String m3(playerName) => "Ganador ${playerName}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "anyoneWins": MessageLookupByLibrary.simpleMessage("Nadie gana"),
@@ -37,6 +39,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "icons": MessageLookupByLibrary.simpleMessage("Iconos"),
         "play": MessageLookupByLibrary.simpleMessage("Jugar"),
         "player": m2,
+        "playerWinner": m3,
+        "record": MessageLookupByLibrary.simpleMessage("Historial"),
         "resetSettings":
             MessageLookupByLibrary.simpleMessage("Restablecer ajustes"),
         "save": MessageLookupByLibrary.simpleMessage("Guardar"),
