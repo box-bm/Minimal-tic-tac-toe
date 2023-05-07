@@ -1,5 +1,7 @@
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:tik_tak_toe/common.dart';
 import 'package:tik_tak_toe/models/player.dart';
+import 'package:tik_tak_toe/utils/use_color_by_backgroud_color.dart';
 
 class PlayerBoardHeader extends StatelessWidget {
   final Player player;
@@ -61,8 +63,8 @@ class PlayerBoardHeader extends StatelessWidget {
   }
 
   Color? getLabelColor() {
-    if (player == winner) return Colors.white;
-    if (active && winner == null || tie) return null;
+    if (player == winner) return useColorByBackgroundColor(player.color);
+    if (active && winner == null || tie) return useColorByBackgroundColor(player.color.withOpacity(0.8));
     return null;
   }
 }

@@ -1,4 +1,6 @@
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:tik_tak_toe/common.dart';
+import 'package:tik_tak_toe/utils/use_color_by_backgroud_color.dart';
 
 class BoardButton extends StatelessWidget {
   final bool tapped;
@@ -31,7 +33,11 @@ class BoardButton extends StatelessWidget {
           onTap: tapped || disabled ? null : tapButton,
           borderRadius: BorderRadius.circular(10),
           child: FittedBox(
-              fit: BoxFit.fill, child: Padding(padding: const EdgeInsets.all(2), child: Icon(icon, color: getIconColor()),)),
+              fit: BoxFit.fill,
+              child: Padding(
+                padding: const EdgeInsets.all(2),
+                child: Icon(icon, color: getIconColor()),
+              )),
         ),
       ),
     );
@@ -52,7 +58,9 @@ class BoardButton extends StatelessWidget {
 
   Color? getIconColor() {
     if (tie) return color?.withAlpha(40);
-    if (winner) return Colors.white;
+    if (winner) {
+      return useColorByBackgroundColor(color ?? Colors.black);
+    }
     if (tapped) return color;
     return null;
   }
