@@ -5,7 +5,8 @@ class WinningTitle extends StatelessWidget {
   final String? playerName;
   final Color? color;
   final int? playerNumber;
-  const WinningTitle({super.key, this.playerName, this.color, required this.playerNumber});
+  const WinningTitle(
+      {super.key, this.playerName, this.color, required this.playerNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +15,14 @@ class WinningTitle extends StatelessWidget {
         FadeAnimatedText(S.of(context).winner,
             textStyle: Theme.of(context).textTheme.displaySmall,
             textAlign: TextAlign.center),
-        FadeAnimatedText(playerName ?? S.of(context).player(playerNumber!),
+        FadeAnimatedText(
+            (playerName ?? "").isEmpty
+                ? S.of(context).player(playerNumber! + 1)
+                : playerName ?? "",
             textAlign: TextAlign.center,
             textStyle: Theme.of(context)
                 .textTheme
-                .displayLarge
+                .displayMedium
                 ?.copyWith(color: color))
       ],
       repeatForever: true,
