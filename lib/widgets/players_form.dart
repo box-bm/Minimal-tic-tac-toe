@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
+import 'package:tik_tak_toe/widgets/player_color_picker.dart';
 
 class PlayersForm extends StatefulWidget {
-  const PlayersForm({super.key});
+  final bool hideColorPicker;
+  const PlayersForm({super.key, this.hideColorPicker = true});
 
   @override
   State<PlayersForm> createState() => _PlayersFormState();
@@ -40,6 +42,7 @@ class _PlayersFormState extends State<PlayersForm> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PlayersBloc, PlayersState>(
+        buildWhen: (previous, current) => true,
         builder: (context, state) => Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -69,7 +72,13 @@ class _PlayersFormState extends State<PlayersForm> {
                       labelText: "Player 1",
                       hintText: "Player 1"),
                 ),
-                const SizedBox(height: 20),
+                Visibility(
+                    visible: !widget.hideColorPicker,
+                    child: PlayerColorPicker(
+                      player: state.player1,
+                      playerNumber: 1,
+                    )),
+                const SizedBox(height: 12),
                 TextField(
                   controller: player2Input,
                   onChanged: (value) => changeValue(2, value),
@@ -96,6 +105,12 @@ class _PlayersFormState extends State<PlayersForm> {
                       labelText: "Player 2",
                       hintText: "Player 2"),
                 ),
+                Visibility(
+                    visible: !widget.hideColorPicker,
+                    child: PlayerColorPicker(
+                      player: state.player2,
+                      playerNumber: 2,
+                    )),
               ],
             ));
   }

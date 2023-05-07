@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
+import 'package:tik_tak_toe/widgets/players_form.dart';
 
 class Settings extends StatefulWidget {
   static String route = "/settings";
@@ -51,25 +52,21 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text("Settings")),
-        body: SafeArea(child: BlocBuilder<PlayersBloc, PlayersState>(
-          builder: (context, state) {
-            return Column(
+        body: SafeArea(
+            minimum: const EdgeInsets.only(left: 10, right: 10, top: 12),
+            child: Column(
               children: [
-                ListTile(
-                    title: const Text("Color Player 1"),
-                    trailing: InkWell(
-                      onTap: () => showColorPicker(state.player1.color, 1),
-                      child: CircleAvatar(backgroundColor: state.player1.color),
-                    )),
-                ListTile(
-                    title: const Text("Color Player 2"),
-                    trailing: InkWell(
-                      onTap: () => showColorPicker(state.player2.color, 2),
-                      child: CircleAvatar(backgroundColor: state.player2.color),
-                    )),
+                const PlayersForm(
+                  hideColorPicker: false,
+                ),
+                const Spacer(),
+                TextButton.icon(
+                    onPressed: () {
+                      context.read<PlayersBloc>().add(ResetChanges());
+                    },
+                    icon: const Icon(Icons.restore_rounded),
+                    label: const Text("Reset all changes"))
               ],
-            );
-          },
-        )));
+            )));
   }
 }

@@ -35,7 +35,7 @@ class _TikTakToeState extends State<TikTakToe> {
           },
           builder: (context, state) {
             return SafeArea(
-                minimum: const EdgeInsets.symmetric(horizontal: 12),
+                minimum: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

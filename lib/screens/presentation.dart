@@ -19,7 +19,7 @@ class Presentation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          minimum: const EdgeInsets.symmetric(horizontal: 12),
+          minimum: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
