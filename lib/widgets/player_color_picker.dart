@@ -8,6 +8,7 @@ class PlayerColorPicker extends StatefulWidget {
   final Player player;
   final int playerNumber;
   static String route = "/settings";
+
   const PlayerColorPicker(
       {super.key, required this.player, required this.playerNumber});
 
@@ -32,7 +33,7 @@ class _PlayerColorPickerState extends State<PlayerColorPicker> {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: const Text("Select your color"),
+              title: Text(S.of(context).selectYourColor),
               content: SingleChildScrollView(
                 child: ColorPicker(
                     hexInputBar: false,
@@ -45,9 +46,9 @@ class _PlayerColorPickerState extends State<PlayerColorPicker> {
               actions: [
                 TextButton(
                     onPressed: closeChangeColorPicker,
-                    child: const Text("Cancel")),
+                    child: Text(S.of(context).cancel)),
                 ElevatedButton(
-                    onPressed: submitNewColor, child: const Text("Save"))
+                    onPressed: submitNewColor, child: Text(S.of(context).save))
               ],
             ));
   }
@@ -55,7 +56,8 @@ class _PlayerColorPickerState extends State<PlayerColorPicker> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        title: Text("Color of ${widget.player.playerName}"),
+        title: Text(
+             S.of(context).colorOf(widget.player.playerName.isEmpty ? S.of(context).player(widget.playerNumber) : widget.player.playerName)),
         trailing: InkWell(
           borderRadius: BorderRadius.circular(100),
           onTap: () => showColorPicker(widget.player.color),

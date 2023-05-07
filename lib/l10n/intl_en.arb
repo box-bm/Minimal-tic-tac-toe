@@ -12,6 +12,7 @@
   "winner": "Winner",
   "tie": "Tie",
   "anyoneWins": "Anyone's won",
+  "selectYourColor": "Select your color",
   "colorOf": "{playerName} color",
   "@colorOf": {
     "placeholders": {
@@ -27,5 +28,7 @@
   "resetSettings": "Reset settings",
   "icons": "Icons",
   "chooseYourFavoriteIcon": "Choose your favorite icon",
-  "ticTacToe": "Tic Tac Toe"
+  "ticTacToe": "Tic Tac Toe",
+  "cancel": "Cancel",
+  "save": "Save"
 }

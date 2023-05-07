@@ -27,6 +27,7 @@ class BoardTitle extends StatelessWidget {
                 child: result == MatchResult.tie
                     ? const TieTitle()
                     : WinningTitle(
+                  playerNumber: playerWinner,
                         color: playerWinner != null
                             ? players.elementAt(playerWinner!).color
                             : null,

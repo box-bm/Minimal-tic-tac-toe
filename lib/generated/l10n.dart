@@ -120,6 +120,16 @@ class S {
     );
   }
 
+  /// `Select your color`
+  String get selectYourColor {
+    return Intl.message(
+      'Select your color',
+      name: 'selectYourColor',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{playerName} color`
   String colorOf(Object playerName) {
     return Intl.message(
@@ -175,6 +185,26 @@ class S {
     return Intl.message(
       'Tic Tac Toe',
       name: 'ticTacToe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
       desc: '',
       args: [],
     );

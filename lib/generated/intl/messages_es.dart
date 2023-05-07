@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "anyoneWins": MessageLookupByLibrary.simpleMessage("Nadie gana"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "chooseYourFavoriteIcon":
             MessageLookupByLibrary.simpleMessage("Elije tu icono favorito"),
         "colorOf": m0,
@@ -38,6 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "player": m2,
         "resetSettings":
             MessageLookupByLibrary.simpleMessage("Restablecer ajustes"),
+        "save": MessageLookupByLibrary.simpleMessage("Guardar"),
+        "selectYourColor":
+            MessageLookupByLibrary.simpleMessage("Elije tu color"),
         "settings": MessageLookupByLibrary.simpleMessage("Ajustes"),
         "share": MessageLookupByLibrary.simpleMessage("Compartir"),
         "ticTacToe": MessageLookupByLibrary.simpleMessage("Tic Tac Toe"),

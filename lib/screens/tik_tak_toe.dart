@@ -45,13 +45,14 @@ class _TikTakToeState extends State<TikTakToe> {
                         winner: state.playerWinner,
                         tie: state.matchResult == MatchResult.tie),
                     Expanded(
+                      flex: 1,
                       child: BoardTitle(
                           playerWinner: state.playerWinner,
                           result: state.matchResult,
                           visible: state is GameEnded),
                     ),
                     Expanded(
-                      flex: 3,
+                      flex: 5,
                       child: Board(
                         board: state.board,
                         currentPlayer: state.currentPlayer,

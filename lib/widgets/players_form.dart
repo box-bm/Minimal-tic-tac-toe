@@ -75,8 +75,8 @@ class _PlayersFormState extends State<PlayersForm> {
                       labelStyle: TextStyle(
                           color:
                               context.read<PlayersBloc>().state.player1.color),
-                      labelText: "Player 1",
-                      hintText: "Player 1"),
+                      labelText: S.of(context).player(1),
+                      hintText: S.of(context).player(1)),
                 ),
                 Visibility(
                     visible: !widget.hideColorPicker,
@@ -113,8 +113,8 @@ class _PlayersFormState extends State<PlayersForm> {
                       labelStyle: TextStyle(
                           color:
                               context.read<PlayersBloc>().state.player2.color),
-                      labelText: "Player 2",
-                      hintText: "Player 2"),
+                      labelText: S.of(context).player(2),
+                      hintText: S.of(context).player(2)),
                 ),
                 Visibility(
                     visible: !widget.hideColorPicker,

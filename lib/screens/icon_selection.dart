@@ -14,11 +14,11 @@ class IconSelection extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(slivers: [
         SliverAppBar.large(
-            bottom: const PreferredSize(
-              preferredSize: Size.fromHeight(5),
-              child: Text("Choise your favorite icon"),
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(5),
+              child: Text(S.of(context).chooseYourFavoriteIcon),
             ),
-            title: const Text("Icons"),
+            title: Text(S.of(context).icons),
             centerTitle: false,
             floating: true,
             snap: true),

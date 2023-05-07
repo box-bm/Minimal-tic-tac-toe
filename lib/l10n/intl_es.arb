@@ -7,10 +7,13 @@
   "winner": "Ganador",
   "tie": "Empate",
   "anyoneWins": "Nadie gana",
+  "selectYourColor": "Elije tu color",
   "colorOf": "Color de {playerName} ",
   "iconOf": "Icono de {playerName}",
   "resetSettings": "Restablecer ajustes",
   "icons": "Iconos",
   "chooseYourFavoriteIcon": "Elije tu icono favorito",
-  "ticTacToe": "Tic Tac Toe"
+  "ticTacToe": "Tic Tac Toe",
+  "cancel": "Cancelar",
+  "save": "Guardar"
 }

@@ -4,16 +4,17 @@ import 'package:tik_tak_toe/common.dart';
 class WinningTitle extends StatelessWidget {
   final String? playerName;
   final Color? color;
-  const WinningTitle({super.key, this.playerName, this.color});
+  final int? playerNumber;
+  const WinningTitle({super.key, this.playerName, this.color, required this.playerNumber});
 
   @override
   Widget build(BuildContext context) {
     return AnimatedTextKit(
       animatedTexts: [
-        FadeAnimatedText("Winner!",
+        FadeAnimatedText(S.of(context).winner,
             textStyle: Theme.of(context).textTheme.displaySmall,
             textAlign: TextAlign.center),
-        FadeAnimatedText(playerName ?? "",
+        FadeAnimatedText(playerName ?? S.of(context).player(playerNumber!),
             textAlign: TextAlign.center,
             textStyle: Theme.of(context)
                 .textTheme

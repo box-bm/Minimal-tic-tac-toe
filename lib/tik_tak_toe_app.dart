@@ -18,6 +18,13 @@ class _TikTakToeAppState extends State<TikTakToeApp> {
         child: MaterialApp(
       theme: buildTheme(Brightness.light),
       darkTheme: buildTheme(Brightness.dark),
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
       initialRoute: Presentation.route,
       routes: routes,
     ));

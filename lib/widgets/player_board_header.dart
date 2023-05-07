@@ -23,7 +23,7 @@ class PlayerBoardHeader extends StatelessWidget {
         elevation: getElevation(),
         color: getColor(),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+          padding: const EdgeInsets.all(2),
           width: MediaQuery.of(context).size.width * 0.40,
           child: Row(
             textDirection: inverted ? TextDirection.rtl : null,
@@ -35,7 +35,7 @@ class PlayerBoardHeader extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               Text(
-                player.playerName.isEmpty ? "Player" : player.playerName,
+                player.playerName.isEmpty ? S.of(context).player(inverted ? 2 : 1) : player.playerName,
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium

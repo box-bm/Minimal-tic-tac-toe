@@ -29,7 +29,7 @@ class Presentation extends StatelessWidget {
               const PlayersForm(),
               const SizedBox(height: 10),
               ElevatedButton(
-                  onPressed: () => play(context), child: const Text("Play!")),
+                  onPressed: () => play(context), child: Text(S.of(context).play)),
               const Spacer(),
               Row(
                 children: [
