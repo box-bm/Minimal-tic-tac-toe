@@ -16,6 +16,11 @@ class Presentation extends StatelessWidget {
     Navigator.pushNamed(context, TikTakToe.route);
   }
 
+  void playNewMatches(BuildContext context) {
+    context.read<TikTakToeBloc>().add(ClearHistory());
+    Navigator.pushNamed(context, TikTakToe.route);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +47,12 @@ class Presentation extends StatelessWidget {
               ElevatedButton(
                   onPressed: () => play(context),
                   child: Text(S.of(context).play)),
+              BlocBuilder<TikTakToeBloc, TikTakToeState>(
+                  builder: (context, state) => Visibility(
+                      visible: state.history.isNotEmpty,
+                      child: TextButton(
+                          onPressed: () => playNewMatches(context),
+                          child: Text(S.of(context).newGame)))),
               const Spacer(),
               Row(
                 children: [

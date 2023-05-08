@@ -239,6 +239,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Doesn't exist finished matches`
+  String get noRecords {
+    return Intl.message(
+      'Doesn\'t exist finished matches',
+      name: 'noRecords',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Game`
+  String get newGame {
+    return Intl.message(
+      'New Game',
+      name: 'newGame',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

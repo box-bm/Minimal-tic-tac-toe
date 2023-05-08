@@ -25,3 +25,5 @@ class ChangeBoardSize extends TikTakToeEvent {
 }
 
 class ChangePlayerTurn extends TikTakToeEvent {}
+
+class ClearHistory extends TikTakToeEvent {}

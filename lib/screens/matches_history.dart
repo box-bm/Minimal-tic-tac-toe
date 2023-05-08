@@ -14,6 +14,12 @@ class MatchesHistory extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).record),
+        actions: [
+          IconButton(
+              onPressed: () =>
+                  context.read<TikTakToeBloc>().add(ClearHistory()),
+              icon: const Icon(Icons.cleaning_services))
+        ],
       ),
       body: SafeArea(child: BlocBuilder<PlayersBloc, PlayersState>(
         builder: (context, state) {
@@ -21,6 +27,26 @@ class MatchesHistory extends StatelessWidget {
           return BlocBuilder<TikTakToeBloc, TikTakToeState>(
             builder: (context, state) {
               var history = state.history.reversed;
+
+              if (history.isEmpty) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.hourglass_empty_rounded,
+                        size: 48,
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        S.of(context).noRecords,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      )
+                    ],
+                  ),
+                );
+              }
               return ListView.builder(
                 itemBuilder: (context, index) {
                   Player? playerWinner =

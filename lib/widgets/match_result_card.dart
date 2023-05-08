@@ -64,7 +64,7 @@ class MatchResultCard extends StatelessWidget {
                               S.of(context).winner,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyLarge
+                                  .bodyMedium
                                   ?.copyWith(color: contentColor, height: 1),
                             )),
                         Text(
@@ -85,7 +85,11 @@ class MatchResultCard extends StatelessWidget {
                                 .textTheme
                                 .bodySmall
                                 ?.copyWith(color: contentColor, height: 0))
-                      ]))
+                      ])),
+                  Icon(
+                    Icons.chevron_right,
+                    color: getContentColor(),
+                  )
                 ],
               )),
         ));

@@ -13,11 +13,7 @@ abstract class TikTakToeState extends Equatable {
       required this.history});
 
   @override
-  List<Object> get props => [board, currentPlayer];
-
-  String boardToString() {
-    return jsonEncode(board);
-  }
+  List<Object> get props => [board, currentPlayer, history];
 }
 
 class TikTakToeInitial extends TikTakToeState {

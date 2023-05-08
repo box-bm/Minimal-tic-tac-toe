@@ -39,6 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "icons": MessageLookupByLibrary.simpleMessage("Iconos"),
         "matchResult":
             MessageLookupByLibrary.simpleMessage("Resultado de la partida"),
+        "newGame": MessageLookupByLibrary.simpleMessage("Nuevo juego"),
+        "noRecords":
+            MessageLookupByLibrary.simpleMessage("No hay partidas finalizadas"),
         "play": MessageLookupByLibrary.simpleMessage("Jugar"),
         "player": m2,
         "playerWinner": m3,

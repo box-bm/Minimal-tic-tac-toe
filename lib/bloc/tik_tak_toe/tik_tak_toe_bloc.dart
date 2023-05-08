@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:tik_tak_toe/models/board.dart';
@@ -22,6 +20,12 @@ class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
     });
     on<ResetBoard>((event, emit) {
       add(CreateNewBoard());
+    });
+    on<ClearHistory>((event, emit) {
+      var board = createBoardByDimensions(state.board.boardSize);
+
+      emit(TikTakToeInitial(
+          currentPlayer: state.currentPlayer, board: board, history: const []));
     });
 
     on<SelectOption>((event, emit) {

@@ -38,6 +38,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "iconOf": m1,
         "icons": MessageLookupByLibrary.simpleMessage("Icons"),
         "matchResult": MessageLookupByLibrary.simpleMessage("Match Result"),
+        "newGame": MessageLookupByLibrary.simpleMessage("New Game"),
+        "noRecords": MessageLookupByLibrary.simpleMessage(
+            "Doesn\'t exist finished matches"),
         "play": MessageLookupByLibrary.simpleMessage("Play"),
         "player": m2,
         "playerWinner": m3,
