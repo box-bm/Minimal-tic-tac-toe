@@ -35,6 +35,7 @@ class MatchResultCard extends StatelessWidget {
     return Card(
         color: getColor(matchResult: matchResult, playerWinnner: playerWinner),
         child: InkWell(
+          borderRadius: BorderRadius.circular(12),
           onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
