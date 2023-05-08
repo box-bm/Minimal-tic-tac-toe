@@ -16,6 +16,7 @@
   "ticTacToe": "Tic Tac Toe",
   "cancel": "Cancelar",
   "save": "Guardar",
-  "playerWinner": "Ganador {playerName}",
-  "record": "Historial"
+  "playerWinner": "Ganador: {playerName}",
+  "record": "Historial",
+  "matchResult": "Resultado de la partida"
 }

@@ -30,6 +30,7 @@ class MatchesHistory extends StatelessWidget {
                       playerWinner == players.elementAt(1) ? 1 : 0;
 
                   return MatchResultCard(
+                      board: history.elementAt(index).board.board,
                       playerWinner: playerWinner,
                       matchResult: history.elementAt(index).matchResult,
                       playerWinnerNumber: playerWinnerNumber,

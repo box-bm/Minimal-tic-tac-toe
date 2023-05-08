@@ -210,10 +210,10 @@ class S {
     );
   }
 
-  /// `Winner {playerName} `
+  /// `Winner: {playerName} `
   String playerWinner(Object playerName) {
     return Intl.message(
-      'Winner $playerName ',
+      'Winner: $playerName ',
       name: 'playerWinner',
       desc: '',
       args: [playerName],
@@ -225,6 +225,16 @@ class S {
     return Intl.message(
       'Record',
       name: 'record',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Match Result`
+  String get matchResult {
+    return Intl.message(
+      'Match Result',
+      name: 'matchResult',
       desc: '',
       args: [],
     );

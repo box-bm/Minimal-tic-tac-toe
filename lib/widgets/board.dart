@@ -10,12 +10,14 @@ class Board extends StatelessWidget {
   final int currentPlayer;
   final List<List<BoardItem>> board;
   final MatchResult matchResult;
+  final bool disableResetButton;
 
   const Board({
     super.key,
     required this.currentPlayer,
     required this.board,
     required this.matchResult,
+    this.disableResetButton = false,
   });
 
   @override
@@ -60,7 +62,7 @@ class Board extends StatelessWidget {
                           .toList()))
                 ]),
             Visibility(
-              visible: matchResult == MatchResult.tie,
+              visible: matchResult == MatchResult.tie && !disableResetButton,
               child: Center(
                   child: Container(
                       decoration: BoxDecoration(

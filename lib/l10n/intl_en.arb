@@ -31,11 +31,12 @@
   "ticTacToe": "Tic Tac Toe",
   "cancel": "Cancel",
   "save": "Save",
-  "playerWinner": "Winner {playerName} ",
+  "playerWinner": "Winner: {playerName} ",
   "@playerWinner": {
     "placeholders": {
       "playerName": {}
     }
   },
-  "record": "Record"
+  "record": "Record",
+  "matchResult": "Match Result"
 }
