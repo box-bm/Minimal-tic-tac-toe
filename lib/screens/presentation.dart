@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
 import 'package:tik_tak_toe/screens/settings.dart';
 import 'package:tik_tak_toe/screens/tik_tak_toe.dart';
+import 'package:tik_tak_toe/widgets/add_banner.dart';
 import 'package:tik_tak_toe/widgets/player_input.dart';
 
 class Presentation extends StatelessWidget {
@@ -29,9 +30,7 @@ class Presentation extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Spacer(
-                flex: 2,
-              ),
+              const Spacer(flex: 7),
               BlocBuilder<PlayersBloc, PlayersState>(
                 builder: (context, state) {
                   return Column(
@@ -47,13 +46,14 @@ class Presentation extends StatelessWidget {
               ElevatedButton(
                   onPressed: () => play(context),
                   child: Text(S.of(context).play)),
+              const SizedBox(height: 12),
               BlocBuilder<TikTakToeBloc, TikTakToeState>(
                   builder: (context, state) => Visibility(
                       visible: state.history.isNotEmpty,
                       child: TextButton(
                           onPressed: () => playNewMatches(context),
                           child: Text(S.of(context).newGame)))),
-              const Spacer(),
+              const Spacer(flex: 2),
               Row(
                 children: [
                   IconButton(
@@ -63,7 +63,9 @@ class Presentation extends StatelessWidget {
                       icon: const Icon(Icons.settings)),
                   IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
                 ],
-              )
+              ),
+              const Spacer(),
+              const AddBanner(),
             ],
           )),
     );

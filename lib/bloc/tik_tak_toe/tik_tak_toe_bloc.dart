@@ -20,6 +20,10 @@ class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
     });
     on<ResetBoard>((event, emit) {
       add(CreateNewBoard());
+      emit(Reseted(
+          currentPlayer: state.currentPlayer,
+          board: state.board,
+          history: state.history));
     });
     on<ClearHistory>((event, emit) {
       var board = createBoardByDimensions(state.board.boardSize);

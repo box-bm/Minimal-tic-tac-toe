@@ -1,15 +1,20 @@
+import 'package:flutter/foundation.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:tik_tak_toe/ad_helper.dart';
 import 'package:tik_tak_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
 import 'package:tik_tak_toe/models/match_result.dart';
 import 'package:tik_tak_toe/screens/matches_history.dart';
 import 'package:tik_tak_toe/screens/settings.dart';
+import 'package:tik_tak_toe/widgets/add_banner.dart';
 import 'package:tik_tak_toe/widgets/board.dart';
 import 'package:tik_tak_toe/widgets/board_title.dart';
 import 'package:tik_tak_toe/widgets/board_turn.dart';
 
 class TikTakToe extends StatefulWidget {
   static String route = "/tikTakToe";
+
   const TikTakToe({super.key});
 
   @override
@@ -17,6 +22,33 @@ class TikTakToe extends StatefulWidget {
 }
 
 class _TikTakToeState extends State<TikTakToe> {
+  InterstitialAd? _interstitialAd;
+
+  void _loadInterstitialAd() {
+    InterstitialAd.load(
+      adUnitId: AdHelper.interstitialAdUnitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              Navigator.popAndPushNamed(context, TikTakToe.route);
+            },
+          );
+
+          setState(() {
+            _interstitialAd = ad;
+          });
+        },
+        onAdFailedToLoad: (err) {
+          if (kDebugMode) {
+            print('Failed to load an interstitial ad: ${err.message}');
+          }
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +67,22 @@ class _TikTakToeState extends State<TikTakToe> {
               },
               icon: const Icon(Icons.settings)),
         ]),
-        body: BlocBuilder<TikTakToeBloc, TikTakToeState>(
+        body: BlocConsumer<TikTakToeBloc, TikTakToeState>(
+          listenWhen: (previous, current) {
+            return (previous.history.length != current.history.length) ||
+                (current is Reseted);
+          },
+          listener: (context, state) {
+            if (state.history.isNotEmpty && _interstitialAd == null) {
+              _loadInterstitialAd();
+            }
+            if (state.history.length % 7 == 0 &&
+                state.history.isNotEmpty &&
+                state is Reseted &&
+                _interstitialAd != null) {
+              _interstitialAd?.show();
+            }
+          },
           buildWhen: (previous, current) {
             return true;
           },
@@ -64,7 +111,8 @@ class _TikTakToeState extends State<TikTakToe> {
                         currentPlayer: state.currentPlayer,
                         matchResult: state.board.matchResult,
                       ),
-                    )
+                    ),
+                    const AddBanner(),
                   ],
                 ));
           },

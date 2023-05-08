@@ -24,6 +24,13 @@ class TikTakToeInitial extends TikTakToeState {
       super.playerWinner});
 }
 
+class Reseted extends TikTakToeState {
+  const Reseted(
+      {required super.currentPlayer,
+      required super.board,
+      required super.history});
+}
+
 class GameEnded extends TikTakToeState {
   const GameEnded({
     required super.currentPlayer,
