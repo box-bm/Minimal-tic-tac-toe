@@ -30,7 +30,11 @@ class Presentation extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Spacer(flex: 7),
+              const Spacer(flex: 1),
+              Expanded(
+                  flex: 5,
+                  child: Image.asset("images/logo.png", fit: BoxFit.fitHeight)),
+              const SizedBox(height: 20),
               BlocBuilder<PlayersBloc, PlayersState>(
                 builder: (context, state) {
                   return Column(
@@ -55,13 +59,15 @@ class Presentation extends StatelessWidget {
                           child: Text(S.of(context).newGame)))),
               const Spacer(flex: 2),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
                       onPressed: () {
                         Navigator.pushNamed(context, Settings.route);
                       },
                       icon: const Icon(Icons.settings)),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
+                  // IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
                 ],
               ),
               const Spacer(),

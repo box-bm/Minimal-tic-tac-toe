@@ -28,6 +28,7 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 android {
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
+    namespace 'com.example.tik_tak_toe'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -62,6 +63,7 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
 }
 
 flutter {
