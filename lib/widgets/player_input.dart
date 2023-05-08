@@ -39,7 +39,21 @@ class _PlayerInputState extends State<PlayerInput> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return BlocListener<PlayersBloc, PlayersState>(listener: (context, state) {
+      if (widget.playerNumber == 1){
+        if (state.player1.playerName != playerInputController.text  ){
+          playerInputController.text = state.player1.playerName;
+          playerInputController.selection = TextSelection.collapsed(offset: state.player1.playerName.length);
+        }
+      }
+      else if (widget.playerNumber == 2){
+        if (state.player2.playerName != playerInputController.text  ){
+          playerInputController.text = state.player2.playerName;
+          playerInputController.selection = TextSelection.collapsed(offset: state.player2.playerName.length);
+        }
+      }
+
+    }, child: TextField(
       controller: playerInputController,
       onChanged: (value) => changeValue(value),
       decoration: InputDecoration(
@@ -61,6 +75,6 @@ class _PlayerInputState extends State<PlayerInput> {
           labelStyle: TextStyle(color: widget.player.color),
           labelText: S.of(context).player(widget.playerNumber),
           hintText: S.of(context).player(widget.playerNumber)),
-    );
+    ));
   }
 }
