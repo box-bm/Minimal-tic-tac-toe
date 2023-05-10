@@ -40,24 +40,24 @@ class Board extends StatelessWidget {
                       children: row
                           .map(
                             (element) => Expanded(
-                                child: BoardButton(
-                                    player:
-                                        element.selectedByPlayerNumber != null
-                                            ? players.elementAt(
-                                                element.selectedByPlayerNumber!)
-                                            : null,
-                                    disabled: matchResult == MatchResult.tie ||
-                                        matchResult != MatchResult.none,
-                                    tie: matchResult == MatchResult.tie,
-                                    winner: matchResult.validate(
-                                        element.xPosition, element.yPosition),
-                                    tapButton: () {
-                                      BlocProvider.of<TicTacToeBloc>(context)
-                                          .add(SelectOption(
-                                              element.xPosition,
-                                              element.yPosition,
-                                              currentPlayer));
-                                    })),
+                              child: BoardButton(
+                                  xPosition: element.xPosition,
+                                  yPosition: element.yPosition,
+                                  player: element.selectedByPlayerNumber != null
+                                      ? players.elementAt(
+                                          element.selectedByPlayerNumber!)
+                                      : null,
+                                  disabled: matchResult == MatchResult.tie ||
+                                      matchResult != MatchResult.none,
+                                  tie: matchResult == MatchResult.tie,
+                                  winner: matchResult.validate(
+                                      element.xPosition, element.yPosition),
+                                  tapButton: () {
+                                    BlocProvider.of<TicTacToeBloc>(context).add(
+                                        SelectOption(element.xPosition,
+                                            element.yPosition, currentPlayer));
+                                  }),
+                            ),
                           )
                           .toList()))
                 ]),

@@ -57,20 +57,21 @@ class _PlayerInputState extends State<PlayerInput> {
         },
         child: Semantics(
             textField: true,
-            label: "Player ${widget.playerNumber} name input",
+            label: "Player ${widget.playerNumber} name's input",
             child: TextField(
+              autofocus: false,
               controller: playerInputController,
               onChanged: (value) => changeValue(value),
               decoration: InputDecoration(
-                  prefixIcon: Semantics(
-                      label: "Player ${widget.playerNumber} icon",
-                      button: true,
-                      child: IconButton(
+                  prefixIcon:  IconButton(
                         onPressed: () {
                           Navigator.pushNamed(context, IconSelection.route,
                               arguments: widget.playerNumber);
                         },
-                        icon: Icon(widget.player.iconData),
+                        icon: Semantics(
+                          label: "Change player ${widget.playerNumber} icon",
+                          button: true,
+                          child:Icon(widget.player.iconData),
                       )),
                   prefixIconColor: widget.player.color,
                   suffixIcon: Visibility(

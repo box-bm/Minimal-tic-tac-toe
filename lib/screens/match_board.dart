@@ -21,6 +21,7 @@ class MatchBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         appBar: AppBar(
             title: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -30,8 +31,10 @@ class MatchBoard extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
             Text(
-              S.of(context).playerWinner(getPlayerName(
-                  context, winnerPlayerNumber, winner?.playerName)),
+              matchResult == MatchResult.tie
+                  ? S.of(context).tie
+                  : S.of(context).playerWinner(getPlayerName(
+                      context, winnerPlayerNumber, winner?.playerName)),
               style: Theme.of(context).textTheme.bodySmall,
               textAlign: TextAlign.start,
             )

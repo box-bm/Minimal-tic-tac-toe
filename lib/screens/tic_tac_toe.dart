@@ -54,13 +54,21 @@ class _TicTacToeState extends State<TicTacToe> {
     return Scaffold(
         appBar: AppBar(actions: [
           IconButton(
-              onPressed: () => context.read<TicTacToeBloc>().add(ResetBoard()),
-              icon: const Icon(Icons.replay_outlined)),
+            onPressed: () => context.read<TicTacToeBloc>().add(ResetBoard()),
+            icon: Semantics(
+                button: true,
+                label: "Reset board",
+                child: const Icon(Icons.replay_outlined)),
+          ),
           IconButton(
               onPressed: () {
                 Navigator.pushNamed(context, MatchesHistory.route);
               },
-              icon: const Icon(Icons.assignment_outlined)),
+              icon: Semantics(
+                label: "View Records",
+                button: true,
+                child: const Icon(Icons.assignment_outlined),
+              )),
           const SettingsButton(),
         ]),
         body: BlocConsumer<TicTacToeBloc, TicTacToeState>(

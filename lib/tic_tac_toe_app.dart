@@ -1,4 +1,5 @@
 
+import 'package:flutter/foundation.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:minimal_tic_tac_toe/bloc_states.dart';
 import 'package:minimal_tic_tac_toe/routes.dart';
@@ -19,7 +20,7 @@ class _TicTacToeAppState extends State<TicTacToeApp> {
         child: MaterialApp(
       theme: buildTheme(Brightness.light),
       darkTheme: buildTheme(Brightness.dark),
-      showSemanticsDebugger: false, // kDebugMode,
+      showSemanticsDebugger: false,
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
         S.delegate,

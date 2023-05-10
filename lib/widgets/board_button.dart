@@ -8,6 +8,8 @@ class BoardButton extends StatelessWidget {
   final bool winner;
   final bool tie;
   final void Function() tapButton;
+  final int xPosition;
+  final int yPosition;
 
   const BoardButton(
       {super.key,
@@ -15,7 +17,7 @@ class BoardButton extends StatelessWidget {
       this.winner = false,
       this.disabled = false,
       this.tie = false,
-      this.player});
+      this.player, required this.xPosition, required this.yPosition});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,11 @@ class BoardButton extends StatelessWidget {
       child: Card(
         elevation: getElevation(),
         color: getColor(),
-        child: InkWell(
+        child: Semantics(
+          label: "Row ${xPosition + 1}, Column ${yPosition + 1}",
+          button: true,
+          selected: player != null,
+          child: InkWell(
           onTap: player != null || disabled ? null : tapButton,
           borderRadius: BorderRadius.circular(10),
           child: FittedBox(
@@ -35,7 +41,7 @@ class BoardButton extends StatelessWidget {
               )),
         ),
       ),
-    );
+    ));
   }
 
   double? getElevation() {

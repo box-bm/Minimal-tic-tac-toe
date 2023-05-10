@@ -50,11 +50,11 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+
         applicationId "com.boxdev.minimal_tic_tac_toe"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+
 //        minSdkVersion flutter.minSdkVersion
+
         minSdkVersion 19
         multiDexEnabled true
         targetSdkVersion flutter.targetSdkVersion
@@ -72,6 +72,8 @@ android {
     }
     buildTypes {
         release {
+            minifyEnabled true
+            shrinkResources true
             signingConfig signingConfigs.release
         }
     }

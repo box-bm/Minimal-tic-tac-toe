@@ -6,14 +6,14 @@ class SettingsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      label: "Go to Settings button",
-      button: true,
-      child: IconButton(
-          onPressed: () {
-            Navigator.pushNamed(context, Settings.route);
-          },
-          icon: const Icon(Icons.settings)),
+    return IconButton(
+      onPressed: () {
+        Navigator.pushNamed(context, Settings.route);
+      },
+      icon: Semantics(
+          label: "Go to Settings",
+          button: true,
+          child: const Icon(Icons.settings)),
     );
   }
 }

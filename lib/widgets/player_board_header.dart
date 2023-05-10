@@ -9,58 +9,81 @@ class PlayerBoardHeader extends StatelessWidget {
   final Player? winner;
   final bool active;
   final bool tie;
+  final int playerNumber;
 
-  const PlayerBoardHeader({
-    super.key,
-    required this.player,
-    required this.winnerTimes,
-    this.inverted = false,
-    this.active = false,
-    this.tie = false,
-    this.winner,
-  });
+  const PlayerBoardHeader(
+      {super.key,
+      required this.player,
+      required this.winnerTimes,
+      this.inverted = false,
+      this.active = false,
+      this.tie = false,
+      this.winner,
+      required this.playerNumber});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-        elevation: getElevation(),
-        color: getColor(),
-        child: Container(
-          padding: const EdgeInsets.all(2),
-          width: MediaQuery.of(context).size.width * 0.40,
-          child: Row(
-            textDirection: inverted ? TextDirection.rtl : null,
-            children: [
-              Icon(
-                player.iconData,
-                size: 50,
-                color: getLabelColor(),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                  child: Column(
-                      crossAxisAlignment: inverted
-                          ? CrossAxisAlignment.end
-                          : CrossAxisAlignment.start,
-                      children: [
-                    Text(
-                      winnerTimes.toString(),
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontWeight: FontWeight.bold, color: getLabelColor()),
-                    ),
-                    Text(
-                      player.playerName.isEmpty
-                          ? S.of(context).player(inverted ? 2 : 1)
-                          : player.playerName,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(color: getLabelColor()),
-                    )
-                  ]))
-            ],
-          ),
-        ));
+      elevation: getElevation(),
+      color: getColor(),
+      child: Semantics(
+          label:
+              "Player ${player.playerName.isEmpty ? playerNumber : player.playerName} won $winnerTimes times",
+          container: true,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 8),
+            constraints: const BoxConstraints(
+              maxHeight: 65,
+            ),
+            width: MediaQuery.of(context).size.width * 0.45,
+            child: Row(
+              textDirection: inverted ? TextDirection.rtl : null,
+              children: [
+                Icon(
+                  player.iconData,
+                  size: 50,
+                  color: getLabelColor(),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                    child: Column(
+                        crossAxisAlignment: inverted
+                            ? CrossAxisAlignment.end
+                            : CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Semantics(
+                              excludeSemantics: true,
+                              child: Text(
+                                winnerTimes.toString(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: getLabelColor()),
+                              )),
+                          Semantics(
+                            excludeSemantics: true,
+                            child: Text(
+                              player.playerName.isEmpty
+                                  ? S.of(context).player(inverted ? 2 : 1)
+                                  : player.playerName,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(color: getLabelColor()),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              textAlign:
+                              inverted ? TextAlign.right : TextAlign.left,
+                            ),
+                          )
+                        ]))
+              ],
+            ),
+          )),
+    );
   }
 
   double? getElevation() {

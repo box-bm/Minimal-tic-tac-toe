@@ -7,6 +7,7 @@ class Logo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       label: "Logo",
+      image: true,
       child: Image.asset("images/logo.png", fit: BoxFit.fitHeight),
     );
   }

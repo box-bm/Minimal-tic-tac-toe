@@ -23,6 +23,7 @@ class BoardTurn extends StatelessWidget {
               children: players
                   .map((e) => PlayerBoardHeader(
                       player: e,
+                      playerNumber: players.elementAt(1) == e ? 2 : 1,
                       winnerTimes: state.history
                           .where((element) =>
                               element.playerWinner ==

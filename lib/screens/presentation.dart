@@ -25,46 +25,50 @@ class Presentation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          minimum: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const Spacer(),
-              const Expanded(flex: 2, child: Logo()),
-              const SizedBox(height: 20),
-              BlocBuilder<PlayersBloc, PlayersState>(
-                builder: (context, state) {
-                  return Column(
-                    children: [
-                      PlayerInput(player: state.player1, playerNumber: 1),
-                      const SizedBox(height: 10),
-                      PlayerInput(player: state.player2, playerNumber: 2),
-                    ],
-                  );
-                },
-              ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                  onPressed: () => play(context),
-                  child: Text(S.of(context).play)),
-              const SizedBox(height: 12),
-              BlocBuilder<TicTacToeBloc, TicTacToeState>(
-                  builder: (context, state) => Visibility(
-                      visible: state.history.isNotEmpty,
-                      child: TextButton(
-                          onPressed: () => playNewMatches(context),
-                          child: Text(S.of(context).newGame)))),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [SettingsButton()],
-              ),
-              const Spacer(),
-              const AddBanner(),
-            ],
-          )),
+    return Semantics(
+      label: "Start page",
+      container: true,
+      child: Scaffold(
+        body: SafeArea(
+            minimum: const EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Spacer(),
+                const Expanded(flex: 2, child: Logo()),
+                const SizedBox(height: 20),
+                BlocBuilder<PlayersBloc, PlayersState>(
+                  builder: (context, state) {
+                    return Column(
+                      children: [
+                        PlayerInput(player: state.player1, playerNumber: 1),
+                        const SizedBox(height: 10),
+                        PlayerInput(player: state.player2, playerNumber: 2),
+                      ],
+                    );
+                  },
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                    onPressed: () => play(context),
+                    child: Text(S.of(context).play)),
+                const SizedBox(height: 12),
+                BlocBuilder<TicTacToeBloc, TicTacToeState>(
+                    builder: (context, state) => Visibility(
+                        visible: state.history.isNotEmpty,
+                        child: TextButton(
+                            onPressed: () => playNewMatches(context),
+                            child: Text(S.of(context).newGame)))),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [SettingsButton()],
+                ),
+                const Spacer(),
+                const AddBanner(),
+              ],
+            )),
+      ),
     );
   }
 }
