@@ -1,9 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="tik_tak_toe">
+        android:label="Minimal_tic_tac_toe">
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
@@ -33,9 +35,9 @@
         <!-- Google Ads -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-1807964973002727~2963995448" />
-<!--            android:value="ca-app-pub-3940256099942544~3347511713" />-->
-        <!--        Oficial-->
+            android:value="ca-app-pub-3940256099942544~3347511713" />
+        <!--  Debug: ca-app-pub-3940256099942544~3347511713 -->
+        <!--  Oficial: ca-app-pub-1807964973002727~2963995448 -->
 
     </application>
 </manifest>

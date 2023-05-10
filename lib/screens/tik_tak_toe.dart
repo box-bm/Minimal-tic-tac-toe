@@ -11,6 +11,7 @@ import 'package:tik_tak_toe/widgets/add_banner.dart';
 import 'package:tik_tak_toe/widgets/board.dart';
 import 'package:tik_tak_toe/widgets/board_title.dart';
 import 'package:tik_tak_toe/widgets/board_turn.dart';
+import 'package:tik_tak_toe/widgets/settings_button.dart';
 
 class TikTakToe extends StatefulWidget {
   static String route = "/tikTakToe";
@@ -61,11 +62,7 @@ class _TikTakToeState extends State<TikTakToe> {
                 Navigator.pushNamed(context, MatchesHistory.route);
               },
               icon: const Icon(Icons.assignment_outlined)),
-          IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, Settings.route);
-              },
-              icon: const Icon(Icons.settings)),
+          const SettingsButton(),
         ]),
         body: BlocConsumer<TikTakToeBloc, TikTakToeState>(
           listenWhen: (previous, current) {

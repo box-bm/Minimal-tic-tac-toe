@@ -18,6 +18,8 @@ class _TikTakToeAppState extends State<TikTakToeApp> {
         child: MaterialApp(
       theme: buildTheme(Brightness.light),
       darkTheme: buildTheme(Brightness.dark),
+      showSemanticsDebugger: false, // kDebugMode,
+      debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

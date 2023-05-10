@@ -2,10 +2,11 @@ import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
 import 'package:tik_tak_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
-import 'package:tik_tak_toe/screens/settings.dart';
 import 'package:tik_tak_toe/screens/tik_tak_toe.dart';
 import 'package:tik_tak_toe/widgets/add_banner.dart';
+import 'package:tik_tak_toe/widgets/logo.dart';
 import 'package:tik_tak_toe/widgets/player_input.dart';
+import 'package:tik_tak_toe/widgets/settings_button.dart';
 
 class Presentation extends StatelessWidget {
   static String route = "presentation";
@@ -30,10 +31,8 @@ class Presentation extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Spacer(flex: 1),
-              Expanded(
-                  flex: 5,
-                  child: Image.asset("images/logo.png", fit: BoxFit.fitHeight)),
+              const Spacer(),
+              const Expanded(flex: 2, child: Logo()),
               const SizedBox(height: 20),
               BlocBuilder<PlayersBloc, PlayersState>(
                 builder: (context, state) {
@@ -57,18 +56,10 @@ class Presentation extends StatelessWidget {
                       child: TextButton(
                           onPressed: () => playNewMatches(context),
                           child: Text(S.of(context).newGame)))),
-              const Spacer(flex: 2),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, Settings.route);
-                      },
-                      icon: const Icon(Icons.settings)),
-                  // IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
-                ],
+                children: const [SettingsButton()],
               ),
               const Spacer(),
               const AddBanner(),

@@ -8,7 +8,7 @@
 PRODUCT_NAME = tik_tak_toe
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.tikTakToe
+PRODUCT_BUNDLE_IDENTIFIER = com.boxdev.minimal_tic_tac_toe
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2023 com.boxdev. All rights reserved.
