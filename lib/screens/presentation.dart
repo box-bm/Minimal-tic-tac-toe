@@ -1,12 +1,12 @@
-import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
-import 'package:tik_tak_toe/common.dart';
+import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
-import 'package:tik_tak_toe/screens/tik_tak_toe.dart';
-import 'package:tik_tak_toe/widgets/add_banner.dart';
-import 'package:tik_tak_toe/widgets/logo.dart';
-import 'package:tik_tak_toe/widgets/player_input.dart';
-import 'package:tik_tak_toe/widgets/settings_button.dart';
+import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
+import 'package:minimal_tic_tac_toe/screens/tic_tac_toe.dart';
+import 'package:minimal_tic_tac_toe/widgets/add_banner.dart';
+import 'package:minimal_tic_tac_toe/widgets/logo.dart';
+import 'package:minimal_tic_tac_toe/widgets/player_input.dart';
+import 'package:minimal_tic_tac_toe/widgets/settings_button.dart';
 
 class Presentation extends StatelessWidget {
   static String route = "presentation";
@@ -14,13 +14,13 @@ class Presentation extends StatelessWidget {
   const Presentation({super.key});
 
   void play(BuildContext context) {
-    context.read<TikTakToeBloc>().add(CreateNewBoard());
-    Navigator.pushNamed(context, TikTakToe.route);
+    context.read<TicTacToeBloc>().add(CreateNewBoard());
+    Navigator.pushNamed(context, TicTacToe.route);
   }
 
   void playNewMatches(BuildContext context) {
-    context.read<TikTakToeBloc>().add(ClearHistory());
-    Navigator.pushNamed(context, TikTakToe.route);
+    context.read<TicTacToeBloc>().add(ClearHistory());
+    Navigator.pushNamed(context, TicTacToe.route);
   }
 
   @override
@@ -50,7 +50,7 @@ class Presentation extends StatelessWidget {
                   onPressed: () => play(context),
                   child: Text(S.of(context).play)),
               const SizedBox(height: 12),
-              BlocBuilder<TikTakToeBloc, TikTakToeState>(
+              BlocBuilder<TicTacToeBloc, TicTacToeState>(
                   builder: (context, state) => Visibility(
                       visible: state.history.isNotEmpty,
                       child: TextButton(

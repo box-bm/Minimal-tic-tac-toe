@@ -1,11 +1,11 @@
 import 'package:lit_relative_date_time/lit_relative_date_time.dart';
-import 'package:tik_tak_toe/common.dart';
-import 'package:tik_tak_toe/config/relative_date_localizations_es.dart';
-import 'package:tik_tak_toe/models/board_item.dart';
-import 'package:tik_tak_toe/models/match_result.dart';
-import 'package:tik_tak_toe/models/player.dart';
-import 'package:tik_tak_toe/screens/match_board.dart';
-import 'package:tik_tak_toe/utils/use_color_by_backgroud_color.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
+import 'package:minimal_tic_tac_toe/config/relative_date_localizations_es.dart';
+import 'package:minimal_tic_tac_toe/models/board_item.dart';
+import 'package:minimal_tic_tac_toe/models/match_result.dart';
+import 'package:minimal_tic_tac_toe/models/player.dart';
+import 'package:minimal_tic_tac_toe/screens/match_board.dart';
+import 'package:minimal_tic_tac_toe/utils/use_color_by_backgroud_color.dart';
 
 class MatchResultCard extends StatelessWidget {
   final Player? playerWinner;

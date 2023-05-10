@@ -1,4 +1,4 @@
-import 'package:tik_tak_toe/common.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
 
 List<IconData> icons = [
   Icons.circle_outlined,

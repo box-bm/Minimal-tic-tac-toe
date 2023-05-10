@@ -1,19 +1,19 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:tik_tak_toe/models/board.dart';
-import 'package:tik_tak_toe/models/board_item.dart';
-import 'package:tik_tak_toe/models/board_match_history_item.dart';
-import 'package:tik_tak_toe/models/match_result.dart';
+import 'package:minimal_tic_tac_toe/models/board.dart';
+import 'package:minimal_tic_tac_toe/models/board_item.dart';
+import 'package:minimal_tic_tac_toe/models/board_match_history_item.dart';
+import 'package:minimal_tic_tac_toe/models/match_result.dart';
 
-part 'tik_tak_toe_event.dart';
-part 'tik_tak_toe_state.dart';
+part 'tic_tac_toe_event.dart';
+part 'tic_tac_toe_state.dart';
 
-class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
-  TikTakToeBloc() : super(const TikTakToeInitial()) {
+class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
+  TicTacToeBloc() : super(const TicTacToeInitial()) {
     on<CreateNewBoard>((event, emit) {
       var board = createBoardByDimensions(state.board.boardSize);
 
-      emit(TikTakToeInitial(
+      emit(TicTacToeInitial(
           currentPlayer: state.currentPlayer,
           board: board,
           history: state.history));
@@ -28,7 +28,7 @@ class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
     on<ClearHistory>((event, emit) {
       var board = createBoardByDimensions(state.board.boardSize);
 
-      emit(TikTakToeInitial(
+      emit(TicTacToeInitial(
           currentPlayer: state.currentPlayer, board: board, history: const []));
     });
 
@@ -40,7 +40,7 @@ class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
           validateCurrentPlayerWins(newBoard.board, event.playerNumber);
 
       if (matchResult == MatchResult.none) {
-        emit(TikTakToeInitial(
+        emit(TicTacToeInitial(
             currentPlayer: changePlayer(state.currentPlayer),
             board: newBoard,
             history: state.history,
@@ -70,7 +70,7 @@ class TikTakToeBloc extends Bloc<TikTakToeEvent, TikTakToeState> {
       }
     });
     on<ChangeBoardSize>((event, emit) {
-      emit(TikTakToeInitial(
+      emit(TicTacToeInitial(
           board: createBoardByDimensions(event.size),
           currentPlayer: state.currentPlayer,
           playerWinner: state.playerWinner));

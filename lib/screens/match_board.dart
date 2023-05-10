@@ -1,9 +1,9 @@
-import 'package:tik_tak_toe/common.dart';
-import 'package:tik_tak_toe/models/board_item.dart';
-import 'package:tik_tak_toe/models/match_result.dart';
-import 'package:tik_tak_toe/models/player.dart';
-import 'package:tik_tak_toe/utils/get_player_winner.dart';
-import 'package:tik_tak_toe/widgets/board.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
+import 'package:minimal_tic_tac_toe/models/board_item.dart';
+import 'package:minimal_tic_tac_toe/models/match_result.dart';
+import 'package:minimal_tic_tac_toe/models/player.dart';
+import 'package:minimal_tic_tac_toe/utils/get_player_winner.dart';
+import 'package:minimal_tic_tac_toe/widgets/board.dart';
 
 class MatchBoard extends StatelessWidget {
   final List<List<BoardItem>> board;

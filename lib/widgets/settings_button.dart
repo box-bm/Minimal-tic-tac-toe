@@ -1,5 +1,5 @@
-import 'package:tik_tak_toe/common.dart';
-import 'package:tik_tak_toe/screens/settings.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
+import 'package:minimal_tic_tac_toe/screens/settings.dart';
 
 class SettingsButton extends StatelessWidget {
   const SettingsButton({super.key});

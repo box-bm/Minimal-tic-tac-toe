@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:tik_tak_toe/ad_helper.dart';
-import 'package:tik_tak_toe/common.dart';
+import 'package:minimal_tic_tac_toe/ad_helper.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
 
 class AddBanner extends StatefulWidget {
   const AddBanner({Key? key}) : super(key: key);

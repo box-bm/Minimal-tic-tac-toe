@@ -1,4 +1,4 @@
-import 'package:tik_tak_toe/common.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
 
 class Logo extends StatelessWidget {
   const Logo({super.key});

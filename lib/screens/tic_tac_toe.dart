@@ -1,28 +1,27 @@
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:tik_tak_toe/ad_helper.dart';
-import 'package:tik_tak_toe/common.dart';
+import 'package:minimal_tic_tac_toe/ad_helper.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
-import 'package:tik_tak_toe/models/match_result.dart';
-import 'package:tik_tak_toe/screens/matches_history.dart';
-import 'package:tik_tak_toe/screens/settings.dart';
-import 'package:tik_tak_toe/widgets/add_banner.dart';
-import 'package:tik_tak_toe/widgets/board.dart';
-import 'package:tik_tak_toe/widgets/board_title.dart';
-import 'package:tik_tak_toe/widgets/board_turn.dart';
-import 'package:tik_tak_toe/widgets/settings_button.dart';
+import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
+import 'package:minimal_tic_tac_toe/models/match_result.dart';
+import 'package:minimal_tic_tac_toe/screens/matches_history.dart';
+import 'package:minimal_tic_tac_toe/widgets/add_banner.dart';
+import 'package:minimal_tic_tac_toe/widgets/board.dart';
+import 'package:minimal_tic_tac_toe/widgets/board_title.dart';
+import 'package:minimal_tic_tac_toe/widgets/board_turn.dart';
+import 'package:minimal_tic_tac_toe/widgets/settings_button.dart';
 
-class TikTakToe extends StatefulWidget {
-  static String route = "/tikTakToe";
+class TicTacToe extends StatefulWidget {
+  static String route = "/TicTacToe";
 
-  const TikTakToe({super.key});
+  const TicTacToe({super.key});
 
   @override
-  State<TikTakToe> createState() => _TikTakToeState();
+  State<TicTacToe> createState() => _TicTacToeState();
 }
 
-class _TikTakToeState extends State<TikTakToe> {
+class _TicTacToeState extends State<TicTacToe> {
   InterstitialAd? _interstitialAd;
 
   void _loadInterstitialAd() {
@@ -33,7 +32,7 @@ class _TikTakToeState extends State<TikTakToe> {
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
-              Navigator.popAndPushNamed(context, TikTakToe.route);
+              Navigator.popAndPushNamed(context, TicTacToe.route);
             },
           );
 
@@ -55,7 +54,7 @@ class _TikTakToeState extends State<TikTakToe> {
     return Scaffold(
         appBar: AppBar(actions: [
           IconButton(
-              onPressed: () => context.read<TikTakToeBloc>().add(ResetBoard()),
+              onPressed: () => context.read<TicTacToeBloc>().add(ResetBoard()),
               icon: const Icon(Icons.replay_outlined)),
           IconButton(
               onPressed: () {
@@ -64,7 +63,7 @@ class _TikTakToeState extends State<TikTakToe> {
               icon: const Icon(Icons.assignment_outlined)),
           const SettingsButton(),
         ]),
-        body: BlocConsumer<TikTakToeBloc, TikTakToeState>(
+        body: BlocConsumer<TicTacToeBloc, TicTacToeState>(
           listenWhen: (previous, current) {
             return (previous.history.length != current.history.length) ||
                 (current is Reseted);

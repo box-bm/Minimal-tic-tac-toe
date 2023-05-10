@@ -1,8 +1,8 @@
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:tik_tak_toe/common.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
-import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
+import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
+import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
 
 class BlocAppStates extends StatelessWidget {
   final Widget child;
@@ -16,7 +16,7 @@ class BlocAppStates extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
       BlocProvider<PlayersBloc>(create: (context) => PlayersBloc()),
-      BlocProvider<TikTakToeBloc>(create: (context) => TikTakToeBloc())
+      BlocProvider<TicTacToeBloc>(create: (context) => TicTacToeBloc())
     ], child: child);
   }
 }

@@ -1,5 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:tik_tak_toe/common.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
 
 class TieTitle extends StatelessWidget {
   const TieTitle({super.key});

@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
-import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
-import 'package:tik_tak_toe/common.dart';
-import 'package:tik_tak_toe/models/player.dart';
-import 'package:tik_tak_toe/widgets/match_result_card.dart';
+import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
+import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
+import 'package:minimal_tic_tac_toe/models/player.dart';
+import 'package:minimal_tic_tac_toe/widgets/match_result_card.dart';
 
 class MatchesHistory extends StatelessWidget {
   static String route = "/matchesHistory";
@@ -17,14 +17,14 @@ class MatchesHistory extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () =>
-                  context.read<TikTakToeBloc>().add(ClearHistory()),
+                  context.read<TicTacToeBloc>().add(ClearHistory()),
               icon: const Icon(Icons.cleaning_services))
         ],
       ),
       body: SafeArea(child: BlocBuilder<PlayersBloc, PlayersState>(
         builder: (context, state) {
           var players = [state.player1, state.player2];
-          return BlocBuilder<TikTakToeBloc, TikTakToeState>(
+          return BlocBuilder<TicTacToeBloc, TicTacToeState>(
             builder: (context, state) {
               var history = state.history.reversed;
 

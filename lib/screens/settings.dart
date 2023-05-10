@@ -1,7 +1,7 @@
-import 'package:tik_tak_toe/common.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
-import 'package:tik_tak_toe/widgets/player_setting.dart';
+import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
+import 'package:minimal_tic_tac_toe/widgets/player_setting.dart';
 
 class Settings extends StatelessWidget {
   static String route = "/settings";

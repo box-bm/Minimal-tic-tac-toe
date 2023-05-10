@@ -1,6 +1,6 @@
-import 'package:tik_tak_toe/common.dart';
-import 'package:tik_tak_toe/models/player.dart';
-import 'package:tik_tak_toe/screens/icon_selection.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
+import 'package:minimal_tic_tac_toe/models/player.dart';
+import 'package:minimal_tic_tac_toe/screens/icon_selection.dart';
 
 class PlayerIconPicker extends StatelessWidget {
   final Player player;

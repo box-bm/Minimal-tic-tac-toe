@@ -1,10 +1,10 @@
-import 'package:tik_tak_toe/common.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
-import 'package:tik_tak_toe/bloc/tik_tak_toe/tik_tak_toe_bloc.dart';
-import 'package:tik_tak_toe/models/board_item.dart';
-import 'package:tik_tak_toe/models/match_result.dart';
-import 'package:tik_tak_toe/widgets/board_button.dart';
+import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
+import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
+import 'package:minimal_tic_tac_toe/models/board_item.dart';
+import 'package:minimal_tic_tac_toe/models/match_result.dart';
+import 'package:minimal_tic_tac_toe/widgets/board_button.dart';
 
 class Board extends StatelessWidget {
   final int currentPlayer;
@@ -52,7 +52,7 @@ class Board extends StatelessWidget {
                                     winner: matchResult.validate(
                                         element.xPosition, element.yPosition),
                                     tapButton: () {
-                                      BlocProvider.of<TikTakToeBloc>(context)
+                                      BlocProvider.of<TicTacToeBloc>(context)
                                           .add(SelectOption(
                                               element.xPosition,
                                               element.yPosition,
@@ -71,7 +71,7 @@ class Board extends StatelessWidget {
                       margin: EdgeInsets.zero,
                       child: IconButton(
                           onPressed: () =>
-                              context.read<TikTakToeBloc>().add(ResetBoard()),
+                              context.read<TicTacToeBloc>().add(ResetBoard()),
                           icon: const Padding(
                             padding: EdgeInsets.all(10),
                             child: Icon(

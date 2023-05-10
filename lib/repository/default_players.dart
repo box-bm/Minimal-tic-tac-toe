@@ -1,5 +1,5 @@
-import 'package:tik_tak_toe/common.dart';
-import 'package:tik_tak_toe/models/player.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
+import 'package:minimal_tic_tac_toe/models/player.dart';
 
 const Player defaultPlayer1 = Player(
     playerName: "",

@@ -1,9 +1,9 @@
-import 'package:tik_tak_toe/common.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
-import 'package:tik_tak_toe/models/player.dart';
-import 'package:tik_tak_toe/repository/available_colors.dart';
+import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
+import 'package:minimal_tic_tac_toe/models/player.dart';
+import 'package:minimal_tic_tac_toe/repository/available_colors.dart';
 
 class PlayerColorPicker extends StatefulWidget {
   final Player player;
@@ -37,7 +37,7 @@ class _PlayerColorPickerState extends State<PlayerColorPicker> {
               title: Text(S.of(context).selectYourColor),
               content: SingleChildScrollView(
                 child: BlockPicker(
-                  availableColors: availableColors,
+                    availableColors: availableColors,
                     pickerColor: playerColor,
                     onColorChanged: (value) => setState(() {
                           selectedPlayerColor = value;

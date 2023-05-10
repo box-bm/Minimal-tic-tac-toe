@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
-import 'package:tik_tak_toe/common.dart';
-import 'package:tik_tak_toe/models/player.dart';
-import 'package:tik_tak_toe/screens/icon_selection.dart';
+import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
+import 'package:minimal_tic_tac_toe/models/player.dart';
+import 'package:minimal_tic_tac_toe/screens/icon_selection.dart';
 
 class PlayerInput extends StatefulWidget {
   final Player player;

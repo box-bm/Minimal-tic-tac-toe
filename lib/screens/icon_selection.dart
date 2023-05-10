@@ -1,7 +1,7 @@
-import 'package:tik_tak_toe/common.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tik_tak_toe/bloc/players/players_bloc.dart';
-import 'package:tik_tak_toe/repository/available_icons.dart';
+import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
+import 'package:minimal_tic_tac_toe/repository/available_icons.dart';
 
 class IconSelection extends StatelessWidget {
   static String route = "/iconSelection";
@@ -21,9 +21,8 @@ class IconSelection extends StatelessWidget {
             snap: true),
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Text(S.of(context).chooseYourFavoriteIcon)
-          ),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text(S.of(context).chooseYourFavoriteIcon)),
         ),
         SliverGrid(
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

@@ -1,6 +1,6 @@
-import 'package:tik_tak_toe/common.dart';
-import 'package:tik_tak_toe/models/player.dart';
-import 'package:tik_tak_toe/utils/use_color_by_backgroud_color.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
+import 'package:minimal_tic_tac_toe/models/player.dart';
+import 'package:minimal_tic_tac_toe/utils/use_color_by_backgroud_color.dart';
 
 class BoardButton extends StatelessWidget {
   final bool disabled;

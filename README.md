@@ -1,4 +1,4 @@
-# tik_tak_toe
+# minimal_tic_tac_toe
 
 A new Flutter project.
 

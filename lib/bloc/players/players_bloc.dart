@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:tik_tak_toe/common.dart';
+import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:tik_tak_toe/models/player.dart';
-import 'package:tik_tak_toe/repository/default_players.dart';
+import 'package:minimal_tic_tac_toe/models/player.dart';
+import 'package:minimal_tic_tac_toe/repository/default_players.dart';
 
 part 'players_event.dart';
 part 'players_state.dart';

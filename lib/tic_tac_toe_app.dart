@@ -1,17 +1,18 @@
-import 'package:tik_tak_toe/common.dart';
-import 'package:tik_tak_toe/bloc_states.dart';
-import 'package:tik_tak_toe/routes.dart';
-import 'package:tik_tak_toe/screens/presentation.dart';
-import 'package:tik_tak_toe/theme/theme_builder.dart';
 
-class TikTakToeApp extends StatefulWidget {
-  const TikTakToeApp({super.key});
+import 'package:minimal_tic_tac_toe/common.dart';
+import 'package:minimal_tic_tac_toe/bloc_states.dart';
+import 'package:minimal_tic_tac_toe/routes.dart';
+import 'package:minimal_tic_tac_toe/screens/presentation.dart';
+import 'package:minimal_tic_tac_toe/theme/theme_builder.dart';
+
+class TicTacToeApp extends StatefulWidget {
+  const TicTacToeApp({super.key});
 
   @override
-  State<TikTakToeApp> createState() => _TikTakToeAppState();
+  State<TicTacToeApp> createState() => _TicTacToeAppState();
 }
 
-class _TikTakToeAppState extends State<TikTakToeApp> {
+class _TicTacToeAppState extends State<TicTacToeApp> {
   @override
   Widget build(BuildContext context) {
     return BlocAppStates(
