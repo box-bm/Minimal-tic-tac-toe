@@ -1,4 +1,46 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <compatible-screens>
+        <!-- all small size screens -->
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="xxhdpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="xxxhdpi"
+            android:screenSize="small" />
+        <!-- all normal size screens -->
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="xxhdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="xxxhdpi"
+            android:screenSize="normal" />
+    </compatible-screens>
+
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -35,7 +77,7 @@
         <!-- Google Ads -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
+            android:value="ca-app-pub-1807964973002727~2963995448" />
         <!--  Debug: ca-app-pub-3940256099942544~3347511713 -->
         <!--  Oficial: ca-app-pub-1807964973002727~2963995448 -->
 

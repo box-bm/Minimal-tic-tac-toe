@@ -4,4 +4,9 @@
          to allow setting breakpoints, to provide hot reload, etc.
     -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <meta-data
+        android:name="com.google.android.gms.ads.APPLICATION_ID"
+        android:value="ca-app-pub-3940256099942544~3347511713" />
+    <!--  Debug: ca-app-pub-3940256099942544~3347511713 -->
+    <!--  Oficial: ca-app-pub-1807964973002727~2963995448 -->
 </manifest>

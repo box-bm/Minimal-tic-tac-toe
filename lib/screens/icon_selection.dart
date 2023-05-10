@@ -5,6 +5,7 @@ import 'package:tik_tak_toe/repository/available_icons.dart';
 
 class IconSelection extends StatelessWidget {
   static String route = "/iconSelection";
+
   const IconSelection({super.key});
 
   @override
@@ -13,15 +14,17 @@ class IconSelection extends StatelessWidget {
 
     return Scaffold(
       body: CustomScrollView(slivers: [
-        SliverAppBar.large(
-            bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(5),
-              child: Text(S.of(context).chooseYourFavoriteIcon),
-            ),
+        SliverAppBar(
             title: Text(S.of(context).icons),
             centerTitle: false,
             floating: true,
             snap: true),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Text(S.of(context).chooseYourFavoriteIcon)
+          ),
+        ),
         SliverGrid(
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 150.0,
