@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdHelper {
   static String get bannerAdUnitId {
@@ -35,5 +36,11 @@ class AdHelper {
     } else {
       throw UnsupportedError('Unsupported platform');
     }
+  }
+
+  static AdRequest get addRequest {
+    return const AdRequest(
+      keywords: ['games', 'entertaitment', 'tic_tac_toe', 'totito'],
+    );
   }
 }
