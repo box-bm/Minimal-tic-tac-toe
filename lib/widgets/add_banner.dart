@@ -18,7 +18,7 @@ class _AddBannerState extends State<AddBanner> {
     super.initState();
     BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
-      request: const AdRequest(),
+      request: AdHelper.addRequest,
       size: AdSize.banner,
       listener: BannerAdListener(
         onAdLoaded: (ad) {

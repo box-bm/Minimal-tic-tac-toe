@@ -1,11 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:minimal_tic_tac_toe/ad_helper.dart';
+import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
 import 'package:minimal_tic_tac_toe/models/match_result.dart';
 import 'package:minimal_tic_tac_toe/screens/matches_history.dart';
+import 'package:minimal_tic_tac_toe/utils/use_color_by_backgroud_color.dart';
 import 'package:minimal_tic_tac_toe/widgets/add_banner.dart';
 import 'package:minimal_tic_tac_toe/widgets/board.dart';
 import 'package:minimal_tic_tac_toe/widgets/board_title.dart';
@@ -27,7 +29,7 @@ class _TicTacToeState extends State<TicTacToe> {
   void _loadInterstitialAd() {
     InterstitialAd.load(
       adUnitId: AdHelper.interstitialAdUnitId,
-      request: const AdRequest(),
+      request: AdHelper.addRequest,
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
@@ -51,47 +53,71 @@ class _TicTacToeState extends State<TicTacToe> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(actions: [
-          IconButton(
-            onPressed: () => context.read<TicTacToeBloc>().add(ResetBoard()),
-            icon: Semantics(
-                button: true,
-                label: "Reset board",
-                child: const Icon(Icons.replay_outlined)),
-          ),
-          IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, MatchesHistory.route);
-              },
-              icon: Semantics(
-                label: "View Records",
-                button: true,
-                child: const Icon(Icons.assignment_outlined),
-              )),
-          const SettingsButton(),
-        ]),
-        body: BlocConsumer<TicTacToeBloc, TicTacToeState>(
-          listenWhen: (previous, current) {
-            return (previous.history.length != current.history.length) ||
-                (current is Reseted);
-          },
-          listener: (context, state) {
-            if (state.history.isNotEmpty && _interstitialAd == null) {
-              _loadInterstitialAd();
-            }
-            if (state.history.length % 7 == 0 &&
-                state.history.isNotEmpty &&
-                state is Reseted &&
-                _interstitialAd != null) {
-              _interstitialAd?.show();
-            }
-          },
-          buildWhen: (previous, current) {
-            return true;
-          },
-          builder: (context, state) {
-            return SafeArea(
+    return BlocConsumer<TicTacToeBloc, TicTacToeState>(
+      listenWhen: (previous, current) {
+        return (previous.history.length != current.history.length) ||
+            (current is Reseted);
+      },
+      listener: (context, state) {
+        if (state.history.isNotEmpty && _interstitialAd == null) {
+          _loadInterstitialAd();
+        }
+        if (state.history.length % 7 == 0 &&
+            state.history.isNotEmpty &&
+            state is Reseted &&
+            _interstitialAd != null) {
+          _interstitialAd?.show();
+        }
+      },
+      buildWhen: (previous, current) {
+        return true;
+      },
+      builder: (context, state) {
+        return Scaffold(
+            appBar: AppBar(actions: [
+              IconButton(
+                onPressed: () =>
+                    context.read<TicTacToeBloc>().add(ResetBoard()),
+                icon: Semantics(
+                    button: true,
+                    label: "Reset board",
+                    child: const Icon(Icons.replay_outlined)),
+              ),
+              IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, MatchesHistory.route);
+                  },
+                  icon: Semantics(
+                    label: "View Records",
+                    button: true,
+                    child: const Icon(Icons.assignment_outlined),
+                  )),
+              const SettingsButton(),
+            ]),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+            floatingActionButton: state.board.matchResult != MatchResult.none &&
+                    state.board.matchResult != MatchResult.tie
+                ? FloatingActionButton.large(
+                    backgroundColor: (state.playerWinner ?? 0) == 0
+                        ? context.read<PlayersBloc>().state.player1.color
+                        : context.read<PlayersBloc>().state.player2.color,
+                    onPressed: () =>
+                        context.read<TicTacToeBloc>().add(ResetBoard()),
+                    child: Icon(
+                      Icons.replay_outlined,
+                      size: 50,
+                      color: useColorByBackgroundColor(
+                          (state.playerWinner ?? 0) == 0
+                              ? context.read<PlayersBloc>().state.player1.color
+                              : context
+                                  .read<PlayersBloc>()
+                                  .state
+                                  .player2
+                                  .color),
+                    ),
+                  )
+                : null,
+            body: SafeArea(
                 minimum: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -118,8 +144,8 @@ class _TicTacToeState extends State<TicTacToe> {
                     ),
                     const AddBanner(),
                   ],
-                ));
-          },
-        ));
+                )));
+      },
+    );
   }
 }

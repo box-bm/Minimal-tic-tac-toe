@@ -17,31 +17,33 @@ class BoardButton extends StatelessWidget {
       this.winner = false,
       this.disabled = false,
       this.tie = false,
-      this.player, required this.xPosition, required this.yPosition});
+      this.player,
+      required this.xPosition,
+      required this.yPosition});
 
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 1,
-      child: Card(
-        elevation: getElevation(),
-        color: getColor(),
-        child: Semantics(
-          label: "Row ${xPosition + 1}, Column ${yPosition + 1}",
-          button: true,
-          selected: player != null,
-          child: InkWell(
-          onTap: player != null || disabled ? null : tapButton,
-          borderRadius: BorderRadius.circular(10),
-          child: FittedBox(
-              fit: BoxFit.fill,
-              child: Padding(
-                padding: const EdgeInsets.all(2),
-                child: Icon(player?.iconData, color: getIconColor()),
-              )),
-        ),
-      ),
-    ));
+        aspectRatio: 1,
+        child: Card(
+          elevation: getElevation(),
+          color: getColor(),
+          child: Semantics(
+            label: "Row ${xPosition + 1}, Column ${yPosition + 1}",
+            button: true,
+            selected: player != null,
+            child: InkWell(
+              onTap: player != null || disabled ? null : tapButton,
+              borderRadius: BorderRadius.circular(10),
+              child: FittedBox(
+                  fit: BoxFit.fill,
+                  child: Padding(
+                    padding: const EdgeInsets.all(2),
+                    child: Icon(player?.iconData, color: getIconColor()),
+                  )),
+            ),
+          ),
+        ));
   }
 
   double? getElevation() {

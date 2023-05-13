@@ -1,5 +1,3 @@
-
-import 'package:flutter/foundation.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:minimal_tic_tac_toe/bloc_states.dart';
 import 'package:minimal_tic_tac_toe/routes.dart';
