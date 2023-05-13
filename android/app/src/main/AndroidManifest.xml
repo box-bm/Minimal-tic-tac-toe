@@ -60,7 +60,6 @@
             android:screenDensity="xxxhdpi"
             android:screenSize="large" />
 
-
     </compatible-screens>
 
     <!-- Permissions -->
