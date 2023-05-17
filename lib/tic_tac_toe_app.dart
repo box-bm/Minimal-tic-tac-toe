@@ -30,13 +30,10 @@ class _TicTacToeAppState extends State<TicTacToeApp> {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
+        title: "Minimal tic tac toe",
         supportedLocales: S.delegate.supportedLocales,
         initialRoute: Presentation.route,
         routes: routes,
-        builder: (context, child) => GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          child: child,
-        ),
       ),
     ));
   }
