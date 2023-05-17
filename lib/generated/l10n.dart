@@ -299,6 +299,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Download Minimal tic tac toe App from: https://bit.ly/minimal-tic-tac-toe, you'll love it! ❌⭕️`
+  String get shareTextContent {
+    return Intl.message(
+      'Download Minimal tic tac toe App from: https://bit.ly/minimal-tic-tac-toe, you\'ll love it! ❌⭕️',
+      name: 'shareTextContent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -7,6 +7,7 @@ import 'package:minimal_tic_tac_toe/widgets/add_banner.dart';
 import 'package:minimal_tic_tac_toe/widgets/logo.dart';
 import 'package:minimal_tic_tac_toe/widgets/player_input.dart';
 import 'package:minimal_tic_tac_toe/widgets/settings_button.dart';
+import 'package:minimal_tic_tac_toe/widgets/share_button.dart';
 
 class Presentation extends StatelessWidget {
   static String route = "presentation";
@@ -62,7 +63,7 @@ class Presentation extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [SettingsButton()],
+                  children: const [ShareButton(), SettingsButton()],
                 ),
                 const Spacer(),
                 const AddBanner(),
