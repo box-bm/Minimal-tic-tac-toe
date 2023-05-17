@@ -57,7 +57,7 @@ android {
 
         minSdkVersion 19
         multiDexEnabled true
-        targetSdkVersion flutter.targetSdkVersion
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -72,9 +72,14 @@ android {
     }
     buildTypes {
         release {
+//            signingConfig signingConfigs.release
+
             minifyEnabled true
             shrinkResources true
-            signingConfig signingConfigs.release
+
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'),
+                    'proguard-rules.pro'
         }
     }
 
