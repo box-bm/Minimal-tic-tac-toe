@@ -1,3 +1,5 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:minimal_tic_tac_toe/bloc/theme/current_theme_cubit.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:minimal_tic_tac_toe/bloc_states.dart';
 import 'package:minimal_tic_tac_toe/routes.dart';
@@ -15,20 +17,23 @@ class _TicTacToeAppState extends State<TicTacToeApp> {
   @override
   Widget build(BuildContext context) {
     return BlocAppStates(
-        child: MaterialApp(
-      theme: buildTheme(Brightness.light),
-      darkTheme: buildTheme(Brightness.dark),
-      showSemanticsDebugger: false,
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      initialRoute: Presentation.route,
-      routes: routes,
+        child: BlocBuilder<CurrentThemeCubit, ThemeMode>(
+      builder: (context, state) => MaterialApp(
+        theme: buildTheme(Brightness.light),
+        darkTheme: buildTheme(Brightness.dark),
+        themeMode: state,
+        showSemanticsDebugger: false,
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        initialRoute: Presentation.route,
+        routes: routes,
+      ),
     ));
   }
 }

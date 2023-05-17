@@ -20,5 +20,9 @@
   "record": "Historial",
   "matchResult": "Resultado de la partida",
   "noRecords": "No hay partidas finalizadas",
-  "newGame": "Nuevo juego"
+  "newGame": "Nuevo juego",
+  "darkTheme": "Tema Oscuro",
+  "lightTheme": "Tema Claro",
+  "systemTheme": "Tema del sistema",
+  "theme": "Tema"
 }

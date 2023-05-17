@@ -40,5 +40,9 @@
   "record": "Record",
   "matchResult": "Match Result",
   "noRecords": "Doesn't exist finished matches",
-  "newGame": "New Game"
+  "newGame": "New Game",
+  "darkTheme": "Dark Theme",
+  "lightTheme": "Light Theme",
+  "systemTheme": "System Theme",
+  "theme": "Theme"
 }

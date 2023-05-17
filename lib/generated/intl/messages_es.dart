@@ -35,8 +35,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "chooseYourFavoriteIcon":
             MessageLookupByLibrary.simpleMessage("Elije tu icono favorito"),
         "colorOf": m0,
+        "darkTheme": MessageLookupByLibrary.simpleMessage("Tema Oscuro"),
         "iconOf": m1,
         "icons": MessageLookupByLibrary.simpleMessage("Iconos"),
+        "lightTheme": MessageLookupByLibrary.simpleMessage("Tema Claro"),
         "matchResult":
             MessageLookupByLibrary.simpleMessage("Resultado de la partida"),
         "newGame": MessageLookupByLibrary.simpleMessage("Nuevo juego"),
@@ -53,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Elije tu color"),
         "settings": MessageLookupByLibrary.simpleMessage("Ajustes"),
         "share": MessageLookupByLibrary.simpleMessage("Compartir"),
+        "systemTheme": MessageLookupByLibrary.simpleMessage("Tema del sistema"),
+        "theme": MessageLookupByLibrary.simpleMessage("Tema"),
         "ticTacToe": MessageLookupByLibrary.simpleMessage("Tic Tac Toe"),
         "tie": MessageLookupByLibrary.simpleMessage("Empate"),
         "winner": MessageLookupByLibrary.simpleMessage("Ganador")
