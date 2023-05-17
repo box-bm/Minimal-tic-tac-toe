@@ -90,7 +90,7 @@ class _TicTacToeState extends State<TicTacToe> {
                   icon: Semantics(
                     label: "View Records",
                     button: true,
-                    child: const Icon(Icons.assignment_outlined),
+                    child: const Icon(Icons.history_edu_outlined),
                   )),
               const SettingsButton(),
             ]),
