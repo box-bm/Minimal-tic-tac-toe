@@ -10,9 +10,13 @@ List<Color> availableColors = [
   Colors.lightGreen,
   Colors.blueGrey,
   Colors.green,
+  Colors.lime,
   Colors.teal,
   Colors.pink,
+  Colors.orange,
   Colors.deepOrange,
   Colors.yellow,
   Colors.purple,
+
+
 ];
