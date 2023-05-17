@@ -6,29 +6,32 @@ abstract class TicTacToeState extends Equatable {
   final List<BoardMatchHistoryItem> history;
   final Board board;
 
-  const TicTacToeState(
-      {required this.currentPlayer,
-      required this.board,
-      this.playerWinner,
-      required this.history});
+  const TicTacToeState({
+    required this.currentPlayer,
+    required this.board,
+    this.playerWinner,
+    required this.history,
+  });
 
   @override
   List<Object> get props => [board, currentPlayer, history];
 }
 
 class TicTacToeInitial extends TicTacToeState {
-  const TicTacToeInitial(
-      {super.currentPlayer = 1,
-      super.board = const Board.defaultBoard(),
-      super.history = const [],
-      super.playerWinner});
+  const TicTacToeInitial({
+    super.currentPlayer = 1,
+    super.board = const Board.defaultBoard(),
+    super.history = const [],
+    super.playerWinner,
+  });
 }
 
-class Reseted extends TicTacToeState {
-  const Reseted(
-      {required super.currentPlayer,
-      required super.board,
-      required super.history});
+class Restarted extends TicTacToeState {
+  const Restarted({
+    required super.currentPlayer,
+    required super.board,
+    required super.history,
+  });
 }
 
 class GameEnded extends TicTacToeState {
@@ -40,8 +43,8 @@ class GameEnded extends TicTacToeState {
   });
 }
 
-class ChoisingItem extends TicTacToeState {
-  const ChoisingItem({
+class ChoosingItem extends TicTacToeState {
+  const ChoosingItem({
     required super.currentPlayer,
     required super.board,
     required super.playerWinner,

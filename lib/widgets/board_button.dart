@@ -4,6 +4,8 @@ import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:minimal_tic_tac_toe/models/player.dart';
 import 'package:minimal_tic_tac_toe/utils/use_color_by_backgroud_color.dart';
 
+import '../bloc/settings/sounds_cubit.dart';
+
 class BoardButton extends StatelessWidget {
   final bool disabled;
   final Player? player;
@@ -35,6 +37,7 @@ class BoardButton extends StatelessWidget {
             button: true,
             selected: player != null,
             child: InkWell(
+              // enableFeedback: context.read<SoundsCubit>().state,
               onTap: player != null || disabled ? null : tapButton,
               onTapDown: (details) {
                 context.read<TicTacToeBloc>().add(PressItemButton());

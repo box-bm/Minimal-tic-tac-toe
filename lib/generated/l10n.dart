@@ -309,6 +309,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Sounds enabled`
+  String get soundsEnabled {
+    return Intl.message(
+      'Sounds enabled',
+      name: 'soundsEnabled',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

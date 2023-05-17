@@ -57,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "share": MessageLookupByLibrary.simpleMessage("Compartir"),
         "shareTextContent": MessageLookupByLibrary.simpleMessage(
             "Descarga la app de Minimal tic tac toe desde: https://bit.ly/minimal-tic-tac-toe, te encantará! ❌⭕️"),
+        "soundsEnabled": MessageLookupByLibrary.simpleMessage("Sonido activo"),
         "systemTheme": MessageLookupByLibrary.simpleMessage("Tema del sistema"),
         "theme": MessageLookupByLibrary.simpleMessage("Tema"),
         "ticTacToe": MessageLookupByLibrary.simpleMessage("Tic Tac Toe"),

@@ -8,7 +8,7 @@ class Logo extends StatelessWidget {
     return Semantics(
       label: "Logo",
       image: true,
-      child: Image.asset("images/logo.png", fit: BoxFit.fitHeight),
+      child: Image.asset("assets/images/logo.png", fit: BoxFit.fitHeight),
     );
   }
 }

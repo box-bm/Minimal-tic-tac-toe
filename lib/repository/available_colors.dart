@@ -7,16 +7,14 @@ List<Color> availableColors = [
   Colors.blue,
   Colors.blueAccent,
   Colors.cyan,
-  Colors.lightGreen,
   Colors.blueGrey,
+  Colors.lightGreen,
+  Colors.brown,
   Colors.green,
   Colors.lime,
   Colors.teal,
   Colors.pink,
   Colors.orange,
   Colors.deepOrange,
-  Colors.yellow,
   Colors.purple,
-
-
 ];

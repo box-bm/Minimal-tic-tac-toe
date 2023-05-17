@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:minimal_tic_tac_toe/models/board.dart';
@@ -6,6 +7,7 @@ import 'package:minimal_tic_tac_toe/models/board_match_history_item.dart';
 import 'package:minimal_tic_tac_toe/models/match_result.dart';
 
 part 'tic_tac_toe_event.dart';
+
 part 'tic_tac_toe_state.dart';
 
 class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
@@ -20,7 +22,7 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
     });
     on<ResetBoard>((event, emit) {
       add(CreateNewBoard());
-      emit(Reseted(
+      emit(Restarted(
           currentPlayer: state.currentPlayer,
           board: state.board,
           history: state.history));
@@ -33,8 +35,8 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
     });
 
     on<PressItemButton>((event, emit) {
-      if (state is! ChoisingItem) {
-        emit(ChoisingItem(
+      if (state is! ChoosingItem) {
+        emit(ChoosingItem(
             currentPlayer: state.currentPlayer,
             board: state.board,
             playerWinner: state.playerWinner,
@@ -50,8 +52,8 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
           history: state.history));
     });
 
-    on<SelectOption>((event, emit) {
-      if (state is ChoisingItem) {
+    on<SelectOption>((event, emit) async {
+      if (state is ChoosingItem) {
         var newBoard = state.board;
         newBoard.board[event.x][event.y].select(event.playerNumber);
 
@@ -67,6 +69,7 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
         } else {
           var winner =
               matchResult == MatchResult.tie ? null : event.playerNumber;
+
           var boardResult = newBoard.copyWith(
               playerWinner: winner,
               matchResult: matchResult,
