@@ -1,0 +1,48 @@
+{
+  "@@locale": "en",
+  "player": "Player {playerNumber}",
+  "@player": {
+    "placeholders": {
+      "playerNumber": {}
+    }
+  },
+  "settings": "Settings",
+  "play": "Play",
+  "share": "Share",
+  "winner": "Winner",
+  "tie": "Tie",
+  "anyoneWins": "Anyone's won",
+  "selectYourColor": "Select your color",
+  "colorOf": "{playerName} color",
+  "@colorOf": {
+    "placeholders": {
+      "playerName": {}
+    }
+  },
+  "iconOf": "{playerName} icon",
+  "@iconOf": {
+    "placeholders": {
+      "playerName": {}
+    }
+  },
+  "resetSettings": "Reset settings",
+  "icons": "Icons",
+  "chooseYourFavoriteIcon": "Choose your favorite icon",
+  "ticTacToe": "Tic Tac Toe",
+  "cancel": "Cancel",
+  "save": "Save",
+  "playerWinner": "Winner: {playerName} ",
+  "@playerWinner": {
+    "placeholders": {
+      "playerName": {}
+    }
+  },
+  "record": "Record",
+  "matchResult": "Match Result",
+  "noRecords": "Doesn't exist finished matches",
+  "newGame": "New Game",
+  "darkTheme": "Dark Theme",
+  "lightTheme": "Light Theme",
+  "systemTheme": "System Theme",
+  "theme": "Theme"
+}
