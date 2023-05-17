@@ -39,3 +39,12 @@ class GameEnded extends TicTacToeState {
     required super.history,
   });
 }
+
+class ChoisingItem extends TicTacToeState {
+  const ChoisingItem({
+    required super.currentPlayer,
+    required super.board,
+    required super.playerWinner,
+    required super.history,
+  });
+}

@@ -1,7 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
     <compatible-screens>
-        <!-- all small size screens -->
+        <!-- Excluir televisores -->
         <screen
             android:screenDensity="ldpi"
             android:screenSize="small" />
@@ -20,7 +28,6 @@
         <screen
             android:screenDensity="xxxhdpi"
             android:screenSize="small" />
-        <!-- all normal size screens -->
         <screen
             android:screenDensity="ldpi"
             android:screenSize="normal" />
@@ -39,8 +46,6 @@
         <screen
             android:screenDensity="xxxhdpi"
             android:screenSize="normal" />
-
-        <!--  Large screens -->
         <screen
             android:screenDensity="ldpi"
             android:screenSize="large" />
@@ -59,8 +64,26 @@
         <screen
             android:screenDensity="xxxhdpi"
             android:screenSize="large" />
-
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="xlarge" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="xlarge" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="xlarge" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="xlarge" />
+        <screen
+            android:screenDensity="xxhdpi"
+            android:screenSize="xlarge" />
+        <screen
+            android:screenDensity="xxxhdpi"
+            android:screenSize="xlarge" />
     </compatible-screens>
+
 
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />

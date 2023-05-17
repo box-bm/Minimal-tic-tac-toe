@@ -43,4 +43,9 @@ class AdHelper {
       keywords: ['games', 'entertaitment', 'tic_tac_toe', 'totito'],
     );
   }
+
+  static RequestConfiguration get requestConfiguration => RequestConfiguration(
+      maxAdContentRating: MaxAdContentRating.g,
+      tagForUnderAgeOfConsent: TagForChildDirectedTreatment.yes,
+      tagForChildDirectedTreatment: TagForChildDirectedTreatment.yes);
 }

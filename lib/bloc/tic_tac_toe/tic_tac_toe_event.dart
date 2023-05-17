@@ -19,6 +19,10 @@ class SelectOption extends TicTacToeEvent {
   const SelectOption(this.x, this.y, this.playerNumber);
 }
 
+class PressItemButton extends TicTacToeEvent {}
+
+class CancelPressButton extends TicTacToeEvent {}
+
 class ChangeBoardSize extends TicTacToeEvent {
   final int size;
   const ChangeBoardSize(this.size);

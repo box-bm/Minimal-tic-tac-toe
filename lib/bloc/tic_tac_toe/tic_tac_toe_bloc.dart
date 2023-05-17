@@ -32,41 +32,62 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
           currentPlayer: state.currentPlayer, board: board, history: const []));
     });
 
+    on<PressItemButton>((event, emit) {
+      if (state is! ChoisingItem) {
+        emit(ChoisingItem(
+            currentPlayer: state.currentPlayer,
+            board: state.board,
+            playerWinner: state.playerWinner,
+            history: state.history));
+      }
+    });
+
+    on<CancelPressButton>((event, emit) {
+      emit(TicTacToeInitial(
+          currentPlayer: state.currentPlayer,
+          board: state.board,
+          playerWinner: state.playerWinner,
+          history: state.history));
+    });
+
     on<SelectOption>((event, emit) {
-      var newBoard = state.board;
-      newBoard.board[event.x][event.y].select(event.playerNumber);
+      if (state is ChoisingItem) {
+        var newBoard = state.board;
+        newBoard.board[event.x][event.y].select(event.playerNumber);
 
-      MatchResult matchResult =
-          validateCurrentPlayerWins(newBoard.board, event.playerNumber);
+        MatchResult matchResult =
+            validateCurrentPlayerWins(newBoard.board, event.playerNumber);
 
-      if (matchResult == MatchResult.none) {
-        emit(TicTacToeInitial(
-            currentPlayer: changePlayer(state.currentPlayer),
-            board: newBoard,
-            history: state.history,
-            playerWinner: null));
-      } else {
-        var winner = matchResult == MatchResult.tie ? null : event.playerNumber;
-        var boardResult = newBoard.copyWith(
-            playerWinner: winner,
-            matchResult: matchResult,
-            board: newBoard.board,
-            boardSize: state.board.boardSize);
+        if (matchResult == MatchResult.none) {
+          emit(TicTacToeInitial(
+              currentPlayer: changePlayer(state.currentPlayer),
+              board: newBoard,
+              history: state.history,
+              playerWinner: null));
+        } else {
+          var winner =
+              matchResult == MatchResult.tie ? null : event.playerNumber;
+          var boardResult = newBoard.copyWith(
+              playerWinner: winner,
+              matchResult: matchResult,
+              board: newBoard.board,
+              boardSize: state.board.boardSize);
 
-        emit(GameEnded(
-            playerWinner: winner,
-            currentPlayer: matchResult == MatchResult.tie
-                ? state.currentPlayer
-                : changePlayer(state.currentPlayer),
-            board: boardResult,
-            history: [
-              ...state.history,
-              BoardMatchHistoryItem(
-                  dateTime: DateTime.now(),
-                  matchResult: matchResult,
-                  playerWinner: winner,
-                  board: boardResult)
-            ]));
+          emit(GameEnded(
+              playerWinner: winner,
+              currentPlayer: matchResult == MatchResult.tie
+                  ? state.currentPlayer
+                  : changePlayer(state.currentPlayer),
+              board: boardResult,
+              history: [
+                ...state.history,
+                BoardMatchHistoryItem(
+                    dateTime: DateTime.now(),
+                    matchResult: matchResult,
+                    playerWinner: winner,
+                    board: boardResult)
+              ]));
+        }
       }
     });
     on<ChangeBoardSize>((event, emit) {

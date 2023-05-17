@@ -1,3 +1,5 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:minimal_tic_tac_toe/models/player.dart';
 import 'package:minimal_tic_tac_toe/utils/use_color_by_backgroud_color.dart';
@@ -34,6 +36,12 @@ class BoardButton extends StatelessWidget {
             selected: player != null,
             child: InkWell(
               onTap: player != null || disabled ? null : tapButton,
+              onTapDown: (details) {
+                context.read<TicTacToeBloc>().add(PressItemButton());
+              },
+              onTapCancel: () {
+                context.read<TicTacToeBloc>().add(CancelPressButton());
+              },
               borderRadius: BorderRadius.circular(10),
               child: FittedBox(
                   fit: BoxFit.fill,

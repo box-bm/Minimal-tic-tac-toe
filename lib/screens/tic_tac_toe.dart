@@ -100,18 +100,8 @@ class _TicTacToeState extends State<TicTacToe> {
                     state.board.matchResult != MatchResult.tie
                 ? FloatingActionButton.large(
                     backgroundColor: (state.playerWinner ?? 0) == 0
-                        ? context
-                            .read<PlayersBloc>()
-                            .state
-                            .player1
-                            .color
-                            .withAlpha(200)
-                        : context
-                            .read<PlayersBloc>()
-                            .state
-                            .player2
-                            .color
-                            .withAlpha(200),
+                        ? context.read<PlayersBloc>().state.player1.color
+                        : context.read<PlayersBloc>().state.player2.color,
                     onPressed: () =>
                         context.read<TicTacToeBloc>().add(ResetBoard()),
                     child: Icon(
