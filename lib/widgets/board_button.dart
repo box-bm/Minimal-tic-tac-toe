@@ -4,8 +4,6 @@ import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:minimal_tic_tac_toe/models/player.dart';
 import 'package:minimal_tic_tac_toe/utils/use_color_by_backgroud_color.dart';
 
-import '../bloc/settings/sounds_cubit.dart';
-
 class BoardButton extends StatelessWidget {
   final bool disabled;
   final Player? player;

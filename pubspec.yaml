@@ -44,7 +44,7 @@ dependencies:
   animated_text_kit: ^4.2.2
   path_provider: ^2.0.14
   flutter_colorpicker: ^1.0.3
-  intl: ^0.17.0
+  intl: ^0.18.0
   lit_relative_date_time: ^1.2.0
   google_mobile_ads: ^3.0.0
   share_plus: ^7.0.0

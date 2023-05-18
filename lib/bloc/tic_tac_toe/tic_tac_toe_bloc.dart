@@ -1,4 +1,3 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:minimal_tic_tac_toe/models/board.dart';

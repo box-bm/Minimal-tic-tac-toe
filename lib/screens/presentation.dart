@@ -60,10 +60,10 @@ class Presentation extends StatelessWidget {
                         child: TextButton(
                             onPressed: () => playNewMatches(context),
                             child: Text(S.of(context).newGame)))),
-                Row(
+                const Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [ShareButton(), SettingsButton()],
+                  children: [ShareButton(), SettingsButton()],
                 ),
                 const Spacer(),
                 const AddBanner(),
