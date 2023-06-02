@@ -1,7 +1,9 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:minimal_tic_tac_toe/ad_helper.dart';
 import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
+import 'package:minimal_tic_tac_toe/bloc/settings/sounds_cubit.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
@@ -56,7 +58,7 @@ class _TicTacToeState extends State<TicTacToe> {
     return BlocConsumer<TicTacToeBloc, TicTacToeState>(
       listenWhen: (previous, current) {
         return (previous.history.length != current.history.length) ||
-            (current is Reseted);
+            (current is Restarted);
       },
       listener: (context, state) {
         if (state.history.isNotEmpty && _interstitialAd == null) {
@@ -64,9 +66,21 @@ class _TicTacToeState extends State<TicTacToe> {
         }
         if (state.history.length % 7 == 0 &&
             state.history.isNotEmpty &&
-            state is Reseted &&
+            state is Restarted &&
             _interstitialAd != null) {
           _interstitialAd?.show();
+        }
+
+        if (state is GameEnded) {
+          if (context.read<SoundsCubit>().state) {
+            final player = AudioPlayer();
+
+            if (state.board.matchResult == MatchResult.tie) {
+              player.play(AssetSource("sounds/tie.wav"));
+            } else {
+              player.play(AssetSource("sounds/winner.wav"));
+            }
+          }
         }
       },
       buildWhen: (previous, current) {
@@ -90,7 +104,7 @@ class _TicTacToeState extends State<TicTacToe> {
                   icon: Semantics(
                     label: "View Records",
                     button: true,
-                    child: const Icon(Icons.assignment_outlined),
+                    child: const Icon(Icons.history_edu_outlined),
                   )),
               const SettingsButton(),
             ]),

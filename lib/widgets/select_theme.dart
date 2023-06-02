@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:minimal_tic_tac_toe/bloc/theme/current_theme_cubit.dart';
+import 'package:minimal_tic_tac_toe/bloc/settings/current_theme_cubit.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:minimal_tic_tac_toe/repository/theme_options.dart';
 
@@ -8,7 +8,7 @@ class SelectTheme extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CurrentThemeCubit, ThemeMode>(
+    return BlocBuilder<ThemeCubit, ThemeMode>(
       builder: (context, state) => DropdownButtonFormField(
           decoration: InputDecoration(
               labelText: S.of(context).theme,
@@ -32,7 +32,7 @@ class SelectTheme extends StatelessWidget {
                     child: Text(e.name),
                   ))
               .toList(),
-          onChanged: (e) => context.read<CurrentThemeCubit>().changeTheme(e!)),
+          onChanged: (e) => context.read<ThemeCubit>().changeTheme(e!)),
     );
   }
 }

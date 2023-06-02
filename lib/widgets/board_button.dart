@@ -35,6 +35,7 @@ class BoardButton extends StatelessWidget {
             button: true,
             selected: player != null,
             child: InkWell(
+              // enableFeedback: context.read<SoundsCubit>().state,
               onTap: player != null || disabled ? null : tapButton,
               onTapDown: (details) {
                 context.read<TicTacToeBloc>().add(PressItemButton());

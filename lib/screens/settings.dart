@@ -1,9 +1,10 @@
-import 'package:minimal_tic_tac_toe/bloc/theme/current_theme_cubit.dart';
+import 'package:minimal_tic_tac_toe/bloc/settings/current_theme_cubit.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
 import 'package:minimal_tic_tac_toe/widgets/player_setting.dart';
 import 'package:minimal_tic_tac_toe/widgets/select_theme.dart';
+import 'package:minimal_tic_tac_toe/widgets/sound_setting.dart';
 
 class Settings extends StatelessWidget {
   static String route = "/settings";
@@ -37,15 +38,13 @@ class Settings extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: Divider()),
                   const SelectTheme(),
-                  const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Divider()),
+                  const SoundSetting(),
                   const SizedBox(height: 20),
                   TextButton.icon(
                       onPressed: () {
                         context.read<PlayersBloc>().add(ResetChanges());
                         context
-                            .read<CurrentThemeCubit>()
+                            .read<ThemeCubit>()
                             .changeTheme(ThemeMode.system);
                       },
                       icon: const Icon(Icons.restore_rounded),

@@ -24,5 +24,7 @@
   "darkTheme": "Tema Oscuro",
   "lightTheme": "Tema Claro",
   "systemTheme": "Tema del sistema",
-  "theme": "Tema"
+  "theme": "Tema",
+  "shareTextContent": "Descarga la app de Minimal tic tac toe desde: https://bit.ly/minimal-tic-tac-toe, te encantará! ❌⭕️",
+  "soundsEnabled": "Sonido activo"
 }
