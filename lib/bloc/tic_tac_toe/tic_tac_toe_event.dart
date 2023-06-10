@@ -14,9 +14,8 @@ class ResetBoard extends TicTacToeEvent {}
 class SelectOption extends TicTacToeEvent {
   final int x;
   final int y;
-  final int playerNumber;
 
-  const SelectOption(this.x, this.y, this.playerNumber);
+  const SelectOption(this.x, this.y);
 }
 
 class PressItemButton extends TicTacToeEvent {}
@@ -31,3 +30,9 @@ class ChangeBoardSize extends TicTacToeEvent {
 class ChangePlayerTurn extends TicTacToeEvent {}
 
 class ClearHistory extends TicTacToeEvent {}
+
+class MakeAIMove extends TicTacToeEvent {}
+
+class InitSinglePlayerGame extends TicTacToeEvent {}
+
+class InitMultiplayerPlayerGame extends TicTacToeEvent {}

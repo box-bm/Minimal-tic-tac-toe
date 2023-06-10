@@ -47,7 +47,7 @@ dependencies:
   intl: ^0.18.0
   lit_relative_date_time: ^1.2.0
   google_mobile_ads: ^3.0.0
-  share_plus: ^7.0.0
+  share_plus: ^7.0.2
   audioplayers: ^4.0.1
 
 dev_dependencies:

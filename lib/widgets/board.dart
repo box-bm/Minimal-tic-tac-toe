@@ -55,7 +55,7 @@ class Board extends StatelessWidget {
                                   tapButton: () {
                                     BlocProvider.of<TicTacToeBloc>(context).add(
                                         SelectOption(element.xPosition,
-                                            element.yPosition, currentPlayer));
+                                            element.yPosition));
                                   }),
                             ),
                           )
