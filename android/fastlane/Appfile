@@ -1,1 +1,2 @@
-package_name("com.boxdev.minimal_tic_tac_toe") # e.g. com.krausefx.app
+json_key_file("play_config.json")
+package_name("com.boxdev.minimal_tic_tac_toe")

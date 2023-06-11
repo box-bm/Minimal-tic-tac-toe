@@ -29,18 +29,15 @@ platform :android do
     )
   end
 
-  desc "Submit a new Beta Build to Crashlytics Beta"
+  desc "Deploy a beta version to the Google Play"
   lane :beta do
-    gradle(
-      task: 'assemble',
-      build_type: 'Release'
-    )
-    upload_to_play_store(track: 'beta', aab: '../build/app/outputs/bundle/release/app-release.aab', json_key_data: ENV['PLAY_STORE_UPLOAD_KEY'])
+    gradle(task: 'clean bundleRelease')
+    upload_to_play_store(track: 'beta', release_status: 'draft')
   end
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
-    gradle(task: "clean assembleRelease", aab: '../build/app/outputs/bundle/release/app-release.aab')
-    upload_to_play_store(aab: '../build/app/outputs/bundle/release/app-release.aab',json_key_data: ENV['PLAY_STORE_UPLOAD_KEY'] )
+    gradle(task: 'clean bundleRelease', release_status: 'draft')
+    upload_to_play_store(release_status: 'draft' )
   end
 end
