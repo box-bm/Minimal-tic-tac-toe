@@ -1,0 +1,3 @@
+El mejor juego de tic tac toe minimalista para dos jugadores.
+
+Por medio de este juego podrás acceder a una gran variedad de personalizaciones que puedes realizar. Siempre al estilo minimalista.
