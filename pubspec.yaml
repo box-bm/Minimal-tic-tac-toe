@@ -42,15 +42,14 @@ dependencies:
   hydrated_bloc: ^9.1.0
   equatable: ^2.0.5
   animated_text_kit: ^4.2.2
-  path_provider: ^2.0.14
+  path_provider: ^2.0.15
   flutter_colorpicker: ^1.0.3
   intl: ^0.18.0
   lit_relative_date_time: ^1.2.0
   google_mobile_ads: ^3.0.0
   share_plus: ^7.0.2
-  audioplayers: ^4.0.1
+  audioplayers: ^4.1.0
   rate_my_app: ^2.0.0
-  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
