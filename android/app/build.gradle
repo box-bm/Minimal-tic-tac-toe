@@ -34,7 +34,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
-    namespace 'com.boxdev.minimal_tic_tac_toe'
+    namespace "com.boxdev.minimal_tic_tac_toe"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -76,6 +76,8 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
+
+            debuggable false
 
             minifyEnabled true
             shrinkResources true
