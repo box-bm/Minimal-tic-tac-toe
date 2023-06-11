@@ -42,7 +42,7 @@ class AI {
         int number1 = _genRandomNumber(0, 5);
         int number2 = _genRandomNumber(0, 5);
         if (number1 == number2) {
-          // 25% movimiento aleatorio
+          // 20% movimiento aleatorio
           return _getRandomMove(board);
         }
         return _getBestMove(board);
@@ -51,16 +51,16 @@ class AI {
         int number1 = _genRandomNumber(0, 8);
         int number2 = _genRandomNumber(0, 8);
         if (number1 == number2) {
-          // 10% movimiento aleatorio
+          // 12% movimiento aleatorio
           return _getRandomMove(board);
         }
         return _getBestMove(board);
 
       case Level.extreme:
-        int number1 = _genRandomNumber(0, 10);
-        int number2 = _genRandomNumber(0, 10);
+        int number1 = _genRandomNumber(0, 15);
+        int number2 = _genRandomNumber(0, 15);
         if (number1 == number2) {
-          // 6.66% movimiento aleatorio
+          // 10% movimiento aleatorio
           return _getRandomMove(board);
         }
         return _getBestMove(board);
