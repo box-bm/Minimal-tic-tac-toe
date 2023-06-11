@@ -16,5 +16,6 @@ Future<void> main() async {
   HydratedBloc.storage = await HydratedStorage.build(storageDirectory: dir);
   MobileAds.instance.updateRequestConfiguration(AdHelper.requestConfiguration);
   MobileAds.instance.initialize();
+
   runApp(const TicTacToeApp());
 }

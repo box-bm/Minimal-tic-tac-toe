@@ -85,8 +85,6 @@ android {
                     'proguard-rules.pro'
         }
     }
-    namespace 'com.boxdev.minimal_tic_tac_toe'
-
 }
 
 android.defaultConfig.ndk.debugSymbolLevel = 'FULL'

@@ -399,6 +399,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Rate my app`
+  String get rateTitle {
+    return Intl.message(
+      'Rate my app',
+      name: 'rateTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you are liking the game, give us a rating.`
+  String get rateMessage {
+    return Intl.message(
+      'If you are liking the game, give us a rating.',
+      name: 'rateMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rate`
+  String get rateButton {
+    return Intl.message(
+      'Rate',
+      name: 'rateButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get noRateButton {
+    return Intl.message(
+      'No',
+      name: 'noRateButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rate later`
+  String get rateLaterButton {
+    return Intl.message(
+      'Rate later',
+      name: 'rateLaterButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -54,5 +54,10 @@
   "hard": "Hard",
   "impossible": "Impossible",
   "difficult": "Difficult",
-  "selectYourDifficultLabel": "Select the difficulty of the game"
+  "selectYourDifficultLabel": "Select the difficulty of the game",
+  "rateTitle": "Rate my app",
+  "rateMessage": "If you are liking the game, give us a rating.",
+  "rateButton": "Rate",
+  "noRateButton": "No",
+  "rateLaterButton": "Rate later"
 }

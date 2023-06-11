@@ -5,15 +5,27 @@ import 'package:minimal_tic_tac_toe/bloc_states.dart';
 import 'package:minimal_tic_tac_toe/routes.dart';
 import 'package:minimal_tic_tac_toe/screens/presentation.dart';
 import 'package:minimal_tic_tac_toe/theme/theme_builder.dart';
+import 'package:minimal_tic_tac_toe/utils/rate_app.dart';
 
 class TicTacToeApp extends StatefulWidget {
   const TicTacToeApp({super.key});
 
   @override
-  State<TicTacToeApp> createState() => _TicTacToeAppState();
+  State<StatefulWidget> createState() => _TicTacToeAppState();
 }
 
 class _TicTacToeAppState extends State<TicTacToeApp> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await rateMyApp.init();
+      if (mounted && rateMyApp.shouldOpenDialog) {
+        initRate(context);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocAppStates(

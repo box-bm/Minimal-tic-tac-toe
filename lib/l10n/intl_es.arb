@@ -34,5 +34,10 @@
   "hard": "Dificil",
   "impossible": "Imposible",
   "difficult": "Dificultad",
-  "selectYourDifficultLabel": "Selecciona la dificultad del juego"
+  "selectYourDifficultLabel": "Selecciona la dificultad del juego",
+  "rateTitle": "Califica mi aplicacion",
+  "rateMessage": "Si te esta gustando el juego, regalanos una calificación",
+  "rateButton": "Calificar",
+  "noRateButton": "No",
+  "rateLaterButton": "Recordar más tarde"
 }

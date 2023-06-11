@@ -47,11 +47,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "medium": MessageLookupByLibrary.simpleMessage("Medium"),
         "multiplayer": MessageLookupByLibrary.simpleMessage("Multiplayer"),
         "newGame": MessageLookupByLibrary.simpleMessage("New Game"),
+        "noRateButton": MessageLookupByLibrary.simpleMessage("No"),
         "noRecords": MessageLookupByLibrary.simpleMessage(
             "Doesn\'t exist finished matches"),
         "play": MessageLookupByLibrary.simpleMessage("Play"),
         "player": m2,
         "playerWinner": m3,
+        "rateButton": MessageLookupByLibrary.simpleMessage("Rate"),
+        "rateLaterButton": MessageLookupByLibrary.simpleMessage("Rate later"),
+        "rateMessage": MessageLookupByLibrary.simpleMessage(
+            "If you are liking the game, give us a rating."),
+        "rateTitle": MessageLookupByLibrary.simpleMessage("Rate my app"),
         "record": MessageLookupByLibrary.simpleMessage("Record"),
         "resetSettings": MessageLookupByLibrary.simpleMessage("Reset settings"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
