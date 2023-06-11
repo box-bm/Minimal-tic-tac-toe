@@ -4,7 +4,7 @@ import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:minimal_tic_tac_toe/models/ai.dart';
 import 'package:minimal_tic_tac_toe/models/player.dart';
-import 'package:minimal_tic_tac_toe/widgets/match_result_card.dart';
+import 'package:minimal_tic_tac_toe/widgets/history/match_result_card.dart';
 
 class MatchesHistory extends StatelessWidget {
   static String route = "/matchesHistory";

@@ -5,7 +5,7 @@ import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:minimal_tic_tac_toe/models/ai.dart';
 import 'package:minimal_tic_tac_toe/screens/tic_tac_toe.dart';
 import 'package:minimal_tic_tac_toe/utils/use_color_by_backgroud_color.dart';
-import 'package:minimal_tic_tac_toe/widgets/add_banner.dart';
+import 'package:minimal_tic_tac_toe/widgets/adds/add_banner.dart';
 import 'package:minimal_tic_tac_toe/widgets/logo.dart';
 import 'package:minimal_tic_tac_toe/widgets/settings_button.dart';
 import 'package:minimal_tic_tac_toe/widgets/share_button.dart';

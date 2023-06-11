@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
 import 'package:minimal_tic_tac_toe/models/ai.dart';
 import 'package:minimal_tic_tac_toe/models/match_result.dart';
-import 'package:minimal_tic_tac_toe/widgets/player_board_header.dart';
+import 'package:minimal_tic_tac_toe/widgets/board/player_board_header.dart';
 
 class BoardTurn extends StatelessWidget {
   final int currentPlayer;

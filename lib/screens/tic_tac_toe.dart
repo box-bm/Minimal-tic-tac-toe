@@ -10,10 +10,10 @@ import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
 import 'package:minimal_tic_tac_toe/models/match_result.dart';
 import 'package:minimal_tic_tac_toe/screens/matches_history.dart';
 import 'package:minimal_tic_tac_toe/utils/use_color_by_backgroud_color.dart';
-import 'package:minimal_tic_tac_toe/widgets/add_banner.dart';
-import 'package:minimal_tic_tac_toe/widgets/board.dart';
-import 'package:minimal_tic_tac_toe/widgets/board_title.dart';
-import 'package:minimal_tic_tac_toe/widgets/board_turn.dart';
+import 'package:minimal_tic_tac_toe/widgets/adds/add_banner.dart';
+import 'package:minimal_tic_tac_toe/widgets/board/board.dart';
+import 'package:minimal_tic_tac_toe/widgets/board/board_title.dart';
+import 'package:minimal_tic_tac_toe/widgets/board/board_turn.dart';
 import 'package:minimal_tic_tac_toe/widgets/settings_button.dart';
 
 class TicTacToe extends StatefulWidget {

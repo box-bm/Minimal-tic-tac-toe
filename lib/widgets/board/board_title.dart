@@ -2,8 +2,8 @@ import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
 import 'package:minimal_tic_tac_toe/models/match_result.dart';
-import 'package:minimal_tic_tac_toe/widgets/tie_title.dart';
-import 'package:minimal_tic_tac_toe/widgets/winning_title.dart';
+import 'package:minimal_tic_tac_toe/widgets/board/tie_title.dart';
+import 'package:minimal_tic_tac_toe/widgets/board/winning_title.dart';
 
 class BoardTitle extends StatelessWidget {
   final int? playerWinner;
