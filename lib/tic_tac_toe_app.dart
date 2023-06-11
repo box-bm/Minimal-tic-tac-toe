@@ -6,14 +6,9 @@ import 'package:minimal_tic_tac_toe/routes.dart';
 import 'package:minimal_tic_tac_toe/screens/presentation.dart';
 import 'package:minimal_tic_tac_toe/theme/theme_builder.dart';
 
-class TicTacToeApp extends StatefulWidget {
+class TicTacToeApp extends StatelessWidget {
   const TicTacToeApp({super.key});
 
-  @override
-  State<TicTacToeApp> createState() => _TicTacToeAppState();
-}
-
-class _TicTacToeAppState extends State<TicTacToeApp> {
   @override
   Widget build(BuildContext context) {
     return BlocAppStates(

@@ -10,5 +10,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   TicTacToe.route: (p0) => const TicTacToe(),
   Settings.route: (p0) => const Settings(),
   IconSelection.route: (p0) => const IconSelection(),
-  MatchesHistory.route: (p0) => const MatchesHistory()
+  MatchesHistory.route: (p0) => const MatchesHistory(),
 };

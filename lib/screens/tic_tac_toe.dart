@@ -10,10 +10,10 @@ import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
 import 'package:minimal_tic_tac_toe/models/match_result.dart';
 import 'package:minimal_tic_tac_toe/screens/matches_history.dart';
 import 'package:minimal_tic_tac_toe/utils/use_color_by_backgroud_color.dart';
-import 'package:minimal_tic_tac_toe/widgets/add_banner.dart';
-import 'package:minimal_tic_tac_toe/widgets/board.dart';
-import 'package:minimal_tic_tac_toe/widgets/board_title.dart';
-import 'package:minimal_tic_tac_toe/widgets/board_turn.dart';
+import 'package:minimal_tic_tac_toe/widgets/adds/add_banner.dart';
+import 'package:minimal_tic_tac_toe/widgets/board/board.dart';
+import 'package:minimal_tic_tac_toe/widgets/board/board_title.dart';
+import 'package:minimal_tic_tac_toe/widgets/board/board_turn.dart';
 import 'package:minimal_tic_tac_toe/widgets/settings_button.dart';
 
 class TicTacToe extends StatefulWidget {
@@ -81,6 +81,7 @@ class _TicTacToeState extends State<TicTacToe> {
               player.play(AssetSource("sounds/winner.wav"));
             }
           }
+          return;
         }
       },
       buildWhen: (previous, current) {
@@ -88,26 +89,30 @@ class _TicTacToeState extends State<TicTacToe> {
       },
       builder: (context, state) {
         return Scaffold(
-            appBar: AppBar(actions: [
-              IconButton(
-                onPressed: () =>
-                    context.read<TicTacToeBloc>().add(ResetBoard()),
-                icon: Semantics(
-                    button: true,
-                    label: "Reset board",
-                    child: const Icon(Icons.replay_outlined)),
-              ),
-              IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, MatchesHistory.route);
-                  },
-                  icon: Semantics(
-                    label: "View Records",
-                    button: true,
-                    child: const Icon(Icons.history_edu_outlined),
-                  )),
-              const SettingsButton(),
-            ]),
+            appBar: AppBar(
+                title: Text(state.singlePlayer
+                    ? S.of(context).singlePlayer
+                    : S.of(context).multiplayer),
+                actions: [
+                  IconButton(
+                    onPressed: () =>
+                        context.read<TicTacToeBloc>().add(ResetBoard()),
+                    icon: Semantics(
+                        button: true,
+                        label: "Reset board",
+                        child: const Icon(Icons.replay_outlined)),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, MatchesHistory.route);
+                      },
+                      icon: Semantics(
+                        label: "View Records",
+                        button: true,
+                        child: const Icon(Icons.history_edu_outlined),
+                      )),
+                  const SettingsButton(),
+                ]),
             floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
             floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
             floatingActionButton: state.board.matchResult != MatchResult.none &&
@@ -139,9 +144,10 @@ class _TicTacToeState extends State<TicTacToe> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     BoardTurn(
+                        singlePlayer: state.singlePlayer,
                         currentPlayer: state.currentPlayer,
                         winner: state.playerWinner,
-                        tie: state.board.matchResult == MatchResult.tie),
+                        result: state.board.matchResult),
                     Expanded(
                       flex: 1,
                       child: BoardTitle(

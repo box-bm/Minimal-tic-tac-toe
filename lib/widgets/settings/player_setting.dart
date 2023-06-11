@@ -1,8 +1,8 @@
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:minimal_tic_tac_toe/models/player.dart';
-import 'package:minimal_tic_tac_toe/widgets/player_color_picker.dart';
-import 'package:minimal_tic_tac_toe/widgets/player_icon_picker.dart';
-import 'package:minimal_tic_tac_toe/widgets/player_input.dart';
+import 'package:minimal_tic_tac_toe/widgets/settings/player_color_picker.dart';
+import 'package:minimal_tic_tac_toe/widgets/settings/player_icon_picker.dart';
+import 'package:minimal_tic_tac_toe/widgets/settings/player_input.dart';
 
 class PlayerSetting extends StatelessWidget {
   final Player player;

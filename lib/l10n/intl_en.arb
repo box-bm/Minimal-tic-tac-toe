@@ -46,5 +46,18 @@
   "systemTheme": "System Theme",
   "theme": "Theme",
   "shareTextContent": "Download Minimal tic tac toe App from: https://bit.ly/minimal-tic-tac-toe, you'll love it! ❌⭕️",
-  "soundsEnabled": "Sounds enabled"
+  "soundsEnabled": "Sounds enabled",
+  "singlePlayer": "Single Player",
+  "multiplayer": "Multiplayer",
+  "easy": "Easy",
+  "medium": "Medium",
+  "hard": "Hard",
+  "impossible": "Impossible",
+  "difficult": "Difficult",
+  "selectYourDifficultLabel": "Select the difficulty of the game",
+  "rateTitle": "Rate my app",
+  "rateMessage": "If you are liking the game, give us a rating.",
+  "rateButton": "Rate",
+  "noRateButton": "No",
+  "rateLaterButton": "Rate later"
 }

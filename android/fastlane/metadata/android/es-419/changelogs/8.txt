@@ -1,0 +1,7 @@
+Se han agregado multiples cambios en la interfaz.
+
+- Se agregó un sonido al momento de ganar o empatar una partida
+- Se agregaron más iconos
+- Se agregaron más colores
+- Se agregó un botón para cambiar el tema de forma manual
+- Se agregó una opción para silenciar los sonidos al ganar o empatar una partida.

@@ -36,27 +36,44 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Elije tu icono favorito"),
         "colorOf": m0,
         "darkTheme": MessageLookupByLibrary.simpleMessage("Tema Oscuro"),
+        "difficult": MessageLookupByLibrary.simpleMessage("Dificultad"),
+        "easy": MessageLookupByLibrary.simpleMessage("Fácil"),
+        "hard": MessageLookupByLibrary.simpleMessage("Dificil"),
         "iconOf": m1,
         "icons": MessageLookupByLibrary.simpleMessage("Iconos"),
+        "impossible": MessageLookupByLibrary.simpleMessage("Imposible"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("Tema Claro"),
         "matchResult":
             MessageLookupByLibrary.simpleMessage("Resultado de la partida"),
+        "medium": MessageLookupByLibrary.simpleMessage("Medio"),
+        "multiplayer": MessageLookupByLibrary.simpleMessage("Multijugador"),
         "newGame": MessageLookupByLibrary.simpleMessage("Nuevo juego"),
+        "noRateButton": MessageLookupByLibrary.simpleMessage("No"),
         "noRecords":
             MessageLookupByLibrary.simpleMessage("No hay partidas finalizadas"),
         "play": MessageLookupByLibrary.simpleMessage("Jugar"),
         "player": m2,
         "playerWinner": m3,
+        "rateButton": MessageLookupByLibrary.simpleMessage("Calificar"),
+        "rateLaterButton":
+            MessageLookupByLibrary.simpleMessage("Recordar más tarde"),
+        "rateMessage": MessageLookupByLibrary.simpleMessage(
+            "Si te esta gustando el juego, regalanos una calificación"),
+        "rateTitle":
+            MessageLookupByLibrary.simpleMessage("Califica mi aplicacion"),
         "record": MessageLookupByLibrary.simpleMessage("Historial"),
         "resetSettings":
             MessageLookupByLibrary.simpleMessage("Restablecer ajustes"),
         "save": MessageLookupByLibrary.simpleMessage("Guardar"),
         "selectYourColor":
             MessageLookupByLibrary.simpleMessage("Elije tu color"),
+        "selectYourDifficultLabel": MessageLookupByLibrary.simpleMessage(
+            "Selecciona la dificultad del juego"),
         "settings": MessageLookupByLibrary.simpleMessage("Ajustes"),
         "share": MessageLookupByLibrary.simpleMessage("Compartir"),
         "shareTextContent": MessageLookupByLibrary.simpleMessage(
             "Descarga la app de Minimal tic tac toe desde: https://bit.ly/minimal-tic-tac-toe, te encantará! ❌⭕️"),
+        "singlePlayer": MessageLookupByLibrary.simpleMessage("Un Juador"),
         "soundsEnabled": MessageLookupByLibrary.simpleMessage("Sonido activo"),
         "systemTheme": MessageLookupByLibrary.simpleMessage("Tema del sistema"),
         "theme": MessageLookupByLibrary.simpleMessage("Tema"),

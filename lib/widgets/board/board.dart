@@ -4,7 +4,7 @@ import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
 import 'package:minimal_tic_tac_toe/models/board_item.dart';
 import 'package:minimal_tic_tac_toe/models/match_result.dart';
-import 'package:minimal_tic_tac_toe/widgets/board_button.dart';
+import 'package:minimal_tic_tac_toe/widgets/board/board_button.dart';
 
 class Board extends StatelessWidget {
   final int currentPlayer;
@@ -55,7 +55,7 @@ class Board extends StatelessWidget {
                                   tapButton: () {
                                     BlocProvider.of<TicTacToeBloc>(context).add(
                                         SelectOption(element.xPosition,
-                                            element.yPosition, currentPlayer));
+                                            element.yPosition));
                                   }),
                             ),
                           )

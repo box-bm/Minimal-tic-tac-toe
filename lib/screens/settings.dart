@@ -2,9 +2,9 @@ import 'package:minimal_tic_tac_toe/bloc/settings/current_theme_cubit.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
-import 'package:minimal_tic_tac_toe/widgets/player_setting.dart';
-import 'package:minimal_tic_tac_toe/widgets/select_theme.dart';
-import 'package:minimal_tic_tac_toe/widgets/sound_setting.dart';
+import 'package:minimal_tic_tac_toe/widgets/settings/player_setting.dart';
+import 'package:minimal_tic_tac_toe/widgets/settings/select_theme.dart';
+import 'package:minimal_tic_tac_toe/widgets/settings/sound_setting.dart';
 
 class Settings extends StatelessWidget {
   static String route = "/settings";

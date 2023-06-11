@@ -44,6 +44,7 @@ class MatchResultCard extends StatelessWidget {
                         matchResult: matchResult,
                         winner: playerWinner,
                         winnerPlayerNumber: playerWinnerNumber,
+                        dateTimeMatchFinished: dateTimeMatchFinished,
                       ))),
           child: Container(
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 14),

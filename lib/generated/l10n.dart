@@ -319,6 +319,136 @@ class S {
       args: [],
     );
   }
+
+  /// `Single Player`
+  String get singlePlayer {
+    return Intl.message(
+      'Single Player',
+      name: 'singlePlayer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Multiplayer`
+  String get multiplayer {
+    return Intl.message(
+      'Multiplayer',
+      name: 'multiplayer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Easy`
+  String get easy {
+    return Intl.message(
+      'Easy',
+      name: 'easy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Medium`
+  String get medium {
+    return Intl.message(
+      'Medium',
+      name: 'medium',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hard`
+  String get hard {
+    return Intl.message(
+      'Hard',
+      name: 'hard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Impossible`
+  String get impossible {
+    return Intl.message(
+      'Impossible',
+      name: 'impossible',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Difficult`
+  String get difficult {
+    return Intl.message(
+      'Difficult',
+      name: 'difficult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the difficulty of the game`
+  String get selectYourDifficultLabel {
+    return Intl.message(
+      'Select the difficulty of the game',
+      name: 'selectYourDifficultLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rate my app`
+  String get rateTitle {
+    return Intl.message(
+      'Rate my app',
+      name: 'rateTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you are liking the game, give us a rating.`
+  String get rateMessage {
+    return Intl.message(
+      'If you are liking the game, give us a rating.',
+      name: 'rateMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rate`
+  String get rateButton {
+    return Intl.message(
+      'Rate',
+      name: 'rateButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get noRateButton {
+    return Intl.message(
+      'No',
+      name: 'noRateButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rate later`
+  String get rateLaterButton {
+    return Intl.message(
+      'Rate later',
+      name: 'rateLaterButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
