@@ -89,26 +89,30 @@ class _TicTacToeState extends State<TicTacToe> {
       },
       builder: (context, state) {
         return Scaffold(
-            appBar: AppBar(actions: [
-              IconButton(
-                onPressed: () =>
-                    context.read<TicTacToeBloc>().add(ResetBoard()),
-                icon: Semantics(
-                    button: true,
-                    label: "Reset board",
-                    child: const Icon(Icons.replay_outlined)),
-              ),
-              IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, MatchesHistory.route);
-                  },
-                  icon: Semantics(
-                    label: "View Records",
-                    button: true,
-                    child: const Icon(Icons.history_edu_outlined),
-                  )),
-              const SettingsButton(),
-            ]),
+            appBar: AppBar(
+                title: Text(state.singlePlayer
+                    ? S.of(context).singlePlayer
+                    : S.of(context).multiplayer),
+                actions: [
+                  IconButton(
+                    onPressed: () =>
+                        context.read<TicTacToeBloc>().add(ResetBoard()),
+                    icon: Semantics(
+                        button: true,
+                        label: "Reset board",
+                        child: const Icon(Icons.replay_outlined)),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, MatchesHistory.route);
+                      },
+                      icon: Semantics(
+                        label: "View Records",
+                        button: true,
+                        child: const Icon(Icons.history_edu_outlined),
+                      )),
+                  const SettingsButton(),
+                ]),
             floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
             floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
             floatingActionButton: state.board.matchResult != MatchResult.none &&
@@ -140,9 +144,10 @@ class _TicTacToeState extends State<TicTacToe> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     BoardTurn(
+                        singlePlayer: state.singlePlayer,
                         currentPlayer: state.currentPlayer,
                         winner: state.playerWinner,
-                        tie: state.board.matchResult == MatchResult.tie),
+                        result: state.board.matchResult),
                     Expanded(
                       flex: 1,
                       child: BoardTitle(

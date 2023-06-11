@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:minimal_tic_tac_toe/models/board_item.dart';
+import 'package:minimal_tic_tac_toe/models/player.dart';
 import 'package:minimal_tic_tac_toe/utils/minimax.dart';
 
 class Move {
@@ -19,6 +21,11 @@ class AI {
   int _genRandomNumber(int min, int max) => min + Random().nextInt(max - min);
 
   static const int maxDepth = 6;
+
+  Player player(
+      {required Color color, IconData icon = Icons.developer_board_outlined}) {
+    return Player(playerName: "IA", color: color, iconData: icon);
+  }
 
   Move findMoveByLevel(List<List<BoardItem>> board, Level level) {
     switch (level) {

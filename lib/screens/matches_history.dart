@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
+import 'package:minimal_tic_tac_toe/models/ai.dart';
 import 'package:minimal_tic_tac_toe/models/player.dart';
 import 'package:minimal_tic_tac_toe/widgets/match_result_card.dart';
 
@@ -11,6 +12,8 @@ class MatchesHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var singlePlayer = context.read<TicTacToeBloc>().state.singlePlayer;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).record),
@@ -23,7 +26,12 @@ class MatchesHistory extends StatelessWidget {
       ),
       body: SafeArea(child: BlocBuilder<PlayersBloc, PlayersState>(
         builder: (context, state) {
-          var players = [state.player1, state.player2];
+          var players = [
+            state.player1,
+            singlePlayer
+                ? AI().player(color: state.player2.color)
+                : state.player2
+          ];
           return BlocBuilder<TicTacToeBloc, TicTacToeState>(
             builder: (context, state) {
               var history = state.history.reversed;
