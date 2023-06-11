@@ -61,7 +61,6 @@ class AI {
   }
 
   Move _getRandomMove(List<List<BoardItem>> board) {
-    print("Random move");
     Move move = Move(col: -1, row: -1);
     List<BoardItem> availableMoves = [];
 
