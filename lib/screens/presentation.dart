@@ -3,6 +3,7 @@ import 'package:minimal_tic_tac_toe/widgets/adds/add_banner.dart';
 import 'package:minimal_tic_tac_toe/widgets/game_option_buttons.dart';
 import 'package:minimal_tic_tac_toe/widgets/game_title.dart';
 import 'package:minimal_tic_tac_toe/widgets/logo.dart';
+import 'package:minimal_tic_tac_toe/widgets/rate_app_button.dart';
 import 'package:minimal_tic_tac_toe/widgets/settings_button.dart';
 import 'package:minimal_tic_tac_toe/widgets/share_button.dart';
 
@@ -32,7 +33,7 @@ class Presentation extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [ShareButton(), SettingsButton()],
+                  children: [ShareButton(), SettingsButton(), RateAppButton()],
                 ),
                 Spacer(),
                 AddBanner(),

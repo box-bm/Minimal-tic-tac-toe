@@ -11,7 +11,7 @@ RateMyApp rateMyApp = RateMyApp(
   // TODO: implement: appStoreIdentifier: '1491556149' // for ios,
 );
 
-void initRate(BuildContext context) {
+void showStarRateDialog(BuildContext context) {
   rateMyApp.showStarRateDialog(
     context,
     title: S.of(context).rateTitle, // The dialog title.
@@ -22,7 +22,7 @@ void initRate(BuildContext context) {
       return [
         // Return a list of actions (that will be shown at the bottom of the dialog).
         ElevatedButton(
-          child: const Text('OK'),
+          child: Text(S.of(context).rateButton),
           onPressed: () async {
             await rateMyApp.callEvent(RateMyAppEventType.rateButtonPressed);
             // ignore: use_build_context_synchronously
