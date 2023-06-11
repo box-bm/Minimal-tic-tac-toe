@@ -2,8 +2,6 @@ name: Distribute
 
 on:
   push:
-    paths:
-      - "app/**"
     branches: [main]
 
 jobs:
