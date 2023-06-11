@@ -28,5 +28,11 @@
   "shareTextContent": "Descarga la app de Minimal tic tac toe desde: https://bit.ly/minimal-tic-tac-toe, te encantará! ❌⭕️",
   "soundsEnabled": "Sonido activo",
   "singlePlayer": "Un Juador",
-  "multiplayer": "Multijugador"
+  "multiplayer": "Multijugador",
+  "easy": "Fácil",
+  "medium": "Medio",
+  "hard": "Dificil",
+  "impossible": "Imposible",
+  "difficult": "Dificultad",
+  "selectYourDifficultLabel": "Selecciona la dificultad del juego"
 }

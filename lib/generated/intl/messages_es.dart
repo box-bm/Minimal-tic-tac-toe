@@ -36,11 +36,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Elije tu icono favorito"),
         "colorOf": m0,
         "darkTheme": MessageLookupByLibrary.simpleMessage("Tema Oscuro"),
+        "difficult": MessageLookupByLibrary.simpleMessage("Dificultad"),
+        "easy": MessageLookupByLibrary.simpleMessage("Fácil"),
+        "hard": MessageLookupByLibrary.simpleMessage("Dificil"),
         "iconOf": m1,
         "icons": MessageLookupByLibrary.simpleMessage("Iconos"),
+        "impossible": MessageLookupByLibrary.simpleMessage("Imposible"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("Tema Claro"),
         "matchResult":
             MessageLookupByLibrary.simpleMessage("Resultado de la partida"),
+        "medium": MessageLookupByLibrary.simpleMessage("Medio"),
         "multiplayer": MessageLookupByLibrary.simpleMessage("Multijugador"),
         "newGame": MessageLookupByLibrary.simpleMessage("Nuevo juego"),
         "noRecords":
@@ -54,6 +59,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("Guardar"),
         "selectYourColor":
             MessageLookupByLibrary.simpleMessage("Elije tu color"),
+        "selectYourDifficultLabel": MessageLookupByLibrary.simpleMessage(
+            "Selecciona la dificultad del juego"),
         "settings": MessageLookupByLibrary.simpleMessage("Ajustes"),
         "share": MessageLookupByLibrary.simpleMessage("Compartir"),
         "shareTextContent": MessageLookupByLibrary.simpleMessage(

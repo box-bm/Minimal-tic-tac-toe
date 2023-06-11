@@ -4,7 +4,6 @@ import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:minimal_tic_tac_toe/models/ai.dart';
 import 'package:minimal_tic_tac_toe/screens/tic_tac_toe.dart';
-import 'package:minimal_tic_tac_toe/screens/two_players.dart';
 import 'package:minimal_tic_tac_toe/utils/use_color_by_backgroud_color.dart';
 import 'package:minimal_tic_tac_toe/widgets/add_banner.dart';
 import 'package:minimal_tic_tac_toe/widgets/logo.dart';
@@ -42,39 +41,63 @@ class Presentation extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Text('Selecciona un nivel para comenzar'),
-                  const SizedBox(height: 15),
-                  TextButton(
+                  const Spacer(flex: 2),
+                  Text(S.of(context).difficult,
+                      style: Theme.of(context).textTheme.titleLarge),
+                  Text(S.of(context).selectYourDifficultLabel),
+                  const SizedBox(height: 20),
+                  ElevatedButton.icon(
                     onPressed: () {
                       onPressOption(context, Level.easy);
                     },
-                    child: Text('Easy'),
+                    icon: const Icon(Icons.face_5_outlined),
+                    label: Text(S.of(context).easy),
+                    style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor:
+                            const Color.fromARGB(255, 44, 135, 192)),
                   ),
-                  TextButton(
+                  ElevatedButton.icon(
                     onPressed: () {
                       onPressOption(context, Level.medium);
                     },
-                    child: Text('Medium'),
+                    icon: const Icon(Icons.face_outlined),
+                    label: Text(S.of(context).medium),
+                    style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor:
+                            const Color.fromARGB(255, 64, 192, 44)),
                   ),
-                  TextButton(
+                  ElevatedButton.icon(
                     onPressed: () {
                       onPressOption(context, Level.hight);
                     },
-                    child: Text('Hard'),
+                    icon: const Icon(Icons.face_retouching_natural),
+                    label: Text(S.of(context).hard),
+                    style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor:
+                            const Color.fromARGB(255, 212, 125, 38)),
                   ),
-                  TextButton(
+                  ElevatedButton.icon(
                     onPressed: () {
                       onPressOption(context, Level.extreme);
                     },
-                    child: Text('Extreme'),
+                    icon: const Icon(Icons.whatshot_outlined),
+                    label: Text(S.of(context).impossible),
+                    style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor:
+                            const Color.fromARGB(255, 192, 54, 44)),
                   ),
-                  const Divider(),
+                  const Spacer(),
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text('Exit'),
+                    child: Text(S.of(context).cancel),
                   ),
+                  const Spacer()
                 ],
               ),
             ));
@@ -119,8 +142,9 @@ class Presentation extends StatelessWidget {
                         icon: const Icon(Icons.person_outline),
                         label: Text(S.of(context).singlePlayer),
                         style: ElevatedButton.styleFrom(
-                          foregroundColor:
-                              useColorByBackgroundColor(player1Color),
+                          foregroundColor: useColorByBackgroundColor(
+                              player1Color,
+                              bias: 100),
                         )),
                     ElevatedButton.icon(
                         onPressed: () {
@@ -128,7 +152,7 @@ class Presentation extends StatelessWidget {
                               .read<TicTacToeBloc>()
                               .add(InitMultiplayerPlayerGame());
 
-                          Navigator.pushNamed(context, TwoPlayers.route);
+                          Navigator.pushNamed(context, TicTacToe.route);
                         },
                         icon: const Icon(Icons.people_alt_outlined),
                         label: Text(S.of(context).multiplayer),

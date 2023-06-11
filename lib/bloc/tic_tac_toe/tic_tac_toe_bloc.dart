@@ -30,6 +30,10 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
           currentPlayer: state.currentPlayer,
           board: board,
           history: state.history));
+
+      if (state.singlePlayer && state.currentPlayer == 1) {
+        add(MakeAIMove());
+      }
     });
 
     on<ResetBoard>((event, emit) {
@@ -77,7 +81,8 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
 
     on<MakeAIMove>((event, emit) async {
       AI ai = AI();
-      var move = ai.findMoveByLevel(event.board, Level.easy);
+      var move =
+          ai.findMoveByLevel(state.board.board, state.iaLevel ?? Level.easy);
       add(PressItemButton());
       add(SelectOption(move.row, move.col));
     });
@@ -98,6 +103,10 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
               board: newBoard,
               history: state.history,
               playerWinner: null));
+
+          if (state.singlePlayer && state.currentPlayer == 1) {
+            add(MakeAIMove());
+          }
         } else {
           var winner =
               matchResult == MatchResult.tie ? null : state.currentPlayer;

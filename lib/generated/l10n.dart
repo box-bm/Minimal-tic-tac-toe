@@ -339,6 +339,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Easy`
+  String get easy {
+    return Intl.message(
+      'Easy',
+      name: 'easy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Medium`
+  String get medium {
+    return Intl.message(
+      'Medium',
+      name: 'medium',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hard`
+  String get hard {
+    return Intl.message(
+      'Hard',
+      name: 'hard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Impossible`
+  String get impossible {
+    return Intl.message(
+      'Impossible',
+      name: 'impossible',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Difficult`
+  String get difficult {
+    return Intl.message(
+      'Difficult',
+      name: 'difficult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the difficulty of the game`
+  String get selectYourDifficultLabel {
+    return Intl.message(
+      'Select the difficulty of the game',
+      name: 'selectYourDifficultLabel',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

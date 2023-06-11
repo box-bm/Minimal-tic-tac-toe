@@ -81,6 +81,7 @@ class _TicTacToeState extends State<TicTacToe> {
               player.play(AssetSource("sounds/winner.wav"));
             }
           }
+          return;
         }
       },
       buildWhen: (previous, current) {
