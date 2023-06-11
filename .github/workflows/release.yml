@@ -42,7 +42,7 @@ jobs:
           key: cache-clean-wrapper-${{ matrix.os }}-${{ matrix.jdk }}
 
       - name: Grant Permission to Execute
-        run: chmod +x gradlew
+        run: chmod +x ./gradlew
 
       - name: Install bundle
         run: |
