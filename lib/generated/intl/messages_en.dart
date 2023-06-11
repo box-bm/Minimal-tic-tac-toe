@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "icons": MessageLookupByLibrary.simpleMessage("Icons"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("Light Theme"),
         "matchResult": MessageLookupByLibrary.simpleMessage("Match Result"),
+        "multiplayer": MessageLookupByLibrary.simpleMessage("Multiplayer"),
         "newGame": MessageLookupByLibrary.simpleMessage("New Game"),
         "noRecords": MessageLookupByLibrary.simpleMessage(
             "Doesn\'t exist finished matches"),
@@ -55,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "share": MessageLookupByLibrary.simpleMessage("Share"),
         "shareTextContent": MessageLookupByLibrary.simpleMessage(
             "Download Minimal tic tac toe App from: https://bit.ly/minimal-tic-tac-toe, you\'ll love it! ❌⭕️"),
+        "singlePlayer": MessageLookupByLibrary.simpleMessage("Single Player"),
         "soundsEnabled": MessageLookupByLibrary.simpleMessage("Sounds enabled"),
         "systemTheme": MessageLookupByLibrary.simpleMessage("System Theme"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),

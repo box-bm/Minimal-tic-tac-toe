@@ -41,6 +41,13 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    buildFeatures {
+        buildConfig = true
+        aidl = true
+        renderScript = true
+    }
+
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -50,11 +57,7 @@ android {
     }
 
     defaultConfig {
-
         applicationId "com.boxdev.minimal_tic_tac_toe"
-
-//        minSdkVersion flutter.minSdkVersion
-
         minSdkVersion 19
         multiDexEnabled true
         targetSdkVersion 33

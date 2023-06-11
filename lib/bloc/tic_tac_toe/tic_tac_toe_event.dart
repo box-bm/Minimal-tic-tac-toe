@@ -31,8 +31,14 @@ class ChangePlayerTurn extends TicTacToeEvent {}
 
 class ClearHistory extends TicTacToeEvent {}
 
-class MakeAIMove extends TicTacToeEvent {}
+class MakeAIMove extends TicTacToeEvent {
+  final List<List<BoardItem>> board;
+  const MakeAIMove(this.board);
+}
 
-class InitSinglePlayerGame extends TicTacToeEvent {}
+class InitSinglePlayerGame extends TicTacToeEvent {
+  final Level level;
+  const InitSinglePlayerGame(this.level);
+}
 
 class InitMultiplayerPlayerGame extends TicTacToeEvent {}

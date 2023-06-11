@@ -46,5 +46,7 @@
   "systemTheme": "System Theme",
   "theme": "Theme",
   "shareTextContent": "Download Minimal tic tac toe App from: https://bit.ly/minimal-tic-tac-toe, you'll love it! ❌⭕️",
-  "soundsEnabled": "Sounds enabled"
+  "soundsEnabled": "Sounds enabled",
+  "singlePlayer": "Single Player",
+  "multiplayer": "Multiplayer"
 }

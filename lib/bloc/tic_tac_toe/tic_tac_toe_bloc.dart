@@ -5,6 +5,7 @@ import 'package:minimal_tic_tac_toe/models/board.dart';
 import 'package:minimal_tic_tac_toe/models/board_item.dart';
 import 'package:minimal_tic_tac_toe/models/board_match_history_item.dart';
 import 'package:minimal_tic_tac_toe/models/match_result.dart';
+import 'package:minimal_tic_tac_toe/utils/validate_player_wins.dart';
 
 part 'tic_tac_toe_event.dart';
 
@@ -12,10 +13,20 @@ part 'tic_tac_toe_state.dart';
 
 class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
   TicTacToeBloc() : super(const TicTacToeInitial()) {
+    on<InitSinglePlayerGame>((event, emit) {
+      emit(TicTacToeInitial(singlePlayer: true, iaLevel: event.level));
+      add(CreateNewBoard());
+    });
+    on<InitMultiplayerPlayerGame>((event, emit) {
+      emit(const TicTacToeInitial(singlePlayer: false, iaLevel: null));
+      add(CreateNewBoard());
+    });
     on<CreateNewBoard>((event, emit) {
       var board = _createBoardByDimensions(state.board.boardSize);
 
       emit(TicTacToeInitial(
+          iaLevel: state.iaLevel,
+          singlePlayer: state.singlePlayer,
           currentPlayer: state.currentPlayer,
           board: board,
           history: state.history));
@@ -24,6 +35,7 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
     on<ResetBoard>((event, emit) {
       add(CreateNewBoard());
       emit(Restarted(
+          iaLevel: state.iaLevel,
           singlePlayer: state.singlePlayer,
           currentPlayer: state.currentPlayer,
           board: state.board,
@@ -34,12 +46,17 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
       var board = _createBoardByDimensions(state.board.boardSize);
 
       emit(TicTacToeInitial(
-          currentPlayer: state.currentPlayer, board: board, history: const []));
+          iaLevel: state.iaLevel,
+          singlePlayer: state.singlePlayer,
+          currentPlayer: state.currentPlayer,
+          board: board,
+          history: const []));
     });
 
     on<PressItemButton>((event, emit) {
       if (state is! ChoosingItem) {
         emit(ChoosingItem(
+            iaLevel: state.iaLevel,
             singlePlayer: state.singlePlayer,
             currentPlayer: state.currentPlayer,
             board: state.board,
@@ -50,6 +67,7 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
 
     on<CancelPressButton>((event, emit) {
       emit(TicTacToeInitial(
+          iaLevel: state.iaLevel,
           singlePlayer: state.singlePlayer,
           currentPlayer: state.currentPlayer,
           board: state.board,
@@ -58,10 +76,10 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
     });
 
     on<MakeAIMove>((event, emit) async {
-      AI ai = AI(playerNumber: state.currentPlayer);
-      var move = ai.findBestMove(state.board.board);
+      AI ai = AI();
+      var move = ai.findMoveByLevel(event.board, Level.easy);
       add(PressItemButton());
-      add(SelectOption(move.row, move.row));
+      add(SelectOption(move.row, move.col));
     });
 
     on<SelectOption>((event, emit) async {
@@ -70,19 +88,16 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
         newBoard.board[event.x][event.y].select(state.currentPlayer);
 
         MatchResult matchResult =
-            _validateCurrentPlayerWins(newBoard.board, state.currentPlayer);
+            validatePlayerWins(newBoard.board, state.currentPlayer);
 
         if (matchResult == MatchResult.none) {
           emit(TicTacToeInitial(
+              iaLevel: state.iaLevel,
+              singlePlayer: state.singlePlayer,
               currentPlayer: changePlayer(state.currentPlayer),
               board: newBoard,
               history: state.history,
               playerWinner: null));
-
-          if (state.singlePlayer) {
-            await Future.delayed(const Duration(seconds: 2));
-            add(MakeAIMove());
-          }
         } else {
           var winner =
               matchResult == MatchResult.tie ? null : state.currentPlayer;
@@ -94,6 +109,7 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
               boardSize: state.board.boardSize);
 
           emit(GameEnded(
+            iaLevel: state.iaLevel,
             playerWinner: winner,
             currentPlayer: matchResult == MatchResult.tie
                 ? state.currentPlayer
@@ -114,6 +130,7 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
     });
     on<ChangeBoardSize>((event, emit) {
       emit(TicTacToeInitial(
+          iaLevel: state.iaLevel,
           singlePlayer: state.singlePlayer,
           board: _createBoardByDimensions(event.size),
           currentPlayer: state.currentPlayer,
@@ -123,71 +140,6 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
 
   int changePlayer(int currentPlayer) {
     return currentPlayer == 0 ? 1 : 0;
-  }
-
-  MatchResult _validateCurrentPlayerWins(
-      List<List<BoardItem?>> board, int currentPlayer) {
-    // Check rows
-    for (int row = 0; row < 3; row++) {
-      if (board[row][0]?.selectedByPlayerNumber == currentPlayer &&
-          board[row][0]?.selectedByPlayerNumber ==
-              board[row][1]?.selectedByPlayerNumber &&
-          board[row][0]?.selectedByPlayerNumber ==
-              board[row][2]?.selectedByPlayerNumber) {
-        switch (row) {
-          case 0:
-            return MatchResult.firstRow;
-          case 1:
-            return MatchResult.secondRow;
-          case 2:
-            return MatchResult.thirdRow;
-        }
-      }
-    }
-
-    // Check columns
-    for (int col = 0; col < 3; col++) {
-      if (board[0][col]?.selectedByPlayerNumber == currentPlayer &&
-          board[0][col]?.selectedByPlayerNumber ==
-              board[1][col]?.selectedByPlayerNumber &&
-          board[0][col]?.selectedByPlayerNumber ==
-              board[2][col]?.selectedByPlayerNumber) {
-        switch (col) {
-          case 0:
-            return MatchResult.firstColumn;
-          case 1:
-            return MatchResult.secondColumn;
-          case 2:
-            return MatchResult.thirdColumn;
-        }
-      }
-    }
-
-    // Check diagonals
-    if (board[0][0]?.selectedByPlayerNumber == currentPlayer &&
-        board[0][0]?.selectedByPlayerNumber ==
-            board[1][1]?.selectedByPlayerNumber &&
-        board[0][0]?.selectedByPlayerNumber ==
-            board[2][2]?.selectedByPlayerNumber) {
-      return MatchResult.firstDiagonal;
-    }
-    if (board[2][0]?.selectedByPlayerNumber == currentPlayer &&
-        board[2][0]?.selectedByPlayerNumber ==
-            board[1][1]?.selectedByPlayerNumber &&
-        board[2][0]?.selectedByPlayerNumber ==
-            board[0][2]?.selectedByPlayerNumber) {
-      return MatchResult.secondDiagonal;
-    }
-
-    for (int row = 0; row < 3; row++) {
-      for (int col = 0; col < 3; col++) {
-        if (board[row][col]?.selectedByPlayerNumber == null) {
-          return MatchResult.none;
-        }
-      }
-    }
-
-    return MatchResult.tie;
   }
 
   Board _createBoardByDimensions(int dimensions) {
@@ -204,6 +156,8 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
       matchResult.add(xOptions);
     }
     return Board(
+        singlePlayer: state.singlePlayer,
+        iaLevel: state.iaLevel,
         boardSize: dimensions,
         matchResult: MatchResult.none,
         board: matchResult);

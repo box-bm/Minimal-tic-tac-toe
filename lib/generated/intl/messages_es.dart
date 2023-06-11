@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lightTheme": MessageLookupByLibrary.simpleMessage("Tema Claro"),
         "matchResult":
             MessageLookupByLibrary.simpleMessage("Resultado de la partida"),
+        "multiplayer": MessageLookupByLibrary.simpleMessage("Multijugador"),
         "newGame": MessageLookupByLibrary.simpleMessage("Nuevo juego"),
         "noRecords":
             MessageLookupByLibrary.simpleMessage("No hay partidas finalizadas"),
@@ -57,6 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "share": MessageLookupByLibrary.simpleMessage("Compartir"),
         "shareTextContent": MessageLookupByLibrary.simpleMessage(
             "Descarga la app de Minimal tic tac toe desde: https://bit.ly/minimal-tic-tac-toe, te encantará! ❌⭕️"),
+        "singlePlayer": MessageLookupByLibrary.simpleMessage("Un Juador"),
         "soundsEnabled": MessageLookupByLibrary.simpleMessage("Sonido activo"),
         "systemTheme": MessageLookupByLibrary.simpleMessage("Tema del sistema"),
         "theme": MessageLookupByLibrary.simpleMessage("Tema"),
