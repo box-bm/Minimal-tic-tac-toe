@@ -23,6 +23,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Runs all the tests
 
+### android testapp
+
+```sh
+[bundle exec] fastlane android testapp
+```
+
+Run test app for build and validate before upload
+
 ### android beta
 
 ```sh
