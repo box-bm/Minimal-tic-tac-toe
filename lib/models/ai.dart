@@ -30,10 +30,10 @@ class AI {
   Move findMoveByLevel(List<List<BoardItem>> board, Level level) {
     switch (level) {
       case Level.easy:
-        int number1 = _genRandomNumber(0, 1);
-        int number2 = _genRandomNumber(0, 1);
+        int number1 = _genRandomNumber(0, 8);
+        int number2 = _genRandomNumber(0, 8);
         if (number1 == number2) {
-          // 50% movimiento oficial
+          // 12% movimiento oficial
           return _getBestMove(board);
         }
         return _getRandomMove(board);
@@ -51,7 +51,7 @@ class AI {
         int number1 = _genRandomNumber(0, 8);
         int number2 = _genRandomNumber(0, 8);
         if (number1 == number2) {
-          // 12% movimiento aleatorio
+          // 12.5% movimiento aleatorio
           return _getRandomMove(board);
         }
         return _getBestMove(board);
@@ -60,7 +60,7 @@ class AI {
         int number1 = _genRandomNumber(0, 15);
         int number2 = _genRandomNumber(0, 15);
         if (number1 == number2) {
-          // 10% movimiento aleatorio
+          // 6.66% movimiento aleatorio
           return _getRandomMove(board);
         }
         return _getBestMove(board);

@@ -99,23 +99,17 @@ class GameOptionButtons extends StatelessWidget {
                 showFullSizeDialog(context);
               },
               icon: const Icon(Icons.person_outline),
-              label: Text(S.of(context).singlePlayer),
-              style: ElevatedButton.styleFrom(
-                foregroundColor:
-                    useColorByBackgroundColor(player1Color, bias: 100),
-              )),
+              label: Text(S.of(context).singlePlayer)),
           ElevatedButton.icon(
               onPressed: () {
                 context.read<TicTacToeBloc>().add(InitMultiplayerPlayerGame());
-
                 Navigator.pushNamed(context, TicTacToe.route);
               },
               icon: const Icon(Icons.people_alt_outlined),
               label: Text(S.of(context).multiplayer),
               style: ElevatedButton.styleFrom(
-                foregroundColor: useColorByBackgroundColor(player2Color),
-                backgroundColor: player2Color,
-              )),
+                  foregroundColor: useColorByBackgroundColor(player2Color),
+                  backgroundColor: player2Color)),
         ],
       );
     });
