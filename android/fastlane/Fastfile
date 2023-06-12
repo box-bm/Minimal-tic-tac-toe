@@ -31,8 +31,20 @@ platform :android do
 
   desc "Deploy a beta version to the Google Play"
   lane :beta do
-    gradle(task: 'clean bundleRelease')
-    upload_to_play_store(track: 'beta', release_status: 'draft', aab: '../build/app/outputs/bundle/release/app-release.aab', json_key_data: ENV['PLAY_CONFIG_JSON'])
+    gradle(task: "clean")
+    gradle(
+      task: 'assemble',
+      build_type: 'Release'
+    )
+    upload_to_play_store(
+        track: 'beta',
+        aab: '../build/app/outputs/bundle/release/app-release.aab'
+        # skip_upload_metadata: true,
+        # skip_upload_images: true,
+        # skip_upload_screenshots: true,
+        # release_status: "draft",
+        # version_code: flutter_version()["version_code"],
+      )
   end
 
   desc "Deploy a new version to the Google Play"
