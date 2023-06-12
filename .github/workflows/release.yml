@@ -107,6 +107,13 @@ jobs:
           echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
           echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> key.properties
 
+      - name: Configure json file
+        env:
+          PLAY_CONFIG_JSON: ${{ secrets.PLAY_CONFIG_JSON }}
+        run: |
+          echo "$PLAY_CONFIG_JSON" > service_account_key.json.b64
+          base64 -d -i service_account_key.json.b64 > service_account_key.json
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v1
         with:
