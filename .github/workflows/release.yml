@@ -18,38 +18,38 @@ jobs:
         with:
           java-version: 12.x
 
-      - name: Configure Keystore and key properties
-        working-directory: ./android
-        env:
-          ANDROID_UPLOAD_SIGNATURE: ${{ secrets.ANDROID_UPLOAD_SIGNATURE }}
-          KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
-          KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
-          KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
-        run: |
-          echo "$ANDROID_UPLOAD_SIGNATURE" > keystore.jks.b64
-          base64 -d -i keystore.jks.b64 > app/keystore.jks
-          echo "storeFile=keystore.jks" >> key.properties
-          echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> key.properties
-          echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
-          echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> key.properties
+      # - name: Configure Keystore and key properties
+      #   working-directory: ./android
+      #   env:
+      #     ANDROID_UPLOAD_SIGNATURE: ${{ secrets.ANDROID_UPLOAD_SIGNATURE }}
+      #     KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
+      #     KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
+      #     KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
+      #   run: |
+      #     echo "$ANDROID_UPLOAD_SIGNATURE" > keystore.jks.b64
+      #     base64 -d -i keystore.jks.b64 > app/keystore.jks
+      #     echo "storeFile=keystore.jks" >> key.properties
+      #     echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> key.properties
+      #     echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
+      #     echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> key.properties
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v1
-        with:
-          channel: "stable"
-          flutter-version: 3.10.4
+      # - name: Setup Flutter
+      #   uses: subosito/flutter-action@v1
+      #   with:
+      #     channel: "stable"
+      #     flutter-version: 3.10.4
 
-      - name: Install Flutter dependencies
-        run: flutter pub get
+      # - name: Install Flutter dependencies
+      #   run: flutter pub get
 
-      - name: Build the appbundle
-        run: flutter build appbundle --no-tree-shake-icons --release
+      # - name: Build the appbundle
+      #   run: flutter build appbundle --no-tree-shake-icons --release
 
-      - name: Upload artifact to Github
-        uses: actions/upload-artifact@v3
-        with:
-          name: app-release
-          path: build/app/outputs/bundle/release/app-release.aab
+      # - name: Upload artifact to Github
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: app-release
+      #     path: build/app/outputs/bundle/release/app-release.aab
   #CD
   deploy_android:
     name: Deploying to playstore
