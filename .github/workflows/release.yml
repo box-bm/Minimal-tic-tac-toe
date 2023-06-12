@@ -92,7 +92,7 @@ jobs:
         with:
           path: ~/.gradle/wrapper/
           key: cache-clean-wrapper-${{ matrix.os }}-${{ matrix.jdk }}
-          
+
       - name: Configure Keystore and key properties
         env:
           ANDROID_UPLOAD_SIGNATURE: ${{ secrets.ANDROID_UPLOAD_SIGNATURE }}
@@ -121,9 +121,11 @@ jobs:
 
       - name: Install bundle
         run: |
-          bundle install --jobs 4 --retry 3
+          gem install bundler
+          bundle update
+          bundle install
 
       - name: Distribute app to Beta track 🚀
         env:
           ANDROID_UPLOAD_SIGNATURE: ${{ secrets.PLAY_CONFIG_JSON }}
-        run: bundle exec fastlane beta
+        run: bundle exec fastlane deployBetaToPlaystore

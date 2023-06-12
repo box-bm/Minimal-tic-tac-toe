@@ -24,22 +24,18 @@ platform :android do
   desc "Build a new app using local key"
   lane :buildApp do
     gradle(
-      task: 'assemble',
-      build_type: 'Release'
+      task: "assemble",
+      build_type: "Release"
     )
   end
 
   desc "Deploy a beta version to the Google Play"
-  lane :beta do
-    gradle(task: "clean")
-    gradle(
-      task: 'assemble',
-      build_type: 'Release'
-    )
+  lane :deployBetaToPlaystore do
+    # gradle(task: 'assemble', build_type: 'Release')
     upload_to_play_store(
-        track: 'beta',
-        aab: '../../build/app/outputs/bundle/release/app-release.aab',
-        json_key_data: ENV['PLAY_CONFIG_JSON']
+        track: "beta",
+        aab: "../build/app/outputs/bundle/release/app-release.aab",
+        json_key_data: ENV["PLAY_CONFIG_JSON"]
         # skip_upload_metadata: true,
         # skip_upload_images: true,
         # skip_upload_screenshots: true,
@@ -50,7 +46,7 @@ platform :android do
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
-    gradle(task: 'clean bundleRelease', release_status: 'draft')
-    upload_to_play_store(release_status: 'draft' )
+    gradle(task: "clean bundleRelease", release_status: "draft")
+    upload_to_play_store(release_status: "draft" )
   end
 end

@@ -31,10 +31,10 @@ Runs all the tests
 
 Build a new app using local key
 
-### android beta
+### android deployBetaToPlaystore
 
 ```sh
-[bundle exec] fastlane android beta
+[bundle exec] fastlane android deployBetaToPlaystore
 ```
 
 Deploy a beta version to the Google Play
