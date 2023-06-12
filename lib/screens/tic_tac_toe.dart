@@ -156,13 +156,14 @@ class _TicTacToeState extends State<TicTacToe> {
                           visible: state is GameEnded),
                     ),
                     Expanded(
-                      flex: 5,
-                      child: Board(
-                        board: state.board.board,
-                        currentPlayer: state.currentPlayer,
-                        matchResult: state.board.matchResult,
-                      ),
-                    ),
+                        flex: 5,
+                        child: Align(
+                          child: Board(
+                            board: state.board.board,
+                            currentPlayer: state.currentPlayer,
+                            matchResult: state.board.matchResult,
+                          ),
+                        )),
                     const AddBanner(),
                   ],
                 )));
