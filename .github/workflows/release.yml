@@ -93,6 +93,18 @@ jobs:
           path: ~/.gradle/wrapper/
           key: cache-clean-wrapper-${{ matrix.os }}-${{ matrix.jdk }}
 
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+          flutter-version: 3.10.4
+
+      - name: Install Flutter dependencies
+        run: flutter pub get
+
+      - name: Build the appbundle
+        run: flutter build appbundle --no-tree-shake-icons --release
+
       - name: Install bundle
         run: |
           bundle install --jobs 4 --retry 3
