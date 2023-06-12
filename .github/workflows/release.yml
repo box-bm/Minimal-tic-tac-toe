@@ -126,7 +126,7 @@ jobs:
           bundle install
 
       - name: Init supply
-        run: bundle exec fastlane supply init
+        run: bundle exec fastlane supply init --verbose
 
       - name: Distribute app to Beta track 🚀
         env:
