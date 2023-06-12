@@ -2,16 +2,49 @@ name: Distribute
 
 on:
   push:
-    paths:
-      - 'app/**'
     branches: [main]
 
 jobs:
-  distribute:
+  build_android:
+    name: Building Android 
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 12.x
+      - name: Decrypt Android keys
+        run: sh ./.github/scripts/decrypt_android_secrets.sh
+        env:
+          ANDROID_KEYS_SECRET_PASSPHRASE: ${{ secrets.ANDROID_KEYS_SECRET_PASSPHRASE }}
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: 2.0.1
+      - name: Install Flutter dependencies
+        run: flutter pub get
+        # Add build runner commands here if you have any
+      - name: Build the bundle
+        run: flutter build appbundle --no-tree-shake-icons --release
+      - name: Upload artifact to Github
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-release
+          path: Built build/app/outputs/bundle/release/app-release.aab
+          
+  deploy_android:
+    name: Deploying to playstore
+    needs: [build_android]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./android
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -26,10 +59,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
-      - name: Set up JDK 1.8
+      - name: Setup Java
         uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          java-version: 12.x
 
       - name: Cache Gradle
         uses: actions/cache@v1
@@ -48,7 +81,6 @@ jobs:
 
       - name: Install bundle
         run: |
-          bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
       - name: Configure Keystore
