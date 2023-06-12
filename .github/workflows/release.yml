@@ -2,7 +2,8 @@ name: Playstore deployment
 on:
   push:
     branches:
-      - master
+      - main
+
 jobs:
   #CI
   build_android:
