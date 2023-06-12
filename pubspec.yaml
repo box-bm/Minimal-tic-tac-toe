@@ -50,6 +50,7 @@ dependencies:
   share_plus: ^7.0.2
   audioplayers: ^4.1.0
   rate_my_app: ^2.0.0
+  games_services: ^3.0.1
 
 dev_dependencies:
   flutter_test:
