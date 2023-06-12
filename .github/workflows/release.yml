@@ -15,10 +15,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 12.x
-      - name: Decrypt Android keys
-        run: sh ./.github/scripts/decrypt_android_secrets.sh
-        env:
-          ANDROID_KEYS_SECRET_PASSPHRASE: ${{ secrets.ANDROID_KEYS_SECRET_PASSPHRASE }}
       - name: Setup Flutter
         uses: subosito/flutter-action@v1
         with:
@@ -28,6 +24,22 @@ jobs:
         # Add build runner commands here if you have any
       - name: Build the bundle
         run: flutter build appbundle --no-tree-shake-icons --release
+        
+      - name: Configure Keystore
+        working-directory: ./android
+        run: |
+          echo "$ANDROID_UPLOAD_SIGNATURE" > keystore.jks.b64
+          base64 -d -i keystore.jks.b64 > app/keystore.jks
+          echo "storeFile=keystore.jks" >> key.properties
+          echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> key.properties
+          echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
+          echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> key.properties
+        env:
+          ANDROID_UPLOAD_SIGNATURE: ${{ secrets.ANDROID_UPLOAD_SIGNATURE }}
+          KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
+          KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
+          KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
+        
       - name: Upload artifact to Github
         uses: actions/upload-artifact@v1
         with:
@@ -82,20 +94,6 @@ jobs:
       - name: Install bundle
         run: |
           bundle install --jobs 4 --retry 3
-
-      - name: Configure Keystore
-        run: |
-          echo "$ANDROID_UPLOAD_SIGNATURE" > keystore.jks.b64
-          base64 -d -i keystore.jks.b64 > app/keystore.jks
-          echo "storeFile=keystore.jks" >> key.properties
-          echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> key.properties
-          echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
-          echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> key.properties
-        env:
-          ANDROID_UPLOAD_SIGNATURE: ${{ secrets.ANDROID_UPLOAD_SIGNATURE }}
-          KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
-          KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
-          KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
 
       - name: Create Google Play Config file
         run: |
