@@ -37,7 +37,7 @@ Build a new app using local key
 [bundle exec] fastlane android beta
 ```
 
-Submit a new Beta Build to Crashlytics Beta
+Deploy a beta version to the Google Play
 
 ### android deploy
 
