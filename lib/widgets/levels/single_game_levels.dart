@@ -25,15 +25,20 @@ class SingleGameLevels extends StatelessWidget {
             style: Theme.of(context).textTheme.titleLarge),
         Text(S.of(context).selectYourDifficultLabel),
         const SizedBox(height: 20),
-        ...Level.values
-            .map(
-              (e) => GameLevelButton(
-                  onPressed: () => onPressOption(context, e),
-                  icon: e.icon,
-                  label: e.label,
-                  background: e.color),
-            )
-            .toList(),
+        SizedBox(
+          width: 200,
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: Level.values
+                  .map(
+                    (e) => GameLevelButton(
+                        onPressed: () => onPressOption(context, e),
+                        icon: e.icon,
+                        label: e.label,
+                        background: e.color),
+                  )
+                  .toList()),
+        ),
         const Spacer(),
         TextButton(
           onPressed: () => Navigator.pop(context),
