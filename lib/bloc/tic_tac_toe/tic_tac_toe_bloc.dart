@@ -120,9 +120,7 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
           emit(GameEnded(
             iaLevel: state.iaLevel,
             playerWinner: winner,
-            currentPlayer: matchResult == MatchResult.tie
-                ? state.currentPlayer
-                : changePlayer(state.currentPlayer),
+            currentPlayer: changePlayer(state.currentPlayer),
             board: boardResult,
             history: [
               ...state.history,
