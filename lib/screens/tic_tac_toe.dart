@@ -1,7 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:minimal_tic_tac_toe/ad_helper.dart';
+import 'package:minimal_tic_tac_toe/utils/ad_helper.dart';
 import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/settings/sounds_cubit.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
@@ -14,7 +14,7 @@ import 'package:minimal_tic_tac_toe/widgets/adds/add_banner.dart';
 import 'package:minimal_tic_tac_toe/widgets/board/board.dart';
 import 'package:minimal_tic_tac_toe/widgets/board/board_title.dart';
 import 'package:minimal_tic_tac_toe/widgets/board/board_turn.dart';
-import 'package:minimal_tic_tac_toe/widgets/settings_button.dart';
+import 'package:minimal_tic_tac_toe/widgets/buttons/settings_button.dart';
 
 class TicTacToe extends StatefulWidget {
   static String route = "/TicTacToe";

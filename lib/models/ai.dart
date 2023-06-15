@@ -15,7 +15,7 @@ class Move {
   set setCol(int col) => this.col = row;
 }
 
-enum Level { easy, medium, hight, extreme }
+enum Level { easy, medium, hight, imposible }
 
 class AI {
   int _genRandomNumber(int min, int max) => min + Random().nextInt(max - min);
@@ -56,11 +56,11 @@ class AI {
         }
         return _getBestMove(board);
 
-      case Level.extreme:
-        int number1 = _genRandomNumber(0, 15);
-        int number2 = _genRandomNumber(0, 15);
+      case Level.imposible:
+        int number1 = _genRandomNumber(0, 20);
+        int number2 = _genRandomNumber(0, 20);
         if (number1 == number2) {
-          // 6.66% movimiento aleatorio
+          // 5% movimiento aleatorio
           return _getRandomMove(board);
         }
         return _getBestMove(board);
