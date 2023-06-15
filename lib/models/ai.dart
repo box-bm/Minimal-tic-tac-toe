@@ -15,36 +15,27 @@ class AI {
         int number1 = _genRandomNumber(0, 8);
         int number2 = _genRandomNumber(0, 8);
         if (number1 == number2) {
-          // 12% movimiento oficial
           return _getBestMove(board);
         }
         return _getRandomMove(board);
 
       case Level.medium:
-        int number1 = _genRandomNumber(0, 5);
-        int number2 = _genRandomNumber(0, 5);
+        int number1 = _genRandomNumber(0, 16);
+        int number2 = _genRandomNumber(0, 16);
         if (number1 == number2) {
-          // 20% movimiento aleatorio
           return _getRandomMove(board);
         }
         return _getBestMove(board);
 
       case Level.hight:
-        int number1 = _genRandomNumber(0, 8);
-        int number2 = _genRandomNumber(0, 8);
+        int number1 = _genRandomNumber(0, 25);
+        int number2 = _genRandomNumber(0, 25);
         if (number1 == number2) {
-          // 12.5% movimiento aleatorio
           return _getRandomMove(board);
         }
         return _getBestMove(board);
 
       case Level.impossible:
-        int number1 = _genRandomNumber(0, 20);
-        int number2 = _genRandomNumber(0, 20);
-        if (number1 == number2) {
-          // 5% movimiento aleatorio
-          return _getRandomMove(board);
-        }
         return _getBestMove(board);
     }
   }
