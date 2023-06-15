@@ -1,12 +1,14 @@
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
 import 'package:minimal_tic_tac_toe/models/board_item.dart';
 import 'package:minimal_tic_tac_toe/models/match_result.dart';
+import 'package:minimal_tic_tac_toe/models/player.dart';
 import 'package:minimal_tic_tac_toe/widgets/board/board_button.dart';
+import 'package:minimal_tic_tac_toe/widgets/board/reset_board.dart';
 
 class Board extends StatelessWidget {
+  final List<Player> players;
   final int currentPlayer;
   final List<List<BoardItem>> board;
   final MatchResult matchResult;
@@ -17,17 +19,12 @@ class Board extends StatelessWidget {
     required this.currentPlayer,
     required this.board,
     required this.matchResult,
+    required this.players,
     this.disableResetButton = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PlayersBloc, PlayersState>(builder: _build);
-  }
-
-  Widget _build(BuildContext context, PlayersState state) {
-    var players = [state.player1, state.player2];
-
     return AspectRatio(
         aspectRatio: 1,
         child: Stack(
@@ -53,7 +50,7 @@ class Board extends StatelessWidget {
                                   winner: matchResult.validate(
                                       element.xPosition, element.yPosition),
                                   tapButton: () {
-                                    BlocProvider.of<TicTacToeBloc>(context).add(
+                                    context.read<TicTacToeBloc>().add(
                                         SelectOption(element.xPosition,
                                             element.yPosition));
                                   }),
@@ -61,25 +58,9 @@ class Board extends StatelessWidget {
                           )
                           .toList()))
                 ]),
-            Visibility(
-              visible: matchResult == MatchResult.tie && !disableResetButton,
-              child: Center(
-                  child: Container(
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(100)),
-                      margin: EdgeInsets.zero,
-                      child: IconButton(
-                          onPressed: () =>
-                              context.read<TicTacToeBloc>().add(ResetBoard()),
-                          icon: const Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Icon(
-                              Icons.replay_outlined,
-                              size: 50,
-                            ),
-                          )))),
-            )
+            ResetBoardWidget(
+                    matchResult: matchResult, disableReset: disableResetButton)
+                .boardButton
           ],
         ));
   }

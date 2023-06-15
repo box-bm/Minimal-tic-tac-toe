@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
-import 'package:minimal_tic_tac_toe/models/ai.dart';
+import 'package:minimal_tic_tac_toe/models/levels.dart';
 import 'package:minimal_tic_tac_toe/models/player.dart';
 import 'package:minimal_tic_tac_toe/widgets/history/match_result_card.dart';
 
@@ -12,8 +12,6 @@ class MatchesHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var singlePlayer = context.read<TicTacToeBloc>().state.singlePlayer;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).record),
@@ -25,16 +23,17 @@ class MatchesHistory extends StatelessWidget {
         ],
       ),
       body: SafeArea(child: BlocBuilder<PlayersBloc, PlayersState>(
-        builder: (context, state) {
-          var players = [
-            state.player1,
-            singlePlayer
-                ? AI().player(color: state.player2.color)
-                : state.player2
-          ];
+        builder: (context, playersState) {
           return BlocBuilder<TicTacToeBloc, TicTacToeState>(
             builder: (context, state) {
               var history = state.history.reversed;
+
+              var players = [
+                playersState.player1,
+                state.singlePlayer
+                    ? state.iaLevel!.player
+                    : playersState.player2
+              ];
 
               if (history.isEmpty) {
                 return Center(
@@ -55,6 +54,7 @@ class MatchesHistory extends StatelessWidget {
                   ),
                 );
               }
+
               return ListView.builder(
                 itemBuilder: (context, index) {
                   Player? playerWinner =
@@ -64,6 +64,7 @@ class MatchesHistory extends StatelessWidget {
                       playerWinner == players.elementAt(1) ? 1 : 0;
 
                   return MatchResultCard(
+                      players: players,
                       board: history.elementAt(index).board.board,
                       playerWinner: playerWinner,
                       matchResult: history.elementAt(index).matchResult,

@@ -1,11 +1,11 @@
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:minimal_tic_tac_toe/widgets/adds/add_banner.dart';
-import 'package:minimal_tic_tac_toe/widgets/game_option_buttons.dart';
+import 'package:minimal_tic_tac_toe/widgets/levels/game_option_buttons.dart';
 import 'package:minimal_tic_tac_toe/widgets/game_title.dart';
 import 'package:minimal_tic_tac_toe/widgets/logo.dart';
-import 'package:minimal_tic_tac_toe/widgets/rate_app_button.dart';
-import 'package:minimal_tic_tac_toe/widgets/settings_button.dart';
-import 'package:minimal_tic_tac_toe/widgets/share_button.dart';
+import 'package:minimal_tic_tac_toe/widgets/buttons/rate_app_button.dart';
+import 'package:minimal_tic_tac_toe/widgets/buttons/settings_button.dart';
+import 'package:minimal_tic_tac_toe/widgets/buttons/share_button.dart';
 
 class Presentation extends StatelessWidget {
   static String route = "presentation";
