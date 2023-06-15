@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
-import 'package:minimal_tic_tac_toe/models/ai.dart';
+import 'package:minimal_tic_tac_toe/models/levels.dart';
 import 'package:minimal_tic_tac_toe/screens/tic_tac_toe.dart';
 import 'package:minimal_tic_tac_toe/widgets/levels/game_level_button.dart';
 
@@ -20,39 +20,28 @@ class SingleGameLevels extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        const Spacer(flex: 2),
+        const Spacer(flex: 3),
         Text(S.of(context).difficult,
             style: Theme.of(context).textTheme.titleLarge),
         Text(S.of(context).selectYourDifficultLabel),
         const SizedBox(height: 20),
-        GameLevelButton(
-            onPressed: () => onPressOption(context, Level.easy),
-            icon: Icons.face_5_outlined,
-            label: S.of(context).easy,
-            background: const Color.fromARGB(255, 44, 135, 192)),
-        GameLevelButton(
-            onPressed: () => onPressOption(context, Level.medium),
-            icon: Icons.face_outlined,
-            label: S.of(context).medium,
-            background: const Color.fromARGB(255, 64, 192, 44)),
-        GameLevelButton(
-            onPressed: () => onPressOption(context, Level.hight),
-            icon: Icons.face_retouching_natural_outlined,
-            label: S.of(context).hard,
-            background: const Color.fromARGB(255, 212, 125, 38)),
-        GameLevelButton(
-            onPressed: () => onPressOption(context, Level.imposible),
-            icon: Icons.local_fire_department,
-            label: S.of(context).impossible,
-            background: const Color.fromARGB(255, 192, 54, 44)),
+        ...Level.values
+            .map(
+              (e) => GameLevelButton(
+                  onPressed: () => onPressOption(context, e),
+                  icon: e.icon,
+                  label: e.label,
+                  background: e.color),
+            )
+            .toList(),
         const Spacer(),
         TextButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => Navigator.pop(context),
           child: Text(S.of(context).cancel),
         ),
-        const Spacer()
+        const Spacer(
+          flex: 2,
+        )
       ],
     );
   }

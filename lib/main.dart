@@ -14,7 +14,7 @@ Future<void> main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   Directory dir = await getApplicationDocumentsDirectory();
   HydratedBloc.storage = await HydratedStorage.build(storageDirectory: dir);
-  Ads().init();
-  rateMyApp.init();
+  Ads.init();
+  await rateMyApp.init();
   runApp(const TicTacToeApp());
 }

@@ -9,6 +9,7 @@ import 'package:minimal_tic_tac_toe/utils/use_color_by_backgroud_color.dart';
 
 class MatchResultCard extends StatelessWidget {
   final Player? playerWinner;
+  final List<Player> players;
   final List<List<BoardItem>> board;
   final MatchResult matchResult;
   final int playerWinnerNumber;
@@ -17,6 +18,7 @@ class MatchResultCard extends StatelessWidget {
   const MatchResultCard(
       {super.key,
       this.playerWinner,
+      required this.players,
       required this.matchResult,
       required this.playerWinnerNumber,
       required this.dateTimeMatchFinished,
@@ -40,6 +42,7 @@ class MatchResultCard extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => MatchBoard(
+                        players: players,
                         board: board,
                         matchResult: matchResult,
                         winner: playerWinner,

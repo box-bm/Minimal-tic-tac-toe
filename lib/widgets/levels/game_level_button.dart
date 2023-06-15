@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class GameLevelButton extends StatelessWidget {
   final IconData icon;
-  final String label;
+  final Widget label;
   final Function()? onPressed;
   final Color foreground;
   final Color background;
@@ -21,7 +21,7 @@ class GameLevelButton extends StatelessWidget {
     return ElevatedButton.icon(
       onPressed: onPressed,
       icon: Icon(icon),
-      label: Text(label),
+      label: label,
       style: ElevatedButton.styleFrom(
         backgroundColor: background,
         foregroundColor: foreground,
