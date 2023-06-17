@@ -31,7 +31,7 @@ class BoardButton extends StatelessWidget {
           elevation: getElevation(),
           color: getColor(),
           child: InkWell(
-            onTap: player != null && disabled ? null : tapButton,
+            onTap: player != null || disabled ? null : tapButton,
             onTapDown: (_) =>
                 context.read<TicTacToeBloc>().add(PressItemButton()),
             onTapCancel: () =>
