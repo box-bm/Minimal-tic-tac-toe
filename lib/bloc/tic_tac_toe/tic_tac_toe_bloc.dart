@@ -4,6 +4,7 @@ import 'package:minimal_tic_tac_toe/models/ai.dart';
 import 'package:minimal_tic_tac_toe/models/board.dart';
 import 'package:minimal_tic_tac_toe/models/board_item.dart';
 import 'package:minimal_tic_tac_toe/models/board_match_history_item.dart';
+import 'package:minimal_tic_tac_toe/models/levels.dart';
 import 'package:minimal_tic_tac_toe/models/match_result.dart';
 import 'package:minimal_tic_tac_toe/utils/validate_player_wins.dart';
 
@@ -80,9 +81,8 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
     });
 
     on<MakeAIMove>((event, emit) async {
-      AI ai = AI();
-      var move =
-          ai.findMoveByLevel(state.board.board, state.iaLevel ?? Level.easy);
+      var move = const AI()
+          .findMoveByLevel(state.board.board, state.iaLevel ?? Level.easy);
       add(PressItemButton());
       add(SelectOption(move.row, move.col));
     });
@@ -120,9 +120,7 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
           emit(GameEnded(
             iaLevel: state.iaLevel,
             playerWinner: winner,
-            currentPlayer: matchResult == MatchResult.tie
-                ? state.currentPlayer
-                : changePlayer(state.currentPlayer),
+            currentPlayer: changePlayer(state.currentPlayer),
             board: boardResult,
             history: [
               ...state.history,

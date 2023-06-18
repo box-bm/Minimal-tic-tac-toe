@@ -8,6 +8,7 @@ import 'package:minimal_tic_tac_toe/utils/get_player_winner.dart';
 import 'package:minimal_tic_tac_toe/widgets/board/board.dart';
 
 class MatchBoard extends StatelessWidget {
+  final List<Player> players;
   final List<List<BoardItem>> board;
   final Player? winner;
   final int winnerPlayerNumber;
@@ -16,6 +17,7 @@ class MatchBoard extends StatelessWidget {
 
   const MatchBoard(
       {super.key,
+      required this.players,
       required this.board,
       required this.matchResult,
       required this.dateTimeMatchFinished,
@@ -53,6 +55,7 @@ class MatchBoard extends StatelessWidget {
               children: [
                 Expanded(
                   child: Board(
+                    players: players,
                     currentPlayer: 1,
                     board: board,
                     matchResult: matchResult,

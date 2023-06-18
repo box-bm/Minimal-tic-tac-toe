@@ -1,4 +1,4 @@
-import 'package:minimal_tic_tac_toe/models/ai.dart';
+import 'package:minimal_tic_tac_toe/models/levels.dart';
 import 'package:minimal_tic_tac_toe/models/match_result.dart';
 
 import 'board_item.dart';

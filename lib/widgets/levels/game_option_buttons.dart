@@ -4,7 +4,7 @@ import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:minimal_tic_tac_toe/screens/tic_tac_toe.dart';
 import 'package:minimal_tic_tac_toe/utils/use_color_by_backgroud_color.dart';
-import 'package:minimal_tic_tac_toe/widgets/single_game_levels.dart';
+import 'package:minimal_tic_tac_toe/widgets/levels/single_game_levels.dart';
 
 class GameOptionButtons extends StatelessWidget {
   const GameOptionButtons({super.key});

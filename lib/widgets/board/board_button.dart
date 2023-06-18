@@ -26,45 +26,37 @@ class BoardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-        aspectRatio: 1,
-        child: Card(
+      aspectRatio: 1,
+      child: Card(
           elevation: getElevation(),
           color: getColor(),
-          child: Semantics(
-            label: "Row ${xPosition + 1}, Column ${yPosition + 1}",
-            button: true,
-            selected: player != null,
-            child: InkWell(
-              // enableFeedback: context.read<SoundsCubit>().state,
-              onTap: player != null || disabled ? null : tapButton,
-              onTapDown: (details) {
-                context.read<TicTacToeBloc>().add(PressItemButton());
-              },
-              onTapCancel: () {
-                context.read<TicTacToeBloc>().add(CancelPressButton());
-              },
-              borderRadius: BorderRadius.circular(10),
-              child: FittedBox(
-                  fit: BoxFit.fill,
-                  child: Padding(
-                    padding: const EdgeInsets.all(2),
-                    child: Icon(player?.iconData, color: getIconColor()),
-                  )),
-            ),
-          ),
-        ));
-  }
-
-  double? getElevation() {
-    if (winner) return 10;
-    if (tie || player != null) return 0;
-    return null;
+          child: InkWell(
+            onTap: player != null || disabled ? null : tapButton,
+            onTapDown: (_) =>
+                context.read<TicTacToeBloc>().add(PressItemButton()),
+            onTapCancel: () =>
+                context.read<TicTacToeBloc>().add(CancelPressButton()),
+            borderRadius: BorderRadius.circular(10),
+            child: FittedBox(
+                fit: BoxFit.fill,
+                child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Icon(player?.iconData, color: getIconColor()),
+                )),
+          )),
+    );
   }
 
   Color? getColor() {
     if (tie) return player?.color.withAlpha(10);
     if (winner) return player?.color;
     if (player != null) return player?.color.withOpacity(0.2);
+    return null;
+  }
+
+  double? getElevation() {
+    if (winner) return 10;
+    if (tie || player != null) return 0;
     return null;
   }
 
