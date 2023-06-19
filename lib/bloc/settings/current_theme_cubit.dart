@@ -17,8 +17,6 @@ class ThemeCubit extends HydratedCubit<ThemeMode> {
         return ThemeMode.light;
       case "dark":
         return ThemeMode.dark;
-      case "system":
-        return ThemeMode.system;
       default:
         return ThemeMode.system;
     }
@@ -33,9 +31,6 @@ class ThemeCubit extends HydratedCubit<ThemeMode> {
         break;
       case ThemeMode.dark:
         mode = "dark";
-        break;
-      case ThemeMode.system:
-        mode = "system";
         break;
       default:
         mode = "system";
