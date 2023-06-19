@@ -58,7 +58,7 @@ android {
 
     defaultConfig {
         applicationId "com.boxdev.minimal_tic_tac_toe"
-        minSdkVersion 19
+        minSdkVersion 21
         multiDexEnabled true
         targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
@@ -97,11 +97,11 @@ flutter {
 
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
-
+    implementation "androidx.core:core-splashscreen:1.0.1"
     implementation 'com.google.android.material:material:1.9.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     // implementation "com.google.android.gms:play-services-games-v2:+"
-    implementation 'com.google.android.gms:play-services-ads:22.0.0'
+    implementation 'com.google.android.gms:play-services-ads:22.1.0'
     implementation 'com.android.support:multidex:2.0.1'
     
 }
