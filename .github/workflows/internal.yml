@@ -105,7 +105,7 @@ jobs:
         run: pwd
       
       - name: Flutter Auto Tag
-        uses: jacopocarlini/action-autotag@3.0.0
+        uses: jacopocarlini/action-autotag@stable
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
