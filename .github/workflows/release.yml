@@ -93,13 +93,13 @@ jobs:
           ANDROID_UPLOAD_SIGNATURE: ${{ secrets.PLAY_CONFIG_JSON }}
         run: bundle exec fastlane deployToPlaystoreOpenTest
 
-  create_tag_version:
-    name: create tag for this version
-    needs: [deploy_android]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: jacopocarlini/action-autotag@stable
-        with:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          tag_prefix: "v"
+  # create_tag_version:
+  #   name: create tag for this version
+  #   needs: [deploy_android]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: jacopocarlini/action-autotag@stable
+  #       with:
+  #         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+  #         tag_prefix: "v"
