@@ -25,7 +25,7 @@ class PlayerIconPicker extends StatelessWidget {
         trailing: InkWell(
           borderRadius: BorderRadius.circular(100),
           onTap: () => navigate(context),
-          child: Icon(player.iconData, size: 44, color: player.color),
+          child: Icon(player.gameIcon.icon, size: 44, color: player.color),
         ));
   }
 }

@@ -81,8 +81,7 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
     });
 
     on<MakeAIMove>((event, emit) async {
-      var move = const AI()
-          .findMoveByLevel(state.board.board, state.iaLevel ?? Level.easy);
+      var move = const AI().findMoveByLevel(state.board.board, state.iaLevel!);
       add(PressItemButton());
       add(SelectOption(move.row, move.col));
     });
@@ -107,41 +106,33 @@ class TicTacToeBloc extends Bloc<TicTacToeEvent, TicTacToeState> {
           if (state.singlePlayer && state.currentPlayer == 1) {
             add(MakeAIMove());
           }
-        } else {
-          var winner =
-              matchResult == MatchResult.tie ? null : state.currentPlayer;
-
-          var boardResult = newBoard.copyWith(
-              playerWinner: winner,
-              matchResult: matchResult,
-              board: newBoard.board,
-              boardSize: state.board.boardSize);
-
-          emit(GameEnded(
-            iaLevel: state.iaLevel,
-            playerWinner: winner,
-            currentPlayer: changePlayer(state.currentPlayer),
-            board: boardResult,
-            history: [
-              ...state.history,
-              BoardMatchHistoryItem(
-                  dateTime: DateTime.now(),
-                  matchResult: matchResult,
-                  playerWinner: winner,
-                  board: boardResult)
-            ],
-            singlePlayer: state.singlePlayer,
-          ));
+          return;
         }
-      }
-    });
-    on<ChangeBoardSize>((event, emit) {
-      emit(TicTacToeInitial(
+        var winner =
+            matchResult == MatchResult.tie ? null : state.currentPlayer;
+
+        var boardResult = newBoard.copyWith(
+            playerWinner: winner,
+            matchResult: matchResult,
+            board: newBoard.board,
+            boardSize: state.board.boardSize);
+
+        emit(GameEnded(
           iaLevel: state.iaLevel,
+          playerWinner: winner,
+          currentPlayer: changePlayer(state.currentPlayer),
+          board: boardResult,
+          history: [
+            ...state.history,
+            BoardMatchHistoryItem(
+                dateTime: DateTime.now(),
+                matchResult: matchResult,
+                playerWinner: winner,
+                board: boardResult)
+          ],
           singlePlayer: state.singlePlayer,
-          board: _createBoardByDimensions(event.size),
-          currentPlayer: state.currentPlayer,
-          playerWinner: state.playerWinner));
+        ));
+      }
     });
   }
 

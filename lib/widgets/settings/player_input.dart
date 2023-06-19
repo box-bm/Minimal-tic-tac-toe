@@ -42,16 +42,16 @@ class _PlayerInputState extends State<PlayerInput> {
     return BlocListener<PlayersBloc, PlayersState>(
         listener: (context, state) {
           if (widget.playerNumber == 1) {
-            if (state.player1.playerName != playerInputController.text) {
-              playerInputController.text = state.player1.playerName;
+            if (state.players[0].playerName != playerInputController.text) {
+              playerInputController.text = state.players[0].playerName;
               playerInputController.selection = TextSelection.collapsed(
-                  offset: state.player1.playerName.length);
+                  offset: state.players[0].playerName.length);
             }
           } else if (widget.playerNumber == 2) {
-            if (state.player2.playerName != playerInputController.text) {
-              playerInputController.text = state.player2.playerName;
+            if (state.players[1].playerName != playerInputController.text) {
+              playerInputController.text = state.players[1].playerName;
               playerInputController.selection = TextSelection.collapsed(
-                  offset: state.player2.playerName.length);
+                  offset: state.players[1].playerName.length);
             }
           }
         },
@@ -63,15 +63,15 @@ class _PlayerInputState extends State<PlayerInput> {
               controller: playerInputController,
               onChanged: (value) => changeValue(value),
               decoration: InputDecoration(
-                  prefixIcon:  IconButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, IconSelection.route,
-                              arguments: widget.playerNumber);
-                        },
-                        icon: Semantics(
-                          label: "Change player ${widget.playerNumber} icon",
-                          button: true,
-                          child:Icon(widget.player.iconData),
+                  prefixIcon: IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, IconSelection.route,
+                            arguments: widget.playerNumber);
+                      },
+                      icon: Semantics(
+                        label: "Change player ${widget.playerNumber} icon",
+                        button: true,
+                        child: Icon(widget.player.gameIcon.icon),
                       )),
                   prefixIconColor: widget.player.color,
                   suffixIcon: Visibility(

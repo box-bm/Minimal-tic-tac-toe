@@ -58,10 +58,9 @@ class _TicTacToeState extends State<TicTacToe> {
         },
         buildWhen: (previous, current) => true,
         builder: (context, state) {
-          var players = [
-            playersState.player1,
-            state.iaLevel != null ? state.iaLevel!.player : playersState.player2
-          ];
+          var players = state.singlePlayer
+              ? [playersState.players.elementAt(0), state.iaLevel!.player]
+              : playersState.players;
 
           var resetBoardWidgets = ResetBoardWidget(
               matchResult: state.board.matchResult,

@@ -54,7 +54,7 @@ class MatchResultCard extends StatelessWidget {
               child: Row(
                 children: [
                   Icon(
-                    tie ? Icons.tag_outlined : playerWinner?.iconData,
+                    tie ? Icons.tag_outlined : playerWinner?.gameIcon.icon,
                     size: 45,
                     color: contentColor,
                   ),

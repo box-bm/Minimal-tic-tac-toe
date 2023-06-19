@@ -23,16 +23,11 @@ class Settings extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   BlocBuilder<PlayersBloc, PlayersState>(
-                    builder: (context, state) {
-                      return Column(
-                        children: [
-                          PlayerSetting(playerNumber: 1, player: state.player1),
-                          const SizedBox(height: 10),
-                          PlayerSetting(playerNumber: 2, player: state.player2),
-                        ],
-                      );
-                    },
-                  ),
+                      builder: (context, state) => Column(
+                          children: state.players
+                              .map((e) => PlayerSetting(
+                                  playerNumber: e.playernumber ?? 1, player: e))
+                              .toList())),
                   const Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: Divider()),

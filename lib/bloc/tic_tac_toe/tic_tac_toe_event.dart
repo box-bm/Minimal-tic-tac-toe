@@ -22,11 +22,6 @@ class PressItemButton extends TicTacToeEvent {}
 
 class CancelPressButton extends TicTacToeEvent {}
 
-class ChangeBoardSize extends TicTacToeEvent {
-  final int size;
-  const ChangeBoardSize(this.size);
-}
-
 class ChangePlayerTurn extends TicTacToeEvent {}
 
 class ClearHistory extends TicTacToeEvent {}

@@ -28,12 +28,9 @@ class MatchesHistory extends StatelessWidget {
             builder: (context, state) {
               var history = state.history.reversed;
 
-              var players = [
-                playersState.player1,
-                state.singlePlayer
-                    ? state.iaLevel!.player
-                    : playersState.player2
-              ];
+              var players = state.singlePlayer
+                  ? [playersState.players[0], state.iaLevel!.player]
+                  : playersState.players;
 
               if (history.isEmpty) {
                 return Center(

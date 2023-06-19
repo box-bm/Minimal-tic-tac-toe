@@ -41,7 +41,7 @@ class BoardButton extends StatelessWidget {
                 fit: BoxFit.fill,
                 child: Padding(
                   padding: const EdgeInsets.all(2),
-                  child: Icon(player?.iconData, color: getIconColor()),
+                  child: Icon(player?.gameIcon.icon, color: getIconColor()),
                 )),
           )),
     );

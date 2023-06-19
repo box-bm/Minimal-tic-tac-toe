@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:minimal_tic_tac_toe/models/game_icon.dart';
 import 'package:minimal_tic_tac_toe/models/player.dart';
 import 'package:minimal_tic_tac_toe/repository/default_players.dart';
 
@@ -10,44 +11,28 @@ part 'players_state.dart';
 class PlayersBloc extends HydratedBloc<PlayersEvent, PlayersState> {
   PlayersBloc() : super(const PlayersInitial()) {
     on<ChangePlayerName>((event, emit) {
-      var name = event.name;
+      var players = state.players;
+      players
+          .elementAt(event.playerNumber - 1)
+          .copyWith(playerName: event.name);
 
-      if (event.playerNumber == 1) {
-        emit(PlayersLoaded(
-            player1: state.player1.copyWith(playerName: name),
-            player2: state.player2));
-      } else {
-        emit(PlayersLoaded(
-            player1: state.player1,
-            player2: state.player2.copyWith(playerName: name)));
-      }
+      emit(PlayersLoaded(players: players));
     });
     on<ChangePlayerColor>((event, emit) {
-      if (event.playerNumber == 1) {
-        emit(PlayersLoaded(
-            player1: state.player1.copyWith(color: event.color),
-            player2: state.player2));
-      } else {
-        emit(PlayersLoaded(
-            player1: state.player1,
-            player2: state.player2.copyWith(color: event.color)));
-      }
+      var players = state.players;
+      players.elementAt(event.playerNumber - 1).copyWith(color: event.color);
+      emit(PlayersLoaded(players: players));
     });
     on<ChangePlayerIconData>((event, emit) {
-      if (event.playerNumber == 1) {
-        emit(PlayersLoaded(
-            player1: state.player1.copyWith(iconData: event.iconData),
-            player2: state.player2));
-      } else {
-        emit(PlayersLoaded(
-            player1: state.player1,
-            player2: state.player2.copyWith(iconData: event.iconData)));
-      }
+      var players = state.players;
+      players
+          .elementAt(event.playerNumber - 1)
+          .copyWith(gameIcon: event.gameIcon);
+      emit(PlayersLoaded(players: players));
     });
 
     on<ResetChanges>((event, emit) {
-      emit(const PlayersLoaded(
-          player1: defaultPlayer1, player2: defaultPlayer2));
+      emit(const PlayersInitial());
     });
   }
 
@@ -56,7 +41,7 @@ class PlayersBloc extends HydratedBloc<PlayersEvent, PlayersState> {
     try {
       var player1 = Player.fromJSON(json['player1']);
       var player2 = Player.fromJSON(json['player2']);
-      return PlayersLoaded(player1: player1, player2: player2);
+      return PlayersLoaded(players: [player1, player2]);
     } catch (e) {
       return null;
     }
