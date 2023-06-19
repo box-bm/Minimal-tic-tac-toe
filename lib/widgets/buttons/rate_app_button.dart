@@ -6,11 +6,13 @@ class RateAppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        showStarRateDialog(context);
-      },
-      icon: Semantics(button: true, child: const Icon(Icons.star)),
-    );
+    if (rateMyApp.shouldOpenDialog) {
+      return IconButton(
+        onPressed: () => showStarRateDialog(context),
+        icon: Semantics(
+            button: true, child: const Icon(Icons.star_border_rounded)),
+      );
+    }
+    return const SizedBox();
   }
 }

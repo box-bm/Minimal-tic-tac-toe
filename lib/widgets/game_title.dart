@@ -12,11 +12,11 @@ class GameTitle extends StatelessWidget {
         children: [
           Text("Minimal",
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.displayMedium?.copyWith(
+              style: Theme.of(context).textTheme.displayLarge?.copyWith(
                   color: context.read<PlayersBloc>().state.player1.color)),
           Text("Tic tac toe",
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.displayMedium?.copyWith(
+              style: Theme.of(context).textTheme.displayLarge?.copyWith(
                   color: context.read<PlayersBloc>().state.player2.color)),
         ],
       );

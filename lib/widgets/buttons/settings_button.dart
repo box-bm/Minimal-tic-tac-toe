@@ -13,7 +13,7 @@ class SettingsButton extends StatelessWidget {
       icon: Semantics(
           label: "Go to Settings",
           button: true,
-          child: const Icon(Icons.settings)),
+          child: const Icon(Icons.settings_outlined)),
     );
   }
 }
