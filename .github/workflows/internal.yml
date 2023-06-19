@@ -1,8 +1,8 @@
-name: Playstore deployment
+name: Playstore internal test deployment
 on:
   push:
     branches:
-      - dev
+      - internal
 
 jobs:
   deploy_android_internal_test:
