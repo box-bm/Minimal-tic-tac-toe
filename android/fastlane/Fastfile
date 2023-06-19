@@ -21,17 +21,8 @@ platform :android do
     gradle(task: "test")
   end
 
-  desc "Build a new app using local key"
-  lane :buildApp do
-    gradle(
-      task: "assemble",
-      build_type: "Release"
-    )
-  end
-
   desc "Deploy a beta version to the Google Play"
-  lane :deployBetaToPlaystore do
-    # gradle(task: 'assemble', build_type: 'Release')
+  lane :deployToPlaystoreOpenTest do
     upload_to_play_store(
         track: "beta",
         aab: "../build/app/outputs/bundle/release/app-release.aab",
@@ -39,14 +30,14 @@ platform :android do
         skip_upload_metadata: true,
         skip_upload_images: true,
         skip_upload_screenshots: true,
-        release_status: "draft",
         version_code: flutter_version()["version_code"]
       )
   end
-
-  desc "Deploy a new version to the Google Play"
-  lane :deploy do
-    gradle(task: "clean bundleRelease", release_status: "draft")
-    upload_to_play_store(release_status: "draft" )
+  
+  desc "Deploy a beta internal version to the Google Play"
+  lane :deployToPlaystoreInternalTest do
+    upload_to_play_store_internal_app_sharing(
+        aab: "../build/app/outputs/bundle/release/app-release.aab"
+      )
   end
 end

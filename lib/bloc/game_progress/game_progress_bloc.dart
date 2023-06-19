@@ -6,8 +6,6 @@ part 'game_progress_state.dart';
 
 class GameProgressBloc extends Bloc<GameProgressEvent, GameProgressState> {
   GameProgressBloc() : super(GameProgressInitial()) {
-    on<GameProgressEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<GameProgressEvent>((event, emit) {});
   }
 }

@@ -2,10 +2,10 @@ name: Playstore deployment
 on:
   push:
     branches:
-      - main
+      - dev
 
 jobs:
-  deploy_android:
+  deploy_android_internal_test:
     name: Deploying to playstore
     runs-on: ubuntu-latest
     defaults:
@@ -91,4 +91,4 @@ jobs:
       - name: Distribute app to Beta track 🚀
         env:
           ANDROID_UPLOAD_SIGNATURE: ${{ secrets.PLAY_CONFIG_JSON }}
-        run: bundle exec fastlane deployToPlaystoreOpenTest
+        run: bundle exec fastlane deployToPlaystoreInternalTest
