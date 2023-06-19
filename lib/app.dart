@@ -28,7 +28,6 @@ class _App extends State<App> {
               darkTheme: buildTheme(Brightness.dark),
               themeMode: state,
               showSemanticsDebugger: false,
-              debugShowCheckedModeBanner: false,
               localizationsDelegates: const [
                 S.delegate,
                 GlobalMaterialLocalizations.delegate,

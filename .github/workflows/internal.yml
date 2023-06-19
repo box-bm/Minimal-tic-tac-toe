@@ -77,7 +77,7 @@ jobs:
         run: flutter pub get
 
       - name: Build the appbundle
-        run: flutter build appbundle --no-tree-shake-icons --debug
+        run: flutter build appbundle --no-tree-shake-icons --release
 
       - name: Install bundle
         run: |
