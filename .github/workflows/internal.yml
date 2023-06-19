@@ -94,7 +94,7 @@ jobs:
         run: bundle exec fastlane deployToPlaystoreInternalTest
 
   create_tag_version:
-    name: create tag for this version
+    name: create tag
     needs: [deploy_android_internal_test]
     runs-on: ubuntu-latest
     steps:
