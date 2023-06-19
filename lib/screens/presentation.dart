@@ -26,7 +26,7 @@ class Presentation extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Spacer(),
-                Expanded(flex: 2, child: Logo()),
+                Expanded(flex: 1, child: Logo()),
                 SizedBox(height: 20),
                 GameTitle(),
                 Spacer(),
