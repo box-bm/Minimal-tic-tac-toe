@@ -11,26 +11,25 @@ part 'players_state.dart';
 class PlayersBloc extends HydratedBloc<PlayersEvent, PlayersState> {
   PlayersBloc() : super(const PlayersInitial()) {
     on<ChangePlayerName>((event, emit) {
-      var players = state.players;
-      players
-          .elementAt(event.playerNumber - 1)
+      var players = [...state.players];
+      players[event.playerNumber] = players
+          .elementAt(event.playerNumber)
           .copyWith(playerName: event.name);
-
       emit(PlayersLoaded(players: players));
     });
     on<ChangePlayerColor>((event, emit) {
-      var players = state.players;
-      players.elementAt(event.playerNumber - 1).copyWith(color: event.color);
+      var players = [...state.players];
+      players[event.playerNumber] =
+          players.elementAt(event.playerNumber).copyWith(color: event.color);
       emit(PlayersLoaded(players: players));
     });
     on<ChangePlayerIconData>((event, emit) {
-      var players = state.players;
-      players
-          .elementAt(event.playerNumber - 1)
+      var players = [...state.players];
+      players[event.playerNumber] = players
+          .elementAt(event.playerNumber)
           .copyWith(gameIcon: event.gameIcon);
       emit(PlayersLoaded(players: players));
     });
-
     on<ResetChanges>((event, emit) {
       emit(const PlayersInitial());
     });

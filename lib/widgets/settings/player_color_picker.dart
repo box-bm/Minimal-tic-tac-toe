@@ -58,7 +58,7 @@ class _PlayerColorPickerState extends State<PlayerColorPicker> {
     return ListTile(
         contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 4),
         title: Text(S.of(context).colorOf(widget.player.playerName.isEmpty
-            ? S.of(context).player(widget.playerNumber)
+            ? S.of(context).player(widget.playerNumber + 1)
             : widget.player.playerName)),
         trailing: InkWell(
           borderRadius: BorderRadius.circular(100),

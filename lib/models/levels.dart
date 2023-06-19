@@ -57,6 +57,6 @@ extension LevelExtension on Level {
   }
 
   Player get player {
-    return Player(playerName: "AI", color: color, gameIcon: icon);
+    return Player(playerName: "AI", color: color, gameIcon: icon, id: "IA");
   }
 }

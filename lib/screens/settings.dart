@@ -26,7 +26,9 @@ class Settings extends StatelessWidget {
                       builder: (context, state) => Column(
                           children: state.players
                               .map((e) => PlayerSetting(
-                                  playerNumber: e.playernumber ?? 1, player: e))
+                                  playerNumber: state.players.indexWhere(
+                                      (element) => element.id == e.id),
+                                  player: e))
                               .toList())),
                   const Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),
