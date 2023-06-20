@@ -82,7 +82,7 @@ class _PlayerInputState extends State<PlayerInput> {
                       borderSide: BorderSide(color: widget.player.color)),
                   labelStyle: TextStyle(color: widget.player.color),
                   labelText: S.of(context).player(widget.playerNumber + 1),
-                  hintText: S.of(context).player(widget.playerNumber)),
+                  hintText: S.of(context).player(widget.playerNumber + 1)),
             )));
   }
 }

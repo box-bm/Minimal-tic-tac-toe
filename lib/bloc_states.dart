@@ -1,3 +1,4 @@
+import 'package:minimal_tic_tac_toe/bloc/game_progress/game_progress_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/settings/current_theme_cubit.dart';
 import 'package:minimal_tic_tac_toe/bloc/settings/sounds_cubit.dart';
 import 'package:minimal_tic_tac_toe/bloc/user/user_bloc.dart';
@@ -18,7 +19,8 @@ class BlocAppStates extends StatelessWidget {
       BlocProvider<TicTacToeBloc>(create: (context) => TicTacToeBloc()),
       BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
       BlocProvider<UserBloc>(create: (context) => UserBloc()),
-      BlocProvider<SoundsCubit>(create: (context) => SoundsCubit())
+      BlocProvider<SoundsCubit>(create: (context) => SoundsCubit()),
+      BlocProvider<GameProgressBloc>(create: (context) => GameProgressBloc()),
     ], child: child);
   }
 }
