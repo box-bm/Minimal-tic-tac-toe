@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:minimal_tic_tac_toe/bloc/game_progress/game_progress_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/players/players_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/settings/sounds_cubit.dart';
 import 'package:minimal_tic_tac_toe/bloc/tic_tac_toe/tic_tac_toe_bloc.dart';
@@ -45,6 +46,11 @@ class _TicTacToeState extends State<TicTacToe> {
           }
 
           if (state is GameEnded) {
+            context.read<GameProgressBloc>().add(OnEndMatch(
+                board: state.board,
+                players: playersState.players,
+                playedMatches: state.history.length));
+
             if (context.read<SoundsCubit>().state) {
               final player = AudioPlayer();
               if (state.board.matchResult == MatchResult.tie) {
