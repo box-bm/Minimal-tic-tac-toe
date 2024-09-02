@@ -3,7 +3,7 @@ import 'package:minimal_tic_tac_toe/bloc/settings/sounds_cubit.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
 
 class SoundSetting extends StatelessWidget {
-  const SoundSetting({Key? key}) : super(key: key);
+  const SoundSetting({super.key});
 
   @override
   Widget build(BuildContext context) {

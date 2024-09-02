@@ -4,7 +4,7 @@ import 'package:minimal_tic_tac_toe/utils/ad_helper.dart';
 import 'package:minimal_tic_tac_toe/common.dart';
 
 class AddBanner extends StatefulWidget {
-  const AddBanner({Key? key}) : super(key: key);
+  const AddBanner({super.key});
 
   @override
   State<AddBanner> createState() => _AddBannerState();
