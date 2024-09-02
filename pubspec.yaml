@@ -44,11 +44,11 @@ dependencies:
   animated_text_kit: ^4.2.2
   path_provider: ^2.0.15
   flutter_colorpicker: ^1.0.3
-  intl: ^0.18.0
+  intl: ^0.19.0
   lit_relative_date_time: ^1.2.0
-  google_mobile_ads: ^3.0.0
-  share_plus: ^7.0.2
-  audioplayers: ^4.1.0
+  google_mobile_ads: ^5.1.0
+  share_plus: ^10.0.2
+  audioplayers: ^6.0.0
   rate_my_app: ^2.0.0
 
 dev_dependencies:
@@ -60,7 +60,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
