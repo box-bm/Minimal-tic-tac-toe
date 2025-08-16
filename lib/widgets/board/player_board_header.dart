@@ -40,7 +40,7 @@ class PlayerBoardHeader extends StatelessWidget {
               textDirection: inverted ? TextDirection.rtl : null,
               children: [
                 Icon(
-                  player.iconData,
+                  player.gameIcon.icon,
                   size: 50,
                   color: getLabelColor(),
                 ),
@@ -52,34 +52,34 @@ class PlayerBoardHeader extends StatelessWidget {
                             : CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Semantics(
-                              excludeSemantics: true,
-                              child: Text(
-                                winnerTimes.toString(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge
-                                    ?.copyWith(
+                      Semantics(
+                          excludeSemantics: true,
+                          child: Text(
+                            winnerTimes.toString(),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge
+                                ?.copyWith(
                                     fontWeight: FontWeight.bold,
                                     color: getLabelColor()),
-                              )),
-                          Semantics(
-                            excludeSemantics: true,
-                            child: Text(
-                              player.playerName.isEmpty
-                                  ? S.of(context).player(inverted ? 2 : 1)
-                                  : player.playerName,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(color: getLabelColor()),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                              textAlign:
+                          )),
+                      Semantics(
+                        excludeSemantics: true,
+                        child: Text(
+                          player.playerName.isEmpty
+                              ? S.of(context).player(inverted ? 2 : 1)
+                              : player.playerName,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(color: getLabelColor()),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          textAlign:
                               inverted ? TextAlign.right : TextAlign.left,
-                            ),
-                          )
-                        ]))
+                        ),
+                      )
+                    ]))
               ],
             ),
           )),

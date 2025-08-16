@@ -1,5 +1,7 @@
 import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:minimal_tic_tac_toe/widgets/adds/add_banner.dart';
+import 'package:minimal_tic_tac_toe/widgets/buttons/achievements_button.dart';
+import 'package:minimal_tic_tac_toe/widgets/buttons/sign_in_button.dart';
 import 'package:minimal_tic_tac_toe/widgets/levels/game_option_buttons.dart';
 import 'package:minimal_tic_tac_toe/widgets/game_title.dart';
 import 'package:minimal_tic_tac_toe/widgets/logo.dart';
@@ -24,7 +26,7 @@ class Presentation extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Spacer(),
-                Expanded(flex: 2, child: Logo()),
+                Expanded(flex: 1, child: Logo()),
                 SizedBox(height: 20),
                 GameTitle(),
                 Spacer(),
@@ -33,7 +35,13 @@ class Presentation extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [ShareButton(), SettingsButton(), RateAppButton()],
+                  children: [
+                    ShareButton(),
+                    SettingsButton(),
+                    RateAppButton(),
+                    SignInButton(),
+                    AchievementsIconButton(),
+                  ],
                 ),
                 Spacer(),
                 AddBanner(),

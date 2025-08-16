@@ -1,33 +1,42 @@
 import 'package:minimal_tic_tac_toe/common.dart';
+import 'package:minimal_tic_tac_toe/models/game_icon.dart';
 
 class Player {
+  final String id;
   final String playerName;
   final Color color;
-  final IconData iconData;
+  final GameIcon gameIcon;
 
-  const Player(
-      {required this.playerName, required this.color, required this.iconData});
+  const Player({
+    required this.id,
+    required this.playerName,
+    required this.color,
+    required this.gameIcon,
+  });
 
   factory Player.fromJSON(Map<String, dynamic> data) {
     return Player(
+        id: data['id'],
         playerName: data['playerName'],
         color: Color(data['color']),
-        iconData: IconData(data['iconData'], fontFamily: 'MaterialIcons'));
+        gameIcon: GameIcon.fromCodePoint(data['gameIcon']));
   }
 
   Map<String, dynamic> toJson() {
     return {
+      "id": id,
       "playerName": playerName,
       "color": color.value,
-      "iconData": iconData.codePoint,
+      "gameIcon": gameIcon.icon.codePoint,
     };
   }
 
-  Player copyWith({String? playerName, Color? color, IconData? iconData}) {
+  Player copyWith({String? playerName, Color? color, GameIcon? gameIcon}) {
     return Player(
+      id: id,
       playerName: playerName ?? this.playerName,
       color: color ?? this.color,
-      iconData: iconData ?? this.iconData,
+      gameIcon: gameIcon ?? this.gameIcon,
     );
   }
 }

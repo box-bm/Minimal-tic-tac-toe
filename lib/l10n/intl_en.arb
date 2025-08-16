@@ -59,5 +59,7 @@
   "rateMessage": "If you are liking the game, give us a rating.",
   "rateButton": "Rate",
   "noRateButton": "No",
-  "rateLaterButton": "Rate later"
+  "rateLaterButton": "Rate later",
+  "signOutGooglePlayGames": "Sign out from Play Games",
+  "signInGooglePlayGames": "Sign in on Google Play Games"
 }

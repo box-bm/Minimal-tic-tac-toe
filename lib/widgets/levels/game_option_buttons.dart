@@ -19,8 +19,7 @@ class GameOptionButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PlayersBloc, PlayersState>(builder: (context, state) {
-      Color player1Color = state.player1.color.withAlpha(180);
-      Color player2Color = state.player2.color.withAlpha(180);
+      List<Color> colors = state.players.map((e) => e.color).toList();
 
       return Column(
         children: [
@@ -31,8 +30,8 @@ class GameOptionButtons extends StatelessWidget {
               icon: const Icon(Icons.person_outline),
               label: Text(S.of(context).singlePlayer),
               style: ElevatedButton.styleFrom(
-                  foregroundColor: useColorByBackgroundColor(player1Color),
-                  backgroundColor: player1Color)),
+                  foregroundColor: useColorByBackgroundColor(colors.first),
+                  backgroundColor: colors.first)),
           ElevatedButton.icon(
               onPressed: () {
                 context.read<TicTacToeBloc>().add(InitMultiplayerPlayerGame());
@@ -41,8 +40,8 @@ class GameOptionButtons extends StatelessWidget {
               icon: const Icon(Icons.people_alt_outlined),
               label: Text(S.of(context).multiplayer),
               style: ElevatedButton.styleFrom(
-                  foregroundColor: useColorByBackgroundColor(player2Color),
-                  backgroundColor: player2Color)),
+                  foregroundColor: useColorByBackgroundColor(colors.last),
+                  backgroundColor: colors.last)),
         ],
       );
     });

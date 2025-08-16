@@ -69,6 +69,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "share": MessageLookupByLibrary.simpleMessage("Share"),
         "shareTextContent": MessageLookupByLibrary.simpleMessage(
             "Download Minimal tic tac toe App from: https://bit.ly/minimal-tic-tac-toe, you\'ll love it! ❌⭕️"),
+        "signInGooglePlayGames": MessageLookupByLibrary.simpleMessage(
+            "Sign in on Google Play Games"),
+        "signOutGooglePlayGames":
+            MessageLookupByLibrary.simpleMessage("Sign out from Play Games"),
         "singlePlayer": MessageLookupByLibrary.simpleMessage("Single Player"),
         "soundsEnabled": MessageLookupByLibrary.simpleMessage("Sounds enabled"),
         "systemTheme": MessageLookupByLibrary.simpleMessage("System Theme"),

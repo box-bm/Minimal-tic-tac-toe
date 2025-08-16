@@ -33,7 +33,7 @@ class SingleGameLevels extends StatelessWidget {
                   .map(
                     (e) => GameLevelButton(
                         onPressed: () => onPressOption(context, e),
-                        icon: e.icon,
+                        icon: e.icon.icon,
                         label: e.label,
                         background: e.color),
                   )

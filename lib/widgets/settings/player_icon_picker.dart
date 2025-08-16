@@ -20,12 +20,12 @@ class PlayerIconPicker extends StatelessWidget {
         onTap: () => navigate(context),
         contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 4),
         title: Text(S.of(context).iconOf(player.playerName.isEmpty
-            ? S.of(context).player(playerNumber)
+            ? S.of(context).player(playerNumber + 1)
             : player.playerName)),
         trailing: InkWell(
           borderRadius: BorderRadius.circular(100),
           onTap: () => navigate(context),
-          child: Icon(player.iconData, size: 44, color: player.color),
+          child: Icon(player.gameIcon.icon, size: 44, color: player.color),
         ));
   }
 }

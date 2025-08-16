@@ -1,4 +1,5 @@
 import 'package:minimal_tic_tac_toe/common.dart';
+import 'package:minimal_tic_tac_toe/models/game_icon.dart';
 import 'package:minimal_tic_tac_toe/models/player.dart';
 
 enum Level { easy, medium, hight, impossible }
@@ -17,16 +18,20 @@ extension LevelExtension on Level {
     }
   }
 
-  IconData get icon {
+  GameIcon get icon {
     switch (this) {
       case Level.easy:
-        return Icons.face_5_outlined;
+        return GameIcon("easyIcon", Icons.face_5_outlined,
+            name: (context) => S.of(context).easy);
       case Level.medium:
-        return Icons.face_outlined;
+        return GameIcon("mediumIcon", Icons.face_outlined,
+            name: (context) => S.of(context).medium);
       case Level.hight:
-        return Icons.face_retouching_natural_outlined;
+        return GameIcon("hightIcon", Icons.face_retouching_natural_outlined,
+            name: (context) => S.of(context).hard);
       case Level.impossible:
-        return Icons.local_fire_department;
+        return GameIcon("impossibleIcon", Icons.local_fire_department,
+            name: (context) => S.of(context).impossible);
     }
   }
 
@@ -52,6 +57,6 @@ extension LevelExtension on Level {
   }
 
   Player get player {
-    return Player(playerName: "AI", color: color, iconData: icon);
+    return Player(playerName: "AI", color: color, gameIcon: icon, id: "IA");
   }
 }

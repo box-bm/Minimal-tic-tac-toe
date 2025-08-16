@@ -13,27 +13,16 @@ class MatchesHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(S.of(context).record),
-        actions: [
-          IconButton(
-              onPressed: () =>
-                  context.read<TicTacToeBloc>().add(ClearHistory()),
-              icon: const Icon(Icons.cleaning_services))
-        ],
-      ),
+      appBar: AppBar(title: Text(S.of(context).record)),
       body: SafeArea(child: BlocBuilder<PlayersBloc, PlayersState>(
         builder: (context, playersState) {
           return BlocBuilder<TicTacToeBloc, TicTacToeState>(
             builder: (context, state) {
               var history = state.history.reversed;
 
-              var players = [
-                playersState.player1,
-                state.singlePlayer
-                    ? state.iaLevel!.player
-                    : playersState.player2
-              ];
+              var players = state.singlePlayer
+                  ? [playersState.players[0], state.iaLevel!.player]
+                  : playersState.players;
 
               if (history.isEmpty) {
                 return Center(

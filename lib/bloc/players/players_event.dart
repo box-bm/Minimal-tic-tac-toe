@@ -29,11 +29,11 @@ class ChangePlayerColor extends PlayersEvent {
 
 class ChangePlayerIconData extends PlayersEvent {
   final int playerNumber;
-  final IconData iconData;
+  final GameIcon gameIcon;
 
   const ChangePlayerIconData({
     required this.playerNumber,
-    required this.iconData,
+    required this.gameIcon,
   });
 }
 

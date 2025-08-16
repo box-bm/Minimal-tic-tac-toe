@@ -449,6 +449,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Sign out from Play Games`
+  String get signOutGooglePlayGames {
+    return Intl.message(
+      'Sign out from Play Games',
+      name: 'signOutGooglePlayGames',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in on Google Play Games`
+  String get signInGooglePlayGames {
+    return Intl.message(
+      'Sign in on Google Play Games',
+      name: 'signInGooglePlayGames',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

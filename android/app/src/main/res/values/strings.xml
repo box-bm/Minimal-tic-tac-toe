@@ -1,0 +1,4 @@
+<resources>
+  <!-- Replace 0000000000 with your game’s project id. Example value shown above.  -->
+  <string translatable="false" name="game_services_project_id"> 345453647172 </string>
+</resources>

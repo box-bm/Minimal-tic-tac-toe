@@ -39,5 +39,7 @@
   "rateMessage": "Si te esta gustando el juego, regalanos una calificación",
   "rateButton": "Calificar",
   "noRateButton": "No",
-  "rateLaterButton": "Recordar más tarde"
+  "rateLaterButton": "Recordar más tarde",
+  "signOutGooglePlayGames": "Salir de Google Play Games",
+  "signInGooglePlayGames": "Iniciar sesion en Google Play Games"
 }
