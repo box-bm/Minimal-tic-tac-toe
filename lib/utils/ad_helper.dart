@@ -22,7 +22,7 @@ class AdHelper {
           ? 'ca-app-pub-3940256099942544/1033173712'
           : 'ca-app-pub-1807964973002727/3338549902';
     } else if (Platform.isIOS) {
-      return '<YOUR_IOS_INTERSTITIAL_AD_UNIT_ID>';
+      return 'ca-app-pub-3940256099942544/1033173712';
     } else {
       throw UnsupportedError('Unsupported platform');
     }

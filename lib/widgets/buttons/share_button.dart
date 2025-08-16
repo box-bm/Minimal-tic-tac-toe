@@ -2,7 +2,7 @@ import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ShareButton extends StatelessWidget {
-  const ShareButton({Key? key}) : super(key: key);
+  const ShareButton({super.key});
 
   @override
   Widget build(BuildContext context) {

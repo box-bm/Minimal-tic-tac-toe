@@ -2,14 +2,13 @@ import 'package:minimal_tic_tac_toe/common.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 
 RateMyApp rateMyApp = RateMyApp(
-  preferencesPrefix: 'minimalTicTacToeRateApp',
-  minDays: 7,
-  minLaunches: 10,
-  remindDays: 7,
-  remindLaunches: 10,
-  googlePlayIdentifier: 'com.boxdev.minimal_tic_tac_toe',
-  // TODO: implement: appStoreIdentifier: '1491556149' // for ios,
-);
+    preferencesPrefix: 'rateMyApp_',
+    minDays: 7,
+    minLaunches: 10,
+    remindDays: 7,
+    remindLaunches: 10,
+    googlePlayIdentifier: 'com.boxdev.minimal_tic_tac_toe',
+    appStoreIdentifier: 'com.boxdev.minimaltictactoe');
 
 void showStarRateDialog(BuildContext context) {
   rateMyApp.showStarRateDialog(
@@ -20,10 +19,14 @@ void showStarRateDialog(BuildContext context) {
       return [
         ElevatedButton(
           child: Text(S.of(context).rateButton),
-          onPressed: () {
-            rateMyApp.callEvent(RateMyAppEventType.rateButtonPressed);
-            Navigator.pop<RateMyAppDialogButton>(
-                context, RateMyAppDialogButton.rate);
+          onPressed: () async {
+            if (context.mounted) {
+              await rateMyApp.callEvent(RateMyAppEventType.rateButtonPressed);
+              Navigator.pop<RateMyAppDialogButton>(
+                  // ignore: use_build_context_synchronously
+                  context,
+                  RateMyAppDialogButton.rate);
+            }
           },
         ),
       ];
