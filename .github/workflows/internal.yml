@@ -86,7 +86,7 @@ jobs:
         run: flutter pub get
 
       - name: Build the appbundle
-        run: flutter build appbundle --no-tree-shake-icons --release --build-number 1$GITHUB_RUN_NUMBER
+        run: flutter build appbundle --no-tree-shake-icons --release --build-number 1${GITHUB_RUN_NUMBER}
 
       - name: Install bundle
         run: |
