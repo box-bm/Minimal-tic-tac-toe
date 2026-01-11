@@ -57,7 +57,7 @@ android {
         applicationId "com.boxdev.minimal_tic_tac_toe"
         minSdkVersion flutter.minSdkVersion
         multiDexEnabled true
-        targetSdkVersion 33
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
