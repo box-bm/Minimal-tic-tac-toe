@@ -1,4 +1,4 @@
-name: Bump version on main merge
+name: Tag current version and bump
 
 on:
   push:
@@ -9,26 +9,32 @@ permissions:
   contents: write
 
 jobs:
-  bump-version:
+  versioning:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Get current version
-        id: version
+      - name: Read current version
+        id: current
         run: |
           VERSION_LINE=$(grep '^version:' pubspec.yaml)
           VERSION=${VERSION_LINE#version: }
-          echo "current=$VERSION" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create git tag from current version
+        run: |
+          git tag v${{ steps.current.outputs.version }}
+          git push origin v${{ steps.current.outputs.version }}
 
       - name: Bump patch version
         id: bump
         run: |
-          VERSION="${{ steps.version.outputs.current }}"
+          VERSION="${{ steps.current.outputs.version }}"
+
           BASE_VERSION=$(echo $VERSION | cut -d'+' -f1)
           BUILD=$(echo $VERSION | cut -s -d'+' -f2)
 
@@ -43,17 +49,12 @@ jobs:
           fi
 
           sed -i "s/^version:.*/version: $NEW_VERSION/" pubspec.yaml
-          echo "new=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
 
-      - name: Commit version bump
+      - name: Commit bumped version
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add pubspec.yaml
-          git commit -m "chore: bump version to ${{ steps.bump.outputs.new }}"
+          git commit -m "chore: bump version to ${{ steps.bump.outputs.new_version }}"
           git push
-
-      - name: Create git tag
-        run: |
-          git tag v${{ steps.bump.outputs.new }}
-          git push origin v${{ steps.bump.outputs.new }}
