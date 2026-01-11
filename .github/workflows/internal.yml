@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: "Branch a ejecutar"
+        description: "Branch"
         required: true
-        default: "develop"
+        default: ""
 
 jobs:
   deploy_android_internal_test:
@@ -27,7 +27,7 @@ jobs:
           bundler-cache: true
 
       - name: Cache Ruby - Bundler
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
@@ -35,18 +35,19 @@ jobs:
             ${{ runner.os }}-gems-
 
       - name: Setup Java
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v5
         with:
-          java-version: 12.x
+          java-version: 17.x
+          distribution: "zulu"
 
       - name: Cache Gradle
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ~/.gradle/caches/
           key: cache-clean-gradle-${{ matrix.os }}-${{ matrix.jdk }}
 
       - name: Cache Gradle Wrapper
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ~/.gradle/wrapper/
           key: cache-clean-wrapper-${{ matrix.os }}-${{ matrix.jdk }}
@@ -78,11 +79,14 @@ jobs:
           channel: stable
       - run: flutter --version
 
+      - name: Clean Flutter project
+        run: flutter clean
+
       - name: Install Flutter dependencies
         run: flutter pub get
 
       - name: Build the appbundle
-        run: flutter build appbundle --no-tree-shake-icons --release
+        run: flutter build appbundle --no-tree-shake-icons --release --build-number 1${GITHUB_RUN_NUMBER}
 
       - name: Install bundle
         run: |
@@ -93,7 +97,7 @@ jobs:
       - name: Init supply
         run: bundle exec fastlane supply init --verbose
 
-      - name: Distribute app to Beta track 🚀
+      - name: Distribute app to internal track 🚀
         env:
           ANDROID_UPLOAD_SIGNATURE: ${{ secrets.PLAY_CONFIG_JSON }}
-        run: bundle exec fastlane deployToPlaystoreInternalTest
+        run: bundle exec fastlane deployInternalToPlaystore
