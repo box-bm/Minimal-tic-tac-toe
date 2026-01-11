@@ -100,4 +100,4 @@ jobs:
       - name: Distribute app to internal track 🚀
         env:
           ANDROID_UPLOAD_SIGNATURE: ${{ secrets.PLAY_CONFIG_JSON }}
-        run: bundle exec fastlane deployToPlaystoreInternalTest
+        run: bundle exec fastlane deployInternalToPlaystore
