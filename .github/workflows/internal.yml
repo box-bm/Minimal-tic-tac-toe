@@ -79,6 +79,9 @@ jobs:
           channel: stable
       - run: flutter --version
 
+      - name: Clean Flutter project
+      - run: flutter clean
+
       - name: Install Flutter dependencies
         run: flutter pub get
 
