@@ -1,35 +1,25 @@
-name: Playstore deployment
+name: Playstore internal test deployment
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch a ejecutar"
+        required: true
+        default: "develop"
 
 jobs:
-  #CI
-  build_android:
-    name: Building Android
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: 12.x
-
-  #CD
-  deploy_android:
-    name: Deploying to playstore
-    needs: [build_android]
+  deploy_android_internal_test:
+    name: Deploying to playstore Internal testing
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./android
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -106,4 +96,4 @@ jobs:
       - name: Distribute app to Beta track 🚀
         env:
           ANDROID_UPLOAD_SIGNATURE: ${{ secrets.PLAY_CONFIG_JSON }}
-        run: bundle exec fastlane deployBetaToPlaystore
+        run: bundle exec fastlane deployToPlaystoreInternalTest
