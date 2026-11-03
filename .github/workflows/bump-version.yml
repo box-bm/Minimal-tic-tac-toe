@@ -7,9 +7,12 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   versioning:
+    # Skip merges of the bump PR itself, otherwise each bump would trigger another one.
+    if: "!contains(github.event.head_commit.message, 'chore: bump version')"
     runs-on: ubuntu-latest
 
     steps:
@@ -27,8 +30,13 @@ jobs:
 
       - name: Create git tag from current version
         run: |
-          git tag v${{ steps.current.outputs.version }}
-          git push origin v${{ steps.current.outputs.version }}
+          TAG="v${{ steps.current.outputs.version }}"
+          if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+            echo "::notice::Tag $TAG already exists, skipping"
+          else
+            git tag "$TAG"
+            git push origin "$TAG"
+          fi
 
       - name: Bump patch version
         id: bump
@@ -51,10 +59,25 @@ jobs:
           sed -i "s/^version:.*/version: $NEW_VERSION/" pubspec.yaml
           echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
 
-      - name: Commit bumped version
+      # main is protected by a ruleset that requires pull requests,
+      # so the bump goes through a PR instead of a direct push.
+      - name: Open pull request with bumped version
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEW_VERSION: ${{ steps.bump.outputs.new_version }}
         run: |
+          BRANCH="chore/bump-version-$NEW_VERSION"
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+          git checkout -b "$BRANCH"
           git add pubspec.yaml
-          git commit -m "chore: bump version to ${{ steps.bump.outputs.new_version }}"
-          git push
+          git commit -m "chore: bump version to $NEW_VERSION"
+          git push --force origin "$BRANCH"
+
+          if [ -n "$(gh pr list --head "$BRANCH" --state open --json number -q '.[].number')" ]; then
+            echo "::notice::PR for $BRANCH already open, branch updated"
+          else
+            gh pr create --base main --head "$BRANCH" \
+              --title "chore: bump version to $NEW_VERSION" \
+              --body "Automatic version bump after tagging v${{ steps.current.outputs.version }}."
+          fi
