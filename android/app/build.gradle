@@ -29,7 +29,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 36
     ndkVersion flutter.ndkVersion
     namespace "com.boxdev.minimal_tic_tac_toe"
 
@@ -57,7 +57,7 @@ android {
         applicationId "com.boxdev.minimal_tic_tac_toe"
         minSdkVersion flutter.minSdkVersion
         multiDexEnabled true
-        targetSdkVersion 35
+        targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
