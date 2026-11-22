@@ -1,0 +1,50 @@
+name: PR Checks
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  # Title edits must not cancel an in-flight test run
+  group: pr-${{ github.event.pull_request.number }}-${{ github.event.action == 'edited' && 'title' || 'code' }}
+  cancel-in-progress: true
+
+jobs:
+  # The PR title becomes part of the merge commit and drives the version bump.
+  pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate Conventional Commit title
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          RE='^(feat|feature|fix|bugfix|perf|refactor|chore|docs|test|build|ci|style|revert)(\([^)]+\))?!?: .+'
+          if ! echo "$TITLE" | grep -qiE "$RE"; then
+            echo "::error::PR title must follow Conventional Commits, e.g. 'feat: add themes', 'fix(ai): wrong winner', 'feat!: new storage format'"
+            exit 1
+          fi
+          if echo "$TITLE" | grep -qE '^[A-Za-z]+(\([^)]+\))?!:'; then BUMP=major
+          elif echo "$TITLE" | grep -qiE '^feat(ure)?'; then BUMP=minor
+          else BUMP=patch; fi
+          echo "### Version impact: \`$BUMP\`" >> "$GITHUB_STEP_SUMMARY"
+
+  test:
+    # Skip re-running tests when only the PR title/body was edited
+    if: github.event.action != 'edited'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - run: flutter pub get
+      - run: flutter analyze --no-fatal-infos
+      - run: flutter test

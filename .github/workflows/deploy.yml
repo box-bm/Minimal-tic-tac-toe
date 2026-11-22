@@ -1,0 +1,166 @@
+name: Deploy
+
+# Manual release: computes the next semver from every commit/PR merged since
+# the last tag, writes it to pubspec.yaml (X.Y.Z+BUILD), builds the AAB, tags,
+# uploads to Play (internal track) and creates a DRAFT GitHub release.
+# After promoting to production in Play Console, run "Publish Release".
+# The version commit is pushed straight to main (same as BoxWallet): the
+# "Block Main" ruleset must list GitHub Actions in its bypass list.
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "Version bump (auto = from Conventional Commits; keep = same versionName, new build number)"
+        type: choice
+        options: [auto, patch, minor, major, keep]
+        default: auto
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./android
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Calculate next version
+        id: version
+        working-directory: .
+        env:
+          BUMP_OVERRIDE: ${{ inputs.bump }}
+        run: |
+          bash .github/scripts/next-version.sh
+          {
+            echo "## 🚀 Deploy $(sed -n 's/^tag=//p' "$GITHUB_OUTPUT" | tail -1)"
+            echo; cat release-notes.md
+            echo; echo "#### Play changelog"; echo '```'; cat play-changelog.txt; echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Redeploy notice
+        if: steps.version.outputs.has_changes != 'true'
+        run: echo "::notice::No new commits since ${{ steps.version.outputs.last_tag }}; redeploying ${{ steps.version.outputs.tag }} without bumping."
+
+      - name: Apply version and changelogs
+        if: steps.version.outputs.has_changes == 'true'
+        working-directory: .
+        env:
+          NAME: ${{ steps.version.outputs.version_name }}
+          CODE: ${{ steps.version.outputs.version_code }}
+        run: |
+          sed -i "s/^version:.*/version: $NAME+$CODE/" pubspec.yaml
+          for dir in android/fastlane/metadata/android/*/; do
+            mkdir -p "$dir/changelogs"
+            # A changelog committed manually in a PR (e.g. translated) wins
+            [ -f "$dir/changelogs/$CODE.txt" ] || cp play-changelog.txt "$dir/changelogs/$CODE.txt"
+          done
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+          working-directory: ./android
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: 17.x
+          distribution: "zulu"
+
+      - name: Configure Keystore and key properties
+        env:
+          ANDROID_UPLOAD_SIGNATURE: ${{ secrets.ANDROID_UPLOAD_SIGNATURE }}
+          KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
+          KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
+          KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
+        run: |
+          echo "$ANDROID_UPLOAD_SIGNATURE" > keystore.jks.b64
+          base64 -d -i keystore.jks.b64 > app/keystore.jks
+          echo "storeFile=keystore.jks" >> key.properties
+          echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> key.properties
+          echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
+          echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> key.properties
+
+      - name: Configure Play service account
+        env:
+          PLAY_CONFIG_JSON: ${{ secrets.PLAY_CONFIG_JSON }}
+        run: |
+          echo "$PLAY_CONFIG_JSON" > service_account_key.json.b64
+          base64 -d -i service_account_key.json.b64 > service_account_key.json
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies and run tests
+        working-directory: .
+        run: |
+          flutter pub get
+          flutter test
+
+      # Version name/code come from pubspec.yaml (already updated above).
+      - name: Build release AAB
+        working-directory: .
+        run: flutter build appbundle --no-tree-shake-icons --release
+
+      - name: Commit version, tag and push
+        if: steps.version.outputs.has_changes == 'true'
+        working-directory: .
+        env:
+          CODE: ${{ steps.version.outputs.version_code }}
+          TAG: ${{ steps.version.outputs.tag }}
+          BUMP: ${{ steps.version.outputs.bump }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pubspec.yaml android/fastlane/metadata/android/*/changelogs/
+          git commit -m "chore(release): $TAG (build $CODE) [skip ci]"
+          git push origin HEAD:main
+          if [ "$BUMP" = "keep" ]; then
+            # Same versionName as an existing tag: move the tag to this build.
+            git tag -fa "$TAG" -m "Release $TAG (build $CODE)"
+            git push --force origin "$TAG"
+          else
+            git tag -a "$TAG" -m "Release $TAG (build $CODE)"
+            git push origin "$TAG"
+          fi
+
+      - name: Upload to Google Play (internal)
+        run: bundle exec fastlane deployInternalToPlaystore
+
+      - name: Create draft GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.version.outputs.tag }}
+          CODE: ${{ steps.version.outputs.version_code }}
+        working-directory: .
+        run: |
+          cp build/app/outputs/bundle/release/app-release.aab "minimal-tic-tac-toe-$TAG.aab"
+          ASSETS=("minimal-tic-tac-toe-$TAG.aab")
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "${ASSETS[@]}" --clobber
+            gh release edit "$TAG" --title "$TAG (build $CODE)"
+          else
+            gh release create "$TAG" "${ASSETS[@]}" \
+              --draft \
+              --title "$TAG (build $CODE)" \
+              --notes-file release-notes.md
+          fi
+
+      - name: Clean up secrets
+        if: always()
+        working-directory: .
+        run: rm -f android/app/keystore.jks android/key.properties android/service_account_key.json*
