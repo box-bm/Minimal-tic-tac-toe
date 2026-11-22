@@ -86,7 +86,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v5
         with:
-          java-version: 17.x
+          java-version: 21.x
           distribution: "zulu"
 
       - name: Configure Keystore and key properties

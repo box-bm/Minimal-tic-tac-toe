@@ -1,6 +1,5 @@
 plugins {
     id "com.android.application"
-    id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
 }
 
@@ -34,8 +33,8 @@ android {
     namespace "com.boxdev.minimal_tic_tac_toe"
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     buildFeatures {
@@ -44,10 +43,6 @@ android {
         renderScript = true
     }
 
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
