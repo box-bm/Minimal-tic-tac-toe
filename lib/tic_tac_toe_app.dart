@@ -1,3 +1,5 @@
+import 'package:cupertino_ui/cupertino_ui.dart'
+    show GlobalCupertinoLocalizations;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:minimal_tic_tac_toe/bloc/settings/current_theme_cubit.dart';
 import 'package:minimal_tic_tac_toe/common.dart';

@@ -9,7 +9,7 @@ class BoardItem {
     this.selectedByPlayerNumber,
   });
 
-  select(int selectedByPlayerNumber) {
+  void select(int selectedByPlayerNumber) {
     this.selectedByPlayerNumber = selectedByPlayerNumber;
   }
 

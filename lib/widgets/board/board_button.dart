@@ -50,7 +50,7 @@ class BoardButton extends StatelessWidget {
   Color? getColor() {
     if (tie) return player?.color.withAlpha(10);
     if (winner) return player?.color;
-    if (player != null) return player?.color.withOpacity(0.2);
+    if (player != null) return player?.color.withValues(alpha: 0.2);
     return null;
   }
 

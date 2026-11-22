@@ -12,13 +12,15 @@ class Player {
     return Player(
         playerName: data['playerName'],
         color: Color(data['color']),
+        // Icons are built dynamically; CI builds with --no-tree-shake-icons.
+        // ignore: non_const_argument_for_const_parameter
         iconData: IconData(data['iconData'], fontFamily: 'MaterialIcons'));
   }
 
   Map<String, dynamic> toJson() {
     return {
       "playerName": playerName,
-      "color": color.value,
+      "color": color.toARGB32(),
       "iconData": iconData.codePoint,
     };
   }

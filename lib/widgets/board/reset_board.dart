@@ -16,7 +16,7 @@ class ResetBoardWidget {
     return const SizedBox();
   }
 
-  reset(BuildContext context) =>
+  void reset(BuildContext context) =>
       context.read<TicTacToeBloc>().add(ResetBoard());
 
   Widget get button {

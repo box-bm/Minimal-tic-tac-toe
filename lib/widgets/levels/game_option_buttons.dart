@@ -9,7 +9,7 @@ import 'package:minimal_tic_tac_toe/widgets/levels/single_game_levels.dart';
 class GameOptionButtons extends StatelessWidget {
   const GameOptionButtons({super.key});
 
-  showFullSizeDialog(BuildContext context) {
+  void showFullSizeDialog(BuildContext context) {
     showDialog<String>(
         context: context,
         builder: (BuildContext context) =>

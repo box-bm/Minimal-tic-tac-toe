@@ -46,6 +46,6 @@ class AdHelper {
 
   static RequestConfiguration get requestConfiguration => RequestConfiguration(
       maxAdContentRating: MaxAdContentRating.g,
-      tagForUnderAgeOfConsent: TagForChildDirectedTreatment.yes,
-      tagForChildDirectedTreatment: TagForChildDirectedTreatment.yes);
+      ageRestrictedTreatment: AgeRestrictedTreatment.child
+      );
 }
