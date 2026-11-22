@@ -1,0 +1,1 @@
+Actualización para Android 16 (API 36) y mejoras de estabilidad.

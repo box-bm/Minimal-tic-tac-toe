@@ -15,6 +15,9 @@
 
 default_platform(:android)
 
+AAB_PATH     = "../build/app/outputs/bundle/release/app-release.aab"
+METADATA_DIR = "fastlane/metadata/android"
+
 platform :android do
   desc "Runs all the tests"
   lane :test do
@@ -29,40 +32,34 @@ platform :android do
     )
   end
 
-  desc "Deploy a beta version to the Google Play"
-  lane :deployBetaToPlaystore do
-    # gradle(task: 'assemble', build_type: 'Release')
-    upload_to_play_store(
-        track: "beta",
-        aab: "../build/app/outputs/bundle/release/app-release.aab",
-        skip_upload_apk: true,
-        skip_upload_metadata: true,
-        skip_upload_images: true,
-        skip_upload_screenshots: true,
-        release_status: "draft",
-        version_code: flutter_version()["version_code"]
-      )
-  end
-  
-  desc "Deploy a internal version to the Google Play (uses changelogs/<versionCode>.txt)"
-  lane :deployInternalToPlaystore do
-    upload_to_play_store(
-        track: "internal",
-        aab: "../build/app/outputs/bundle/release/app-release.aab",
-        metadata_path: "fastlane/metadata/android",
-        skip_upload_apk: true,
-        skip_upload_metadata: true,
-        skip_upload_images: true,
-        skip_upload_screenshots: true,
-        skip_upload_changelogs: false,
-        release_status: "draft",
-        version_code: flutter_version()["version_code"]
-      )
-  end
-
-  desc "Deploy a new version to the Google Play"
+  desc "Upload the built AAB + changelogs (+ store listing) to a Play track"
+  desc "Env: TRACK (internal), RELEASE_STATUS (completed|draft), UPLOAD_STORE_LISTING (true|false)"
   lane :deploy do
-    gradle(task: "clean bundleRelease", release_status: "draft")
-    upload_to_play_store(release_status: "draft" )
+    track          = ENV.fetch("TRACK", "internal")
+    release_status = ENV.fetch("RELEASE_STATUS", "completed")
+    listing        = ENV.fetch("UPLOAD_STORE_LISTING", "false") == "true"
+    root           = File.expand_path("..", __dir__)
+
+    has_images      = Dir.glob("#{root}/#{METADATA_DIR}/*/images/*.{png,jpg,jpeg}").any?
+    has_screenshots = Dir.glob("#{root}/#{METADATA_DIR}/*/images/*Screenshots/*.{png,jpg,jpeg}").any?
+
+    UI.message("📦 track=#{track} status=#{release_status} listing=#{listing} " \
+               "images=#{has_images} screenshots=#{has_screenshots}")
+
+    upload_to_play_store(
+      track: track,
+      release_status: release_status,
+      aab: AAB_PATH,
+      metadata_path: METADATA_DIR,
+      skip_upload_apk: true,
+      # "What's new" from metadata/<locale>/changelogs/<versionCode>.txt (or default.txt)
+      skip_upload_changelogs: false,
+      # title / short_description / full_description / video
+      skip_upload_metadata: !listing,
+      # icon / featureGraphic — only if present in the repo
+      skip_upload_images: !(listing && has_images),
+      skip_upload_screenshots: !(listing && has_screenshots),
+      sync_image_upload: true # only uploads images whose checksum changed
+    )
   end
 end
