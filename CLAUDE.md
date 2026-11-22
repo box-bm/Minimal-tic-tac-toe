@@ -30,7 +30,7 @@ The highest bump across all commits/PRs since the last `v*` tag wins.
 | Workflow | Trigger | What it does |
 |---|---|---|
 | **PR Checks** (`pr-tests.yml`) | PR opened / updated / title edited | Validates the PR title, reports the version impact, runs `flutter analyze` + `flutter test`. |
-| **Deploy** (`deploy.yml`) | manual, from `main` only | Computes the next version (`.github/scripts/next-version.sh`), writes `version: X.Y.Z+BUILD` to `pubspec.yaml` + Play changelogs, builds the AAB, commits `chore(release): vX.Y.Z (build N) [skip ci]` to `main` (the ruleset bypass list includes GitHub Actions), tags `vX.Y.Z`, uploads to Play **internal**, creates a **draft** GitHub release. |
+| **Deploy** (`deploy.yml`) | manual, from `main` only | Computes the next version (`.github/scripts/next-version.sh`), writes `version: X.Y.Z+BUILD` to `pubspec.yaml` + Play changelogs, builds the AAB, commits `chore(release): vX.Y.Z (build N) [skip ci]` to `main` (pushed with a token of the **release GitHub App**, which is in the ruleset bypass list), tags `vX.Y.Z`, uploads to Play **internal**, creates a **draft** GitHub release. |
 | **Publish Release** (`publish-release.yml`) | manual | After promoting the build to production in Play Console, publishes the draft release and marks it **Latest**. |
 
 ### Releasing
@@ -47,6 +47,8 @@ Notes:
 - Override the generated Play changelog (e.g. translated) by committing
   `android/fastlane/metadata/android/<locale>/changelogs/<BUILD>.txt` in a PR before deploying.
 
-## Required repository secrets
+## Required secrets
 
-`ANDROID_UPLOAD_SIGNATURE`, `KEYSTORE_KEY_ALIAS`, `KEYSTORE_KEY_PASSWORD`, `KEYSTORE_STORE_PASSWORD`, `PLAY_CONFIG_JSON` (base64-encoded where the workflows `base64 -d` them).
+Repository: `ANDROID_UPLOAD_SIGNATURE`, `KEYSTORE_KEY_ALIAS`, `KEYSTORE_KEY_PASSWORD`, `KEYSTORE_STORE_PASSWORD`, `PLAY_CONFIG_JSON` (base64-encoded where the workflows `base64 -d` them).
+
+Environment `release` (used by Deploy): `RELEASE_APP_ID`, `RELEASE_APP_PRIVATE_KEY` (GitHub App with `Contents: write`, installed only on this repo and listed in the "Block Main" bypass list; `GITHUB_TOKEN` can't be a bypass actor on personal repos).
