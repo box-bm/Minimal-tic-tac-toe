@@ -10,7 +10,8 @@ class ShareButton extends StatelessWidget {
       label: S.of(context).share,
       child: IconButton(
           onPressed: () async {
-            await Share.share(S.of(context).shareTextContent);
+            await SharePlus.instance
+                .share(ShareParams(text: S.of(context).shareTextContent));
           },
           icon: const Icon(Icons.share_outlined)),
     );

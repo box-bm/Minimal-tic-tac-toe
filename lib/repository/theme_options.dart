@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:minimal_tic_tac_toe/models/theme_option.dart';
 
 List<ThemeOption> themeOptions(BuildContext context) =>  [

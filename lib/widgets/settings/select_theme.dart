@@ -25,7 +25,7 @@ class SelectTheme extends StatelessWidget {
                       color: Theme.of(context).textTheme.bodySmall?.color ??
                           Colors.red))),
           isExpanded: true,
-          value: state,
+          initialValue: state,
           items: themeOptions(context)
               .map<DropdownMenuItem<ThemeMode>>((e) => DropdownMenuItem(
                     value: e.mode,

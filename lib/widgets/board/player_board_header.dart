@@ -96,14 +96,14 @@ class PlayerBoardHeader extends StatelessWidget {
   Color? getColor() {
     if (tie) return player.color.withAlpha(10);
     if (player == winner) return player.color;
-    if (active && winner == null) return player.color.withOpacity(0.8);
+    if (active && winner == null) return player.color.withValues(alpha: 0.8);
     return player.color.withAlpha(10);
   }
 
   Color? getLabelColor() {
     if (player == winner) return useColorByBackgroundColor(player.color);
     if (active && winner == null || tie) {
-      return useColorByBackgroundColor(player.color.withOpacity(0.8));
+      return useColorByBackgroundColor(player.color.withValues(alpha: 0.8));
     }
     return null;
   }

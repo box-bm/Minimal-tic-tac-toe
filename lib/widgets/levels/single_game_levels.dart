@@ -8,7 +8,7 @@ import 'package:minimal_tic_tac_toe/widgets/levels/game_level_button.dart';
 class SingleGameLevels extends StatelessWidget {
   const SingleGameLevels({super.key});
 
-  onPressOption(BuildContext context, Level level) {
+  void onPressOption(BuildContext context, Level level) {
     context.read<TicTacToeBloc>().add(InitSinglePlayerGame(level));
     Navigator.pop(context);
     Navigator.pushNamed(context, TicTacToe.route);

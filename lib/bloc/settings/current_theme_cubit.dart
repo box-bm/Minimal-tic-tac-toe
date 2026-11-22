@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 class ThemeCubit extends HydratedCubit<ThemeMode> {
   ThemeCubit() : super(ThemeMode.system);
 
-  changeTheme(ThemeMode themeMode) {
+  void changeTheme(ThemeMode themeMode) {
     emit(themeMode);
   }
 
@@ -35,9 +35,6 @@ class ThemeCubit extends HydratedCubit<ThemeMode> {
         mode = "dark";
         break;
       case ThemeMode.system:
-        mode = "system";
-        break;
-      default:
         mode = "system";
         break;
     }
