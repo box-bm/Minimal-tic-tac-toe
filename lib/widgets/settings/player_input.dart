@@ -86,8 +86,8 @@ class _PlayerInputState extends State<PlayerInput> {
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: widget.player.color)),
                   labelStyle: TextStyle(color: widget.player.color),
-                  labelText: S.of(context).player(widget.playerNumber),
-                  hintText: S.of(context).player(widget.playerNumber)),
+                  labelText: AppLocalizations.of(context).player(widget.playerNumber),
+                  hintText: AppLocalizations.of(context).player(widget.playerNumber)),
             )));
   }
 }

@@ -9,13 +9,13 @@ class ThemeOption {
   String get name {
     switch (mode) {
       case ThemeMode.dark:
-        return S.of(context).darkTheme;
+        return AppLocalizations.of(context).darkTheme;
 
       case ThemeMode.light:
-        return S.of(context).lightTheme;
+        return AppLocalizations.of(context).lightTheme;
 
       case ThemeMode.system:
-        return S.of(context).systemTheme;
+        return AppLocalizations.of(context).systemTheme;
     }
   }
 }

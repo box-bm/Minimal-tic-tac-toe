@@ -34,7 +34,7 @@ class _PlayerColorPickerState extends State<PlayerColorPicker> {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: Text(S.of(context).selectYourColor),
+              title: Text(AppLocalizations.of(context).selectYourColor),
               content: SingleChildScrollView(
                 child: BlockPicker(
                     availableColors: availableColors,
@@ -46,9 +46,9 @@ class _PlayerColorPickerState extends State<PlayerColorPicker> {
               actions: [
                 TextButton(
                     onPressed: closeChangeColorPicker,
-                    child: Text(S.of(context).cancel)),
+                    child: Text(AppLocalizations.of(context).cancel)),
                 ElevatedButton(
-                    onPressed: submitNewColor, child: Text(S.of(context).save))
+                    onPressed: submitNewColor, child: Text(AppLocalizations.of(context).save))
               ],
             ));
   }
@@ -57,8 +57,8 @@ class _PlayerColorPickerState extends State<PlayerColorPicker> {
   Widget build(BuildContext context) {
     return ListTile(
         contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 4),
-        title: Text(S.of(context).colorOf(widget.player.playerName.isEmpty
-            ? S.of(context).player(widget.playerNumber)
+        title: Text(AppLocalizations.of(context).colorOf(widget.player.playerName.isEmpty
+            ? AppLocalizations.of(context).player(widget.playerNumber)
             : widget.player.playerName)),
         trailing: InkWell(
           borderRadius: BorderRadius.circular(100),

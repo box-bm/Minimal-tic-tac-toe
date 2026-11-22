@@ -11,7 +11,7 @@ class SelectTheme extends StatelessWidget {
     return BlocBuilder<ThemeCubit, ThemeMode>(
       builder: (context, state) => DropdownButtonFormField(
           decoration: InputDecoration(
-              labelText: S.of(context).theme,
+              labelText: AppLocalizations.of(context).theme,
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                       color: Theme.of(context).textTheme.bodySmall?.color ??
