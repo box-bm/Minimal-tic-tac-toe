@@ -36,13 +36,13 @@ class MatchBoard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              S.of(context).matchResult,
+              AppLocalizations.of(context).matchResult,
               textAlign: TextAlign.start,
             ),
             Text(
               matchResult == MatchResult.tie
-                  ? S.of(context).tie
-                  : S.of(context).playerWinner(getPlayerName(
+                  ? AppLocalizations.of(context).tie
+                  : AppLocalizations.of(context).playerWinner(getPlayerName(
                       context, winnerPlayerNumber, winner?.playerName)),
               style: Theme.of(context).textTheme.bodySmall,
               textAlign: TextAlign.start,

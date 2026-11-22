@@ -72,8 +72,8 @@ class _TicTacToeState extends State<TicTacToe> {
           return Scaffold(
               appBar: AppBar(
                   title: Text(state.singlePlayer
-                      ? S.of(context).singlePlayer
-                      : S.of(context).multiplayer),
+                      ? AppLocalizations.of(context).singlePlayer
+                      : AppLocalizations.of(context).multiplayer),
                   actions: [
                     resetBoardWidgets.button,
                     const RecordsButton(),

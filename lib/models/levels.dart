@@ -34,19 +34,19 @@ extension LevelExtension on Level {
     switch (this) {
       case Level.easy:
         return Builder(
-          builder: (context) => Text(S.of(context).easy),
+          builder: (context) => Text(AppLocalizations.of(context).easy),
         );
       case Level.medium:
         return Builder(
-          builder: (context) => Text(S.of(context).medium),
+          builder: (context) => Text(AppLocalizations.of(context).medium),
         );
       case Level.hight:
         return Builder(
-          builder: (context) => Text(S.of(context).hard),
+          builder: (context) => Text(AppLocalizations.of(context).hard),
         );
       case Level.impossible:
         return Builder(
-          builder: (context) => Text(S.of(context).impossible),
+          builder: (context) => Text(AppLocalizations.of(context).impossible),
         );
     }
   }

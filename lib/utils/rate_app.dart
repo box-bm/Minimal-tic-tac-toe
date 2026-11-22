@@ -13,15 +13,15 @@ RateMyApp rateMyApp = RateMyApp(
 void showStarRateDialog(BuildContext context) {
   rateMyApp.showStarRateDialog(
     context,
-    title: S.of(context).rateTitle, // The dialog title.
-    message: S.of(context).rateMessage, // The dialog message.
+    title: AppLocalizations.of(context).rateTitle, // The dialog title.
+    message: AppLocalizations.of(context).rateMessage, // The dialog message.
     // contentBuilder: (context, defaultContent) => content, // This one allows you to change the default dialog content.
     actionsBuilder: (context, stars) {
       // Triggered when the user updates the star rating.
       return [
         // Return a list of actions (that will be shown at the bottom of the dialog).
         ElevatedButton(
-          child: Text(S.of(context).rateButton),
+          child: Text(AppLocalizations.of(context).rateButton),
           onPressed: () async {
             if (context.mounted) {
               await rateMyApp.callEvent(RateMyAppEventType.rateButtonPressed);

@@ -10,6 +10,7 @@
 analyzer:
   exclude:
     - build/**
+    - lib/l10n/app_localizations*.dart
     - android/**
     - ios/**
     - web/**

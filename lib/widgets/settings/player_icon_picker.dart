@@ -19,8 +19,8 @@ class PlayerIconPicker extends StatelessWidget {
     return ListTile(
         onTap: () => navigate(context),
         contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 4),
-        title: Text(S.of(context).iconOf(player.playerName.isEmpty
-            ? S.of(context).player(playerNumber)
+        title: Text(AppLocalizations.of(context).iconOf(player.playerName.isEmpty
+            ? AppLocalizations.of(context).player(playerNumber)
             : player.playerName)),
         trailing: InkWell(
           borderRadius: BorderRadius.circular(100),

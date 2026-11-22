@@ -8,10 +8,10 @@ class TieTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedTextKit(
       animatedTexts: [
-        RotateAnimatedText(S.of(context).tie,
+        RotateAnimatedText(AppLocalizations.of(context).tie,
             textAlign: TextAlign.center,
             textStyle: Theme.of(context).textTheme.displayMedium),
-        RotateAnimatedText(S.of(context).anyoneWins,
+        RotateAnimatedText(AppLocalizations.of(context).anyoneWins,
             textAlign: TextAlign.center,
             textStyle: Theme.of(context).textTheme.displayMedium)
       ],

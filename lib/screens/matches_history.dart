@@ -14,7 +14,7 @@ class MatchesHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).record),
+        title: Text(AppLocalizations.of(context).record),
         actions: [
           IconButton(
               onPressed: () =>
@@ -47,7 +47,7 @@ class MatchesHistory extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        S.of(context).noRecords,
+                        AppLocalizations.of(context).noRecords,
                         style: Theme.of(context).textTheme.bodyLarge,
                       )
                     ],
