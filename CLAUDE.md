@@ -7,7 +7,7 @@ Flutter app (Android/iOS/web/desktop). Code in `lib/`, tests in `test/`. Android
 - **Never commit or push to `main` directly** (ruleset "Block Main"). Every change goes through a branch + PR.
 - **Never edit the `version:` line in `pubspec.yaml` by hand, and never create `v*` tags or GitHub releases manually.**
   The **Deploy** workflow owns versioning. `pubspec.yaml` always holds the *last deployed* `X.Y.Z+BUILD`.
-- The **PR title is the release input**: it lands in the merge commit and decides the version bump,
+- The **PR title is the release input**: it becomes the squash-commit message on `main` and decides the version bump,
   so it must be a Conventional Commit. Use `ci:`/`chore:` for pipeline work so it doesn't show up as a user-facing fix.
 - Don't commit secrets: `*.jks`, `key.properties`, `service_account_key.json`.
 

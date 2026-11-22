@@ -15,6 +15,15 @@ on:
         type: choice
         options: [auto, patch, minor, major, keep]
         default: auto
+      release_status:
+        description: "Play release status (draft only needed for apps never published)"
+        type: choice
+        options: [completed, draft]
+        default: completed
+      upload_store_listing:
+        description: "Upload store listing texts/images from android/fastlane/metadata"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -60,6 +69,8 @@ jobs:
           CODE: ${{ steps.version.outputs.version_code }}
         run: |
           sed -i "s/^version:.*/version: $NAME+$CODE/" pubspec.yaml
+          # Only generic notes? let each locale fall back to its translated default.txt
+          grep -qx "Bug fixes and performance improvements." play-changelog.txt && exit 0
           for dir in android/fastlane/metadata/android/*/; do
             mkdir -p "$dir/changelogs"
             # A changelog committed manually in a PR (e.g. translated) wins
@@ -139,7 +150,10 @@ jobs:
           fi
 
       - name: Upload to Google Play (internal)
-        run: bundle exec fastlane deployInternalToPlaystore
+        env:
+          RELEASE_STATUS: ${{ inputs.release_status }}
+          UPLOAD_STORE_LISTING: ${{ inputs.upload_store_listing }}
+        run: bundle exec fastlane deploy
 
       - name: Create draft GitHub release
         env:
