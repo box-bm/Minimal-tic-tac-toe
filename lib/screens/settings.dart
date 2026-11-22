@@ -14,7 +14,7 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(S.of(context).settings)),
+      appBar: AppBar(title: Text(AppLocalizations.of(context).settings)),
       body: SingleChildScrollView(
           child: SafeArea(
               minimum: const EdgeInsets.only(left: 10, right: 10, top: 12),
@@ -48,7 +48,7 @@ class Settings extends StatelessWidget {
                             .changeTheme(ThemeMode.system);
                       },
                       icon: const Icon(Icons.restore_rounded),
-                      label: Text(S.of(context).resetSettings))
+                      label: Text(AppLocalizations.of(context).resetSettings))
                 ],
               ))),
     );

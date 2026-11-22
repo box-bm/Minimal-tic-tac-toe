@@ -7,11 +7,11 @@ class ShareButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: S.of(context).share,
+      label: AppLocalizations.of(context).share,
       child: IconButton(
           onPressed: () async {
             await SharePlus.instance
-                .share(ShareParams(text: S.of(context).shareTextContent));
+                .share(ShareParams(text: AppLocalizations.of(context).shareTextContent));
           },
           icon: const Icon(Icons.share_outlined)),
     );

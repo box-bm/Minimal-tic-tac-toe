@@ -66,14 +66,14 @@ class MatchResultCard extends StatelessWidget {
                         Visibility(
                             visible: !tie,
                             child: Text(
-                              S.of(context).winner,
+                              AppLocalizations.of(context).winner,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(color: contentColor, height: 1),
                             )),
                         Text(
-                          tie ? S.of(context).tie : getName(context),
+                          tie ? AppLocalizations.of(context).tie : getName(context),
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge
@@ -114,7 +114,7 @@ class MatchResultCard extends StatelessWidget {
 
   String getName(BuildContext context) {
     return (playerWinner?.playerName ?? "").isEmpty
-        ? S.of(context).player(playerWinnerNumber + 1)
+        ? AppLocalizations.of(context).player(playerWinnerNumber + 1)
         : playerWinner!.playerName;
   }
 }

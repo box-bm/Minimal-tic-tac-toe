@@ -21,9 +21,9 @@ class SingleGameLevels extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         const Spacer(flex: 3),
-        Text(S.of(context).difficult,
+        Text(AppLocalizations.of(context).difficult,
             style: Theme.of(context).textTheme.titleLarge),
-        Text(S.of(context).selectYourDifficultLabel),
+        Text(AppLocalizations.of(context).selectYourDifficultLabel),
         const SizedBox(height: 20),
         SizedBox(
           width: 200,
@@ -42,7 +42,7 @@ class SingleGameLevels extends StatelessWidget {
         const Spacer(),
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text(S.of(context).cancel),
+          child: Text(AppLocalizations.of(context).cancel),
         ),
         const Spacer(
           flex: 2,

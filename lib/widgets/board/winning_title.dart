@@ -12,12 +12,12 @@ class WinningTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedTextKit(
       animatedTexts: [
-        FadeAnimatedText(S.of(context).winner,
+        FadeAnimatedText(AppLocalizations.of(context).winner,
             textStyle: Theme.of(context).textTheme.displaySmall,
             textAlign: TextAlign.center),
         FadeAnimatedText(
             (playerName ?? "").isEmpty
-                ? S.of(context).player(playerNumber! + 1)
+                ? AppLocalizations.of(context).player(playerNumber! + 1)
                 : playerName ?? "",
             textAlign: TextAlign.center,
             textStyle: Theme.of(context)

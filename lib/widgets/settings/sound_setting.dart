@@ -12,7 +12,7 @@ class SoundSetting extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 4),
         leading:
             Icon(state ? Icons.volume_up_outlined : Icons.volume_off_outlined),
-        title: Text(S.of(context).soundsEnabled),
+        title: Text(AppLocalizations.of(context).soundsEnabled),
         trailing: Switch(
             value: state,
             onChanged: (_) => context.read<SoundsCubit>().toggleSounds()),

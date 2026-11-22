@@ -15,14 +15,14 @@ class IconSelection extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(slivers: [
         SliverAppBar(
-            title: Text(S.of(context).icons),
+            title: Text(AppLocalizations.of(context).icons),
             centerTitle: false,
             floating: true,
             snap: true),
         SliverToBoxAdapter(
           child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(S.of(context).chooseYourFavoriteIcon)),
+              child: Text(AppLocalizations.of(context).chooseYourFavoriteIcon)),
         ),
         SliverGrid(
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

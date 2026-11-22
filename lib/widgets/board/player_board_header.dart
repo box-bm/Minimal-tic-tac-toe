@@ -67,7 +67,7 @@ class PlayerBoardHeader extends StatelessWidget {
                             excludeSemantics: true,
                             child: Text(
                               player.playerName.isEmpty
-                                  ? S.of(context).player(inverted ? 2 : 1)
+                                  ? AppLocalizations.of(context).player(inverted ? 2 : 1)
                                   : player.playerName,
                               style: Theme.of(context)
                                   .textTheme

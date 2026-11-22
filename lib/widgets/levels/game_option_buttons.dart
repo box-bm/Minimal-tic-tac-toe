@@ -29,7 +29,7 @@ class GameOptionButtons extends StatelessWidget {
                 showFullSizeDialog(context);
               },
               icon: const Icon(Icons.person_outline),
-              label: Text(S.of(context).singlePlayer),
+              label: Text(AppLocalizations.of(context).singlePlayer),
               style: ElevatedButton.styleFrom(
                   foregroundColor: useColorByBackgroundColor(player1Color),
                   backgroundColor: player1Color)),
@@ -39,7 +39,7 @@ class GameOptionButtons extends StatelessWidget {
                 Navigator.pushNamed(context, TicTacToe.route);
               },
               icon: const Icon(Icons.people_alt_outlined),
-              label: Text(S.of(context).multiplayer),
+              label: Text(AppLocalizations.of(context).multiplayer),
               style: ElevatedButton.styleFrom(
                   foregroundColor: useColorByBackgroundColor(player2Color),
                   backgroundColor: player2Color)),
