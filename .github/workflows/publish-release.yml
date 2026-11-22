@@ -1,0 +1,33 @@
+name: Publish Release
+
+# Run after promoting the build to production in Play Console.
+# Publishes the draft GitHub release and marks it as "Latest".
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to publish (empty = most recent draft)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish and mark as latest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          if [ -z "$TAG" ]; then
+            TAG=$(gh release list --limit 20 --json tagName,isDraft,createdAt \
+              --jq '[.[] | select(.isDraft)] | sort_by(.createdAt) | last | .tagName // empty')
+          fi
+          [ -n "$TAG" ] || { echo "::error::No draft release found"; exit 1; }
+          gh release edit "$TAG" --draft=false --latest
+          echo "✅ Published $TAG as latest" >> "$GITHUB_STEP_SUMMARY"
