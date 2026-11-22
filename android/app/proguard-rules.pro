@@ -1,10 +1,5 @@
--keep class io.flutter.app.** { *; }
--keep class io.flutter.plugin.**  { *; }
--keep class io.flutter.util.**  { *; }
--keep class io.flutter.view.**  { *; }
--keep class io.flutter.**  { *; }
--keep class io.flutter.plugins.**  { *; }
--keep class io.flutter.plugin.editing.** { *; }
+# Flutter and plugins ship their own consumer keep rules; broad keeps here
+# would disable shrinking, obfuscation and optimization of those classes.
 
 -dontwarn com.google.android.play.core.splitcompat.SplitCompatApplication
 -dontwarn com.google.android.play.core.splitinstall.SplitInstallException

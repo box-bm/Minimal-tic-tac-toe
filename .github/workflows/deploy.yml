@@ -136,7 +136,7 @@ jobs:
       # Version name/code come from pubspec.yaml (already updated above).
       - name: Build release AAB
         working-directory: .
-        run: flutter build appbundle --no-tree-shake-icons --release
+        run: flutter build appbundle --no-tree-shake-icons --release --obfuscate --split-debug-info=build/symbols
 
       - name: Commit version, tag and push
         if: steps.version.outputs.has_changes == 'true'
@@ -178,7 +178,9 @@ jobs:
         working-directory: .
         run: |
           cp build/app/outputs/bundle/release/app-release.aab "minimal-tic-tac-toe-$TAG.aab"
-          ASSETS=("minimal-tic-tac-toe-$TAG.aab")
+          # Dart symbols to deobfuscate stack traces (flutter symbolize -d ...).
+          (cd build && zip -qr "../minimal-tic-tac-toe-$TAG-symbols.zip" symbols)
+          ASSETS=("minimal-tic-tac-toe-$TAG.aab" "minimal-tic-tac-toe-$TAG-symbols.zip")
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" "${ASSETS[@]}" --clobber
             gh release edit "$TAG" --title "$TAG (build $CODE)"
